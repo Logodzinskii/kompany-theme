@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+}
+
+.card-body-album
+{
+    background-image: url('public/storage/image/assets/item-img/card-bg-fon.jpg');
+    background-repeat: no-repeat;
+    background-position:center center;
+}
