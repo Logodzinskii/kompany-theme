@@ -19,10 +19,9 @@
         $(document).ready(function(){
             $(".owl-carousel").owlCarousel(
                 {
-
                     margin:0,
                     nav:true,
-
+                    navText: ["<img src='images/arrows/arrow-left-square-fill.svg'>", "<img src='images/arrows/arrow-right-square-fill.svg'>"],
                     dots:false,
                     responsiveClass: true,
                     responsive:{
@@ -35,17 +34,52 @@
                         1000:{
                             items:1
                         }
-                    }
+                    },
+                    onTranslate: callback,
                 }
             );
+
+            function callback(event){
+                // По основным
+                // DOM элемент, например .owl-carousel
+                var element   = event.target;
+                // Имя события, например dragged
+                var name      = event.type;
+                // Пространство имен события, например owl.carousel
+                var namespace = event.namespace;
+                // Количество элементов
+                var items     = event.item.count;
+                // Позиция текущего элемента
+                var item      = event.item.index;
+                // Плагин навигации карусели
+                // Количество страниц
+                var pages     = event.page.count;
+                // Положение текущей страницы
+                var page      = event.page.index;
+                // Количество элементов на странице
+                var size      = event.page.size;
+                var p, z;
+                p = document.getElementById('info');
+                z = document.getElementById('info_hol');
+                if(element.childNodes.length == 7 )
+                {
+                    p.innerHTML = item + name + element.childNodes.item(4).textContent + items + pages + page + size + namespace;
+
+                }else{
+                    z.innerHTML = item + name + element.childNodes.item(3).textContent + items + pages + page + size + namespace;
+                }
+
+
+
+            }
         });
     </script>
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
         <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-start" style="min-height: 80vh">
-            <div class="col-lg-9 ">
-                <div class="owl-carousel owl-theme">
+            <div class="col-lg-9 p-0 m-0">
+                <div class="owl-carousel owl-theme first">
                     <div class="item">
                         <div  style="background-color: #0069d9; height: 20vh">
                             антресоли1
@@ -97,7 +131,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 p-0 m-0">
                 <div  style="background-color: yellow; height: 20vh">
                     <div class="owl-carousel owl-theme">
                         <div class="item">
@@ -128,6 +162,8 @@
                 </div>
             </div>
         </section>
+        <p class="info" id="info">0</p>
+        <p class="info" id="info_hol">0</p>
         <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
             <div class="row">
                 <h5>Контакты</h5>
