@@ -1,0 +1,8 @@
+.owl-nav{
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    top: 50%;
+    z-index: 999;
+}
+

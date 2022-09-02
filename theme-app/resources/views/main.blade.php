@@ -20,6 +20,7 @@
                 {
 
                     margin:10,
+
                     responsive:{
                         0:{
                             items:1
@@ -182,7 +183,7 @@
                 <div class="owl-stage-outer">
                     <div class="owl-stage">
                         <div class="owl-item">
-                            <div class="d-flex col justify-content-start" style="margin-left: 5px; margin-right: 5px; border: #0069d9 2px solid; border-radius: 15px">
+                            <div class="d-flex col justify-content-start" style="margin-left: 5px; margin-right: 5px; border: #0069d9 2px solid; border-radius: 15px;">
                                 <div style="width: 30%">
                                     <img src="{{asset('images/avatar/user1.png')}}" style="border-radius: 50%;" />
                                 </div>
