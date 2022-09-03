@@ -39,38 +39,46 @@
                 }
             );
 
-            function callback(event){
+            function callback(event) {
                 // По основным
                 // DOM элемент, например .owl-carousel
-                var element   = event.target;
+                var element = event.target;
                 // Имя события, например dragged
-                var name      = event.type;
+                var name = event.type;
                 // Пространство имен события, например owl.carousel
                 var namespace = event.namespace;
                 // Количество элементов
-                var items     = event.item.count;
+                var items = event.item.count;
                 // Позиция текущего элемента
-                var item      = event.item.index;
+                var item = event.item.index;
+
                 // Плагин навигации карусели
                 // Количество страниц
-                var pages     = event.page.count;
+                var pages = event.page.count;
                 // Положение текущей страницы
-                var page      = event.page.index;
+                var page = event.page.index;
                 // Количество элементов на странице
-                var size      = event.page.size;
-                var p, z;
+                var size = event.page.size;
+                var p, z, childrens;
                 p = document.getElementById('info');
                 z = document.getElementById('info_hol');
-                if(element.childNodes.length == 7 )
-                {
-                    p.innerHTML = item + name + element.childNodes.item(4).textContent + items + pages + page + size + namespace;
+                let output = "Attributes of first paragraph:\n";
+                let price ='';
+                let parentElement = '';
+                let parentElemChildNodes ='';
+                for (const attr of element.attributes) {
+                    if(`${attr.name}` == 'data-id')
+                    {
+                        parentElement = document.getElementById(attr.value); //куда записываю
 
-                }else{
-                    z.innerHTML = item + name + element.childNodes.item(3).textContent + items + pages + page + size + namespace;
+                        parentElemChildNodes = parentElement.getAttribute('data-price');
+                        price = parentElemChildNodes;
+                    }
+                    output += `${attr.name} -> ${attr.value}\n` + price + 'позиция' + item;
                 }
-
-
-
+                childrens = element.firstChild;
+                childrens = childrens.textContent;
+                parentElement.innerHTML = output + childrens;
             }
         });
     </script>
@@ -79,91 +87,99 @@
         @include('header')
         <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-start" style="min-height: 90vh">
             <div class="col-lg-9 p-0 m-0">
-                <div class="owl-carousel owl-theme first">
-                    <div class="item">
+                <div class="owl-carousel owl-theme" data-id="1">
+                    <div class="item" id="d1" data-price="25000">
                         <div  style="background-color: #0069d9; height: 30vh">
-                            антресоли1
+                            антресоли до потолка 1 - цена от 25 000 руб.
                         </div>
                     </div>
-                    <div class="item">
+                    <div class="item" data-price="35000">
                         <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли2
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли3
+                            Без антресолей до потолка - цена 0 руб.
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel owl-theme">
-                    <div class="item">
+                <div class="owl-carousel owl-theme" data-id="2">
+                    <div class="item" data-id="1">
                         <div  style="background-color: #0069d9; height: 30vh">
-                            антресоли1
+                            антресоли до холодильника - 1 - цена от 25 000 руб.
+                        </div>
+                    </div>
+                    <div class="item" data-id="2">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
+                            антресоли до холодильника - 2 - цена от 45 000 руб.
                         </div>
                     </div>
                     <div class="item">
                         <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли2
+                            антресоли до холодильника - 3 - цена от 55 000 руб.
                         </div>
                     </div>
                     <div class="item">
                         <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли3
+                           без антресолей до холодильника - цена 0 руб.
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel owl-theme">
+                <div class="owl-carousel owl-theme" data-id="3">
                     <div class="item">
                         <div  style="background-color: #0069d9; height: 30vh">
-                            Нижний модуль 1
+                            Нижний модуль 1 - цена от 150 000 руб.
                         </div>
                     </div>
                     <div class="item">
                         <div  style="background-color: #aaaaaa; height: 30vh">
-                            Нижний модуль 2
+                            Нижний модуль 2 - цена от 250 000 руб.
                         </div>
                     </div>
                     <div class="item">
                         <div  style="background-color: #aaaaaa; height: 30vh">
-                            Нижний модуль 3
+                            Нижний модуль 3 - цена от 350 000 руб.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 p-0 m-0">
                 <div  style="background-color: yellow; height: 30vh">
-                    <div class="owl-carousel owl-theme">
+                    <div class="owl-carousel owl-theme" data-id="4">
                         <div class="item">
                             <div  style="background-color: #0069d9; height: 30vh">
-                                верх 1
+                                антресоль над холодильником 1 - цена 20 000 руб.
                             </div>
                         </div>
                         <div class="item">
                             <div  style="background-color: #aaaaaa; height: 30vh">
-                                верх 2
+                                антресоль над холодильником 2 - цена 25 000 руб.
                             </div>
                         </div>
                     </div>
                 </div>
                 <div  style="background-color: green; height: 60vh">
-                    <div class="owl-carousel owl-theme">
+                    <div class="owl-carousel owl-theme" data-id="5">
                         <div class="item">
                             <div  style="background-color: #0069d9; height: 60vh">
-                                холодильник 1
+                                холодильник 1 цена - от 100 000 руб.
                             </div>
                         </div>
                         <div class="item">
                             <div  style="background-color: #aaaaaa; height: 60vh">
-                                холодильник 2
+                                холодильник 2 цена - от 200 000 руб.
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div  style="background-color: #aaaaaa; height: 60vh">
+                                без холодильника цена - 0 руб.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <p class="info" id="info">0</p>
-        <p class="info" id="info_hol">0</p>
+        <p class="info" id="1">0</p>
+        <p class="info" id="2">0</p>
+        <p class="info" id="3">0</p>
+        <p class="info" id="4">0</p>
+        <p class="info" id="5">0</p>
         <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
             <div class="row">
                 <h5>Контакты</h5>
