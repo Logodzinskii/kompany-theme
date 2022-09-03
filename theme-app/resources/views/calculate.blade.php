@@ -77,84 +77,84 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-start" style="min-height: 80vh">
+        <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-start" style="min-height: 90vh">
             <div class="col-lg-9 p-0 m-0">
                 <div class="owl-carousel owl-theme first">
                     <div class="item">
-                        <div  style="background-color: #0069d9; height: 20vh">
+                        <div  style="background-color: #0069d9; height: 30vh">
                             антресоли1
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             антресоли2
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             антресоли3
                         </div>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme">
                     <div class="item">
-                        <div  style="background-color: #0069d9; height: 20vh">
+                        <div  style="background-color: #0069d9; height: 30vh">
                             антресоли1
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             антресоли2
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             антресоли3
                         </div>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme">
                     <div class="item">
-                        <div  style="background-color: #0069d9; height: 20vh">
+                        <div  style="background-color: #0069d9; height: 30vh">
                             Нижний модуль 1
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             Нижний модуль 2
                         </div>
                     </div>
                     <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 20vh">
+                        <div  style="background-color: #aaaaaa; height: 30vh">
                             Нижний модуль 3
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 p-0 m-0">
-                <div  style="background-color: yellow; height: 20vh">
+                <div  style="background-color: yellow; height: 30vh">
                     <div class="owl-carousel owl-theme">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 20vh">
+                            <div  style="background-color: #0069d9; height: 30vh">
                                 верх 1
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 20vh">
+                            <div  style="background-color: #aaaaaa; height: 30vh">
                                 верх 2
                             </div>
                         </div>
                     </div>
                 </div>
-                <div  style="background-color: green; height: 40vh">
+                <div  style="background-color: green; height: 60vh">
                     <div class="owl-carousel owl-theme">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 40vh">
+                            <div  style="background-color: #0069d9; height: 60vh">
                                 холодильник 1
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 40vh">
+                            <div  style="background-color: #aaaaaa; height: 60vh">
                                 холодильник 2
                             </div>
                         </div>
