@@ -62,7 +62,7 @@
                 var p, z, childrens;
                 p = document.getElementById('info');
                 z = document.getElementById('info_hol');
-                let output = "Attributes of first paragraph:\n";
+                let output = "";
                 let price ='';
                 let parentElement = '';
                 let parentElemChildNodes ='';
@@ -74,108 +74,120 @@
                         parentElemChildNodes = parentElement.getAttribute('data-price');
                         price = parentElemChildNodes;
                     }
-                    output += `${attr.name} -> ${attr.value}\n` + price + 'позиция' + item;
+                    //`${attr.name} -> ${attr.value}\n`
+                    output = 'Вариант' + item;
                 }
                 childrens = element.firstChild;
                 childrens = childrens.textContent;
-                parentElement.innerHTML = output + childrens;
+                parentElement.innerHTML = output;
             }
         });
     </script>
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-start" style="min-height: 90vh">
-            <div class="col-lg-9 p-0 m-0">
+        <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-center" style="min-height: 50vh">
+            <div class="col-lg-2 p-0 m-0">
+                <div class="card d-flex row justify-content-center flex-wrap">
+                    <p>Размеры антресолей &nbsp;</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">мм</span>
+                        <input type="number" class="form-control" placeholder="Длинна, мм" aria-label="Длинна, мм" aria-describedby="basic-addon1">
+                    </div>
+                    <p class="info" id="1">0</p>
+                </div>
+                <div class="card d-flex row justify-content-center">
+                    <p>Размеры верхнего модуля</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">мм</span>
+                        <input type="number" class="form-control" placeholder="Длинна, мм" aria-label="Длинна, мм" aria-describedby="basic-addon1">
+                    </div>
+                    <p class="info" id="2">0</p>
+                </div>
+                <div class="card d-flex row justify-content-center">
+                    <p>Размеры нижних модулей</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">мм</span>
+                        <input type="number" class="form-control" placeholder="Длинна, мм" aria-label="Длинна, мм" aria-describedby="basic-addon1">
+                    </div>
+                    <p class="info" id="3">0</p>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0 m-0">
                 <div class="owl-carousel owl-theme" data-id="1">
                     <div class="item" id="d1" data-price="25000">
-                        <img src="{{asset('images/projects/p1/item/a11.png')}} " alt="a11" height="225" />
+                        <img src="{{asset('images/projects/p1/item/ai11.png')}} " alt="ai11"  />
                     </div>
                     <div class="item" id="d1" data-price="25000">
-                        <img src="{{asset('images/projects/p1/item/a12.png')}} " alt="a11" height="225" />
+                        <img src="{{asset('images/projects/p1/item/ai12.png')}} " alt="ai12" />
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="2">
                     <div class="item" data-id="1">
-                        <div  style="background-color: #0069d9; height: 30vh">
-                            <img src="{{asset('images/projects/p1/item/a21.png')}} " alt="a21" height="225" />
-                        </div>
-                    </div>
-                    <div class="item" data-id="2">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли до холодильника - 2 - цена от 45 000 руб.
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            антресоли до холодильника - 3 - цена от 55 000 руб.
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                           без антресолей до холодильника - цена 0 руб.
+                        <div>
+                            <img src="{{asset('images/projects/p1/item/ai21.png')}} " alt="ai21"/>
                         </div>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="3">
                     <div class="item">
-                        <div  style="background-color: #0069d9; height: 30vh">
-                            <img src="{{asset('images/projects/p1/item/a31.png')}} " alt="a31" height="225" />
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            Нижний модуль 2 - цена от 250 000 руб.
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            Нижний модуль 3 - цена от 350 000 руб.
+                        <div>
+                            <img src="{{asset('images/projects/p1/item/ai31.png')}} " alt="ai31" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 p-0 m-0">
-                <div  style="background-color: yellow; height: 22vh">
+                <div>
                     <div class="owl-carousel owl-theme" data-id="4">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 22vh">
-                                <img src="{{asset('images/projects/p1/item/a41.png')}} " alt="a41" height="170" />
+                            <div  >
+                                <img src="{{asset('images/projects/p1/item/ai41.png')}} " alt="ai41" height="90" />
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 20vh">
-                                <img src="{{asset('images/projects/p1/item/a42.png')}} " alt="a41" height="170" />
+                            <div >
+                                <img src="{{asset('images/projects/p1/item/ai42.png')}} " alt="ai42" height="90" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div >
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div  style="background-color: green; height: 80vh">
+                <div>
                     <div class="owl-carousel owl-theme" data-id="5">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 80vh">
-                                <img src="{{asset('images/projects/p1/item/a51.png')}} " alt="a51" height="505" />
+                            <div  >
+                                <img src="{{asset('images/projects/p1/item/ai51.png')}} " alt="ai51"  height="339"/>
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 80vh">
-                                <img src="{{asset('images/projects/p1/item/a52.png')}} " alt="a52" height="505" />
+                            <div>
+                                <img src="{{asset('images/projects/p1/item/ai52.png')}} " alt="ai52" height="339" />
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 80vh">
-                                без холодильника цена - 0 руб.
+                            <div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-2 p-0 m-0">
+                <div class="card" style="height: 22vh;">
+                    <p>Информация 1</p>
+                    <p class="info" id="4">0</p>
+                </div>
+                <div class="card" style="height: 40vh;">
+                    <p>Информация 1</p>
+                    <p class="info" id="5">0</p>
+                </div>
+            </div>
         </section>
-        <p class="info" id="1">0</p>
-        <p class="info" id="2">0</p>
-        <p class="info" id="3">0</p>
-        <p class="info" id="4">0</p>
-        <p class="info" id="5">0</p>
         <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
             <div class="row">
                 <h5>Контакты</h5>
