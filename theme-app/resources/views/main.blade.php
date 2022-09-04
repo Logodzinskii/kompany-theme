@@ -10,7 +10,6 @@
         <link rel="stylesheet" href={{ asset('css/owl.carousel.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
 
-
         <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
         <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
         <script src={{ asset('js/owl.carousel.min.js')}}></script>
@@ -34,12 +33,12 @@
                     }
                 }
             );
-
         });
     </script>
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
+
         <section style="min-height: 100vh" class="p-0 m-0">
             <div class="row p-0 m-0">
                 <div class="card col-lg-4 ">
@@ -49,7 +48,7 @@
                         <p style="min-height:5vh ">Изготовление кухонь по индивидуальным размерам</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">65 000</span> &#x20bd</p>
-                        <a href="#" class="btn btn-primary">Расчет цены</a>
+                        <a href="calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
                 <div class="card col-lg-4 ">
@@ -59,7 +58,7 @@
                         <p style="min-height:5vh ">Изготовление шкафа от 7 рабочих дней</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">35 000</span> &#x20bd</p>
-                        <a href="#" class="btn btn-primary">Расчет цены</a>
+                        <a href="calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
                 <div class="card col-lg-4 ">
@@ -69,7 +68,7 @@
                         <p style="min-height:5vh ">Изготовление тумбы от 7 рабочих дней</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">20 000</span> &#x20bd</p>
-                        <a href="#" class="btn btn-primary">Расчет цены</a>
+                        <a href="calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
             </div>
@@ -232,19 +231,16 @@
         </section>
         <section style="min-height: 50vh;" class="d-flex justify-content-center row">
             <h1 class="text-center">Форма обратной связи</h1>
-            <form style="width: 50vw">
+            <form style="width: 50vw" method="post" action='order/'>
+                @csrf
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

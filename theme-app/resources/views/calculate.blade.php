@@ -89,20 +89,16 @@
             <div class="col-lg-9 p-0 m-0">
                 <div class="owl-carousel owl-theme" data-id="1">
                     <div class="item" id="d1" data-price="25000">
-                        <div  style="background-color: #0069d9; height: 30vh">
-                            антресоли до потолка 1 - цена от 25 000 руб.
-                        </div>
+                        <img src="{{asset('images/projects/p1/item/a11.png')}} " alt="a11" height="225" />
                     </div>
-                    <div class="item" data-price="35000">
-                        <div  style="background-color: #aaaaaa; height: 30vh">
-                            Без антресолей до потолка - цена 0 руб.
-                        </div>
+                    <div class="item" id="d1" data-price="25000">
+                        <img src="{{asset('images/projects/p1/item/a12.png')}} " alt="a11" height="225" />
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="2">
                     <div class="item" data-id="1">
                         <div  style="background-color: #0069d9; height: 30vh">
-                            антресоли до холодильника - 1 - цена от 25 000 руб.
+                            <img src="{{asset('images/projects/p1/item/a21.png')}} " alt="a21" height="225" />
                         </div>
                     </div>
                     <div class="item" data-id="2">
@@ -124,7 +120,7 @@
                 <div class="owl-carousel owl-theme" data-id="3">
                     <div class="item">
                         <div  style="background-color: #0069d9; height: 30vh">
-                            Нижний модуль 1 - цена от 150 000 руб.
+                            <img src="{{asset('images/projects/p1/item/a31.png')}} " alt="a31" height="225" />
                         </div>
                     </div>
                     <div class="item">
@@ -140,34 +136,34 @@
                 </div>
             </div>
             <div class="col-lg-3 p-0 m-0">
-                <div  style="background-color: yellow; height: 30vh">
+                <div  style="background-color: yellow; height: 22vh">
                     <div class="owl-carousel owl-theme" data-id="4">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 30vh">
-                                антресоль над холодильником 1 - цена 20 000 руб.
+                            <div  style="background-color: #0069d9; height: 22vh">
+                                <img src="{{asset('images/projects/p1/item/a41.png')}} " alt="a41" height="170" />
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 30vh">
-                                антресоль над холодильником 2 - цена 25 000 руб.
+                            <div  style="background-color: #aaaaaa; height: 20vh">
+                                <img src="{{asset('images/projects/p1/item/a42.png')}} " alt="a41" height="170" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div  style="background-color: green; height: 60vh">
+                <div  style="background-color: green; height: 80vh">
                     <div class="owl-carousel owl-theme" data-id="5">
                         <div class="item">
-                            <div  style="background-color: #0069d9; height: 60vh">
-                                холодильник 1 цена - от 100 000 руб.
+                            <div  style="background-color: #0069d9; height: 80vh">
+                                <img src="{{asset('images/projects/p1/item/a51.png')}} " alt="a51" height="505" />
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 60vh">
-                                холодильник 2 цена - от 200 000 руб.
+                            <div  style="background-color: #aaaaaa; height: 80vh">
+                                <img src="{{asset('images/projects/p1/item/a52.png')}} " alt="a52" height="505" />
                             </div>
                         </div>
                         <div class="item">
-                            <div  style="background-color: #aaaaaa; height: 60vh">
+                            <div  style="background-color: #aaaaaa; height: 80vh">
                                 без холодильника цена - 0 руб.
                             </div>
                         </div>

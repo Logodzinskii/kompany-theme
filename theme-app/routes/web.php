@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('/calculate', function () {
     return view('calculate');
 });
+
+Route::get('/order', [\App\Http\Controllers\OrderForm::class, 'store']);
