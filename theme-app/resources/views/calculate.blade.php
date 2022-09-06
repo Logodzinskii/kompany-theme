@@ -77,11 +77,24 @@
                         parentElemChildNodes = parentElement.getAttribute('data-price');
                         price = parentElemChildNodes;
                         const elem = element.children;
-                        console.log(elem[0].children[0].children[0].children[0].dataset.price)
-                        parentElement.innerHTML = elem[0].children[0].children[0].children[0].dataset.price;
+                        console.log(elem[0].children[0].children[item].children[0].dataset.price)
+                        parentElement.innerHTML = elem[0].children[0].children[item].children[0].dataset.price;
+                        sumTotal();
                     }
 
                 }
+
+            }
+
+            function sumTotal()
+            {
+                let first = document.getElementById("1").innerText;
+                let second = document.getElementById("2").innerText;
+                let three = document.getElementById("3").innerText;
+                let four = document.getElementById("4").innerText;
+                let five = document.getElementById("5").innerText;
+
+                document.getElementById("totalPrice").innerText = (Number(first) + Number(second) + Number(three) + Number(four) + Number(five));
 
             }
 
@@ -91,6 +104,8 @@
     <body class="container-fluid p-0 m-0">
         @include('header')
         @include('calculateSelf')
+        <h1 class="text-center">ШАГ 3 - Оформите заявку и мы свяжемся с вами</h1>
+        @include('calculateForm')
         <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
             <div class="row">
                 <h5>Контакты</h5>
