@@ -64,40 +64,24 @@
                 z = document.getElementById('info_hol');
                 let output = "";
                 let price ='';
-                let parentElement = '';
+                var parentElement ;
                 let parentElemChildNodes ='';
 
                 for (const attr of element.attributes) {
                     parentElement = document.getElementById(attr.value); //куда записываю
 
-                    /*if(`${attr.name}` == 'data-id')
+                    if(`${attr.name}` == 'data-id')
                     {
                         parentElement = document.getElementById(attr.value); //куда записываю
 
                         parentElemChildNodes = parentElement.getAttribute('data-price');
                         price = parentElemChildNodes;
-                    }*/
-                    //`${r  r                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    attr.name} -> ${attr.value}\n`
+                        const elem = element.children;
+                        console.log(elem[0].children[0].children[0].children[0].dataset.price)
+                        parentElement.innerHTML = elem[0].children[0].children[0].children[0].dataset.price;
+                    }
 
-
-                    //let ids = 'antr'+ item + '|' + attr.value;
-                    //const div = document.getElementById(ids);
-                    output += `${attr.value}` + `${attr.name}` + item + '</br>';
-                    //output = exampleAttr;
                 }
-
-                /*for (let i = 0; i < element.children.length; i++) {
-
-                    //console.log(event.target.childNodes[i]); // Text, DIV, Text, UL, ..., SCRIPT
-                    let ch = element.child[i];
-                    let cl = ch.dataset.price;
-                    console.log(cl);
-
-                }*/
-                const elem = element.children;
-                console.log(elem[0].children[0].children[0].children[0].dataset.price)
-
-                parentElement.innerHTML = output;
 
             }
 
