@@ -86,8 +86,8 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <section class="p-0 m-0 row col-lg-12 d-flex flex-wrap justify-content-center" style="min-height: 50vh">
-            <div class="col-lg-2 p-0 m-0">
+        <section class="p-0 m-0 row col-sm-12 d-flex flex-nowrap justify-content-center" style="min-height: 50vh">
+            <div class="col-2 p-0 m-0">
                 <div class="card d-flex row justify-content-center flex-wrap">
                     <p>Размеры антресолей &nbsp;</p>
                     <div class="input-group mb-3">
@@ -113,31 +113,31 @@
                     <p class="info" id="3">0</p>
                 </div>
             </div>
-            <div class="col-lg-5 p-0 m-0">
+            <div class="col-5 p-0 m-0">
                 <div class="owl-carousel owl-theme" data-id="1">
                     <div class="item" id="d1" data-price="25000">
-                        <img src="{{asset('images/projects/p1/item/ai11.png')}} " alt="ai11"  />
+                        <img src="{{asset('images/projects/p1/item/ai11.png')}} " alt="ai11"  height="112" />
                     </div>
                     <div class="item" id="d1" data-price="25000">
-                        <img src="{{asset('images/projects/p1/item/ai12.png')}} " alt="ai12" />
+                        <img src="{{asset('images/projects/p1/item/ai12.png')}} " alt="ai12" height="112"/>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="2">
                     <div class="item" data-id="1">
                         <div>
-                            <img src="{{asset('images/projects/p1/item/ai21.png')}} " alt="ai21"/>
+                            <img src="{{asset('images/projects/p1/item/ai21.png')}} " alt="ai21" height="160"/>
                         </div>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="3">
                     <div class="item">
                         <div>
-                            <img src="{{asset('images/projects/p1/item/ai31.png')}} " alt="ai31" />
+                            <img src="{{asset('images/projects/p1/item/ai31.png')}} " alt="ai31" height="160"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 p-0 m-0">
+            <div class="col-3 p-0 m-0">
                 <div>
                     <div class="owl-carousel owl-theme" data-id="4">
                         <div class="item">
@@ -177,7 +177,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 p-0 m-0">
+            <div class="col-2 p-0 m-0">
                 <div class="card" style="height: 22vh;">
                     <p>Информация 1</p>
                     <p class="info" id="4">0</p>
