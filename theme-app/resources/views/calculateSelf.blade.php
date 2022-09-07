@@ -67,7 +67,8 @@
             </div>
         </section>
 <h1 class="text-center"> 2 ШАГ - Укажите размеры вашей кухни </h1>
-        <section class="col-12 p-0 m-0 d-flex justify-content-around flex-wrap">
+        <section class="col-12 col p-0 m-0 col-lg-12 d-flex justify-content-around flex-wrap">
+            <div class="col-12 col-lg-8 d-flex justify-content-around flex-wrap">
                 <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Размеры антресолей &nbsp;</h5>
                     <div class="input-group mb-3">
@@ -115,4 +116,6 @@
                 </div>
 
             </div>
+            </div>
+                
         </section>
