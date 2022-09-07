@@ -108,6 +108,9 @@
       <path value="$PROJECT_DIR$/theme-app/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/theme-app/vendor/nunomaduro/termwind" />
       <path value="$PROJECT_DIR$/theme-app/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/theme-app/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/theme-app/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/theme-app/vendor/jaybizzle/crawler-detect" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
