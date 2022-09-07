@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 col-md-3 col-lg-3 col-xl-5 p-0 m-0">
+            <div class="col-4 col-md-3 col-lg-3 col-xl-3 p-0 m-0">
                 <div>
                     <div class="owl-carousel owl-theme" data-id="4">
                         <div class="item" data-price="15000">
@@ -67,8 +67,8 @@
             </div>
         </section>
 <h1 class="text-center"> 2 ШАГ - Укажите размеры вашей кухни </h1>
-        <section class="col-12 col p-0 m-0 d-flex justify-content-around flex-wrap">
-                <div class="card d-flex row justify-content-center flex-wrap" style="width: 30vw">
+        <section class="col-12 p-0 m-0 d-flex justify-content-around flex-wrap">
+                <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Размеры антресолей &nbsp;</h5>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">мм</span>
@@ -76,7 +76,7 @@
                     </div>
                     <div>цена - <span class="info card-text" id="1">25000</span> <a href="#" class="btn btn-secondary">Применить</a> </div>
                 </div>
-                <div class="card d-flex row justify-content-center flex-wrap" style="width: 30vw">
+                <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Размеры верхнего модуля</h5>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">мм</span>
@@ -84,7 +84,7 @@
                     </div>
                     <div>цена - <span class="info card-text" id="2">25200</span> <a href="#" class="btn btn-secondary">Применить</a></div>
                 </div>
-                <div class="card d-flex row justify-content-center flex-wrap" style="width: 30vw">
+                <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Размеры нижних модулей</h5>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">мм</span>
@@ -92,7 +92,7 @@
                     </div>
                     <div>цена - <span class="info card-text" id="3">50000</span> <a href="#" class="btn btn-secondary">Применить</a></div>
                 </div>
-                <div class="card d-flex row justify-content-center flex-wrap" style="width: 30vw">
+                <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Шкафы над холодильником</h5>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">мм</span>
@@ -100,7 +100,7 @@
                     </div>
                     <div>цена - <span class="info card-text" id="4">25000</span> <a href="#" class="btn btn-secondary">Применить</a></div>
                 </div>
-                <div class="card d-flex row justify-content-center flex-wrap" style="width: 30vw">
+                <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
                     <h5 class="card-title">Холодильник</h5>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">мм</span>
@@ -109,7 +109,7 @@
                     <div>цена - <span class="info card-text" id="5">15000</span> <a href="#" class="btn btn-secondary">Применить</a></div>
                 </div>
                 <div class="card d-flex row justify-content-center flex-wrap">
-                    <h5 class="card-title" style="width: 30vw">Итоговая цена</h5>
+                    <h5 class="card-title" style="min-width: 50vw">Итоговая цена</h5>
                     <h1 id="totalPrice" class="info card-text">0</h1>
                     <a href="#" class="btn btn-secondary">Сохранить</a>
                 </div>
