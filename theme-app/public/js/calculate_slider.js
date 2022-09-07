@@ -67,17 +67,29 @@ $(document).ready(function(){
         }
 
     }
+    $('input').on('change',function() {
+        var price = $(this).parent().parent().children().eq('2').find('span').text();
+        $(this).parent().parent().children().last().find('span').text(parseInt($(this).val()) * parseInt(price));
+        if ($(this).parent().parent().children().last().hasClass('bg-warning'))
+        {
 
-    function sumTotal()
-    {
-        let first = document.getElementById("1").innerText;
-        let second = document.getElementById("2").innerText;
-        let three = document.getElementById("3").innerText;
-        let four = document.getElementById("4").innerText;
-        let five = document.getElementById("5").innerText;
+        }else {
+            $(this).parent().parent().children().last().addClass('bg-warning');
+        }
+    });
+    $('.btn').on('click', function (e){
+        var first = $("#tatalpriceId1").text();
+        var second = $("#tatalpriceId2").text();
+        var three = $("#tatalpriceId3").text();
+        var four = $("#tatalpriceId4").text();
+        var five = $("#tatalpriceId5").text();
 
-        document.getElementById("totalPrice").innerText = (Number(first) + Number(second) + Number(three) + Number(four) + Number(five));
-
-    }
+        $("#totalPrice").text(parseInt(first) + parseInt(second) + parseInt(three) + parseInt(four) + parseInt(five));
+        var el = $('.bg-warning');
+        el.removeClass('bg-warning');
+        el.addClass('bg-success');
+        el.addClass('text-white');
+        e.preventDefault();
+    });
 
 });

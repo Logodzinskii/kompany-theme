@@ -1,5 +1,10 @@
 
 <h1 class="text-center"> 1 ШАГ - Выберите конфигурацию кухни </h1>
+
+
+    <h2>{{$products['type']}} - {{$products['name']}}</h2>
+
+
 <section class="p-0 m-0 row col-12 col-md-12 col-lg-12 col-xl-12 d-flex flex-nowrap justify-content-center" style="min-height: 50vh">
             <div class="col-8 col-md-5 col-lg-5 col-xl-5 p-0 m-0">
                 <div class="owl-carousel owl-theme" data-id="1">
@@ -77,7 +82,7 @@
                             <input type="number" name="param" class="form-control" placeholder="{{ $param['placeholderInput'] }}" aria-label="Длинна, мм" aria-describedby="basic-addon1">
                         </div>
                         <div>цена за погонный метр - <span class="info card-text text-secondary" id="{{ $param['id'] }}">{{ $param['initPrice'] }}</span></div>
-                        <div class="bg-warning text-dark" style="border-radius: 3px; padding: 10px 0px 10px 0px">цена с учетом размеров - <span id="tatalpriceId{{ $param['id'] }}">0</span></div>
+                        <div style="border-radius: 3px; padding: 10px 0px 10px 0px">цена с учетом размеров - <span id="tatalpriceId{{ $param['id'] }}">0</span></div>
                     </div>
                 @endforeach
                 <div class="card d-flex row justify-content-center flex-wrap text-center bg-success text-white">

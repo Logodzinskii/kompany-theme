@@ -18,21 +18,7 @@
         <script type="text/javascript" src="{{asset('js/calculate_slider.js')}}"></script>
         <script type="text/javascript">
             $(document).ready(function (){
-                $('input').on('change',function() {
-                    var price = $(this).parent().parent().children().eq('2').find('span').text();
-                    $(this).parent().parent().children().last().find('span').text(parseInt($(this).val()) * parseInt(price));
 
-                });
-                $('.btn').on('click', function (e){
-                    var first = $("#tatalpriceId1").text();
-                    var second = $("#tatalpriceId2").text();
-                    var three = $("#tatalpriceId3").text();
-                    var four = $("#tatalpriceId4").text();
-                    var five = $("#tatalpriceId5").text();
-
-                    $("#totalPrice").text(parseInt(first) + parseInt(second) + parseInt(three) + parseInt(four) + parseInt(five));
-                    e.preventDefault();
-                });
             })
         </script>
     </head>

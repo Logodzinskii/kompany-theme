@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/calculate', [\App\Http\Controllers\CalculateContentController::class, 'show']);
+Route::get('/calculate/{id}', [\App\Http\Controllers\ProductsController::class, 'listProducts']);
 
 Route::get('/order', [\App\Http\Controllers\OrderForm::class, 'store']);
