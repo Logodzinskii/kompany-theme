@@ -21,4 +21,6 @@ Route::get('/', function () {
 
 Route::get('/calculate/{id}', [\App\Http\Controllers\ProductsController::class, 'listProducts']);
 
+Route::get('admin/',[\App\Http\Controllers\AdminController::class, 'index']);
+
 Route::post('/order-user', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');

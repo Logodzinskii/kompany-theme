@@ -1,5 +1,5 @@
 
-<h1 class="text-center"> 1 ШАГ - Выберите конфигурацию кухни </h1>
+<h1 class="text-center"> Выберите конфигурацию кухни </h1>
 
 
     <h2>{{$products['type']}} - {{$products['name']}}</h2>
@@ -71,8 +71,8 @@
                 </div>
             </div>
         </section>
-        <h1 class="text-center"> 2 ШАГ - Укажите размеры вашей кухни </h1>
-        <section class="col-12 col m-0 col-lg-12 d-flex justify-content-around flex-wrap bg-primary" style="min-height: 80vh; padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0;">
+        <h1 class="text-center">Укажите размеры вашей кухни </h1>
+        <section class="col-12 col m-0 col-lg-12 d-flex justify-content-around flex-wrap bg-primary" style="min-height: 20vh; padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0;">
             <div class="col-12 col-lg-8 d-flex justify-content-around align-items-center flex-wrap">
                 @foreach($parametrs as $param)
                     <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw; min-height: 5vh">
@@ -82,20 +82,7 @@
                             <input type="number" name="param" class="form-control" placeholder="{{ $param['placeholderInput'] }}" aria-label="Длинна, мм" aria-describedby="basic-addon1">
                         </div>
                         <div class="errorValidate" style="visibility: hidden"></div>
-
                     </div>
                 @endforeach
-                <div class="card d-flex row justify-content-center flex-wrap text-center bg-success text-white">
-                    <input type="hidden" id="1" value="25000"/>
-                    <input type="hidden" id="2" value="25000"/>
-                    <input type="hidden" id="3" value="25000"/>
-                    <input type="hidden" id="4" value="25000"/>
-                    <input type="hidden" id="5" value="25000"/>
-                    <input type="hidden" id="kitchenLength" value="2500"/>
-                    <input type="hidden" id="kitchenHeight" value="2500"/>
-                    <h5 class="card-title" style="min-width: 50vw">Итоговая цена</h5>
-                    <h1 id="totalPrice" class="info card-text">0</h1>
-                    <a href="#" class="btn btn-secondary calculate">Сохранить</a>
-                </div>
             </div>
         </section>
