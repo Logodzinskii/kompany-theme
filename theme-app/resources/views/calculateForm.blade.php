@@ -1,6 +1,6 @@
 <section class="d-flex justify-content-center align-items-center row col-12" style="min-height: 80vh">
     <h1 class="text-center">Форма обратной связи</h1>
-    <form class="col-12 col-md-8 col-lg-8" method="post" action='order/'>
+    <form class="col-12 col-md-8 col-lg-8" method="post" action="{{ url('order-user') }}">
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email для связи с вами</label>

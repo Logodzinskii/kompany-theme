@@ -63,9 +63,20 @@ $(document).ready(function(){
                 parentElement.value = elem[0].children[0].children[item].children[0].dataset.price;
             }
         }
+        var first = $("#1").val();
+        var second = $("#2").val();
+        var three = $("#3").val();
+        var four = $("#4").val();
+        var five = $("#5").val();
+        var lenC = parseInt($("#kitchenLength").val())/1000;
+        $("#totalPrice").text((parseInt(first) + parseInt(second) + parseInt(three) + parseInt(four) + parseInt(five)) * lenC);
+        var el = $('.bg-warning');
+        el.removeClass('bg-warning');
+        el.addClass('bg-success');
+        el.addClass('text-white');
     }
 
-    $('input').on('change',function() {
+    $('input[name="param"]').on('change',function() {
         var price = $(this).parent().parent().children().eq('2').find('span').text();
         $(this).parent().parent().children().last().find('span').text(parseInt($(this).val()) * parseInt(price));
         if ($(this).parent().parent().children().last().hasClass('bg-warning'))
@@ -100,7 +111,8 @@ $(document).ready(function(){
         }
 
     });
-    $('.btn').on('click', function (e){
+
+    $('.calculate').on('click', function (e){
         var first = $("#1").val();
         var second = $("#2").val();
         var three = $("#3").val();

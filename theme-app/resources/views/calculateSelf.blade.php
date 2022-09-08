@@ -86,16 +86,16 @@
                     </div>
                 @endforeach
                 <div class="card d-flex row justify-content-center flex-wrap text-center bg-success text-white">
-                    <input type="hidden" id="1" />
-                    <input type="hidden" id="2" />
-                    <input type="hidden" id="3" />
-                    <input type="hidden" id="4" />
-                    <input type="hidden" id="5" />
-                    <input type="hidden" id="kitchenLength" />
-                    <input type="hidden" id="kitchenHeight" />
+                    <input type="hidden" id="1" value="25000"/>
+                    <input type="hidden" id="2" value="25000"/>
+                    <input type="hidden" id="3" value="25000"/>
+                    <input type="hidden" id="4" value="25000"/>
+                    <input type="hidden" id="5" value="25000"/>
+                    <input type="hidden" id="kitchenLength" value="2500"/>
+                    <input type="hidden" id="kitchenHeight" value="2500"/>
                     <h5 class="card-title" style="min-width: 50vw">Итоговая цена</h5>
                     <h1 id="totalPrice" class="info card-text">0</h1>
-                    <a href="#" class="btn btn-secondary">Сохранить</a>
+                    <a href="#" class="btn btn-secondary calculate">Сохранить</a>
                 </div>
             </div>
         </section>
