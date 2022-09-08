@@ -8,22 +8,22 @@
 <section class="p-0 m-0 row col-12 col-md-12 col-lg-12 col-xl-12 d-flex flex-nowrap justify-content-center" style="min-height: 50vh">
             <div class="col-8 col-md-5 col-lg-5 col-xl-5 p-0 m-0">
                 <div class="owl-carousel owl-theme" data-id="1">
-                    <div class="myitem" id="antr0|1" data-price="25000">
+                    <div class="item" data-price="15000">
                         <img src="{{asset('images/projects/p1/item/ai11.png')}} " alt="ai11"  height="112" />
                     </div>
-                    <div class="myitem" id="antr1|1" data-price="45000">
+                    <div class="myitem" data-price="45000">
                         <img src="{{asset('images/projects/p1/item/ai12.png')}} " alt="ai12" height="112"/>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="2">
-                    <div class="myitem" data-id="1" data-price="35000">
+                    <div class="item" data-price="15000">
                         <div>
                             <img src="{{asset('images/projects/p1/item/ai21.png')}} " alt="ai21" height="160"/>
                         </div>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme" data-id="3">
-                    <div class="item" data-price="35000">
+                    <div class="item" data-price="15000">
                         <div>
                             <img src="{{asset('images/projects/p1/item/ai31.png')}} " alt="ai31" height="160"/>
                         </div>
@@ -73,19 +73,26 @@
         </section>
         <h1 class="text-center"> 2 ШАГ - Укажите размеры вашей кухни </h1>
         <section class="col-12 col m-0 col-lg-12 d-flex justify-content-around flex-wrap bg-primary" style="min-height: 80vh; padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0;">
-            <div class="col-12 col-lg-8 d-flex justify-content-around flex-wrap">
+            <div class="col-12 col-lg-8 d-flex justify-content-around align-items-center flex-wrap">
                 @foreach($parametrs as $param)
-                    <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw">
+                    <div class="card d-flex row justify-content-center flex-wrap" style="min-width: 30vw; min-height: 5vh">
                         <h5 class="card-title bg-dark bg-gradient text-white" style="border-radius: 3px; padding: 10px 0px 10px 0px">{{ $param['titleCard'] }}&nbsp;</h5>
-                        <div class="input-group mb-3 bg-white text-dark">
-                            <span class="input-group-text" id="basic-addon1">м</span>
+                        <div class="input-group mb-3 bg-white text-dark" id="size{{$param['id']}}">
+                            <span class="input-group-text" id="basic-addon1">мм</span>
                             <input type="number" name="param" class="form-control" placeholder="{{ $param['placeholderInput'] }}" aria-label="Длинна, мм" aria-describedby="basic-addon1">
                         </div>
-                        <div>цена за погонный метр - <span class="info card-text text-secondary" id="{{ $param['id'] }}">{{ $param['initPrice'] }}</span></div>
-                        <div style="border-radius: 3px; padding: 10px 0px 10px 0px">цена с учетом размеров - <span id="tatalpriceId{{ $param['id'] }}">0</span></div>
+                        <div class="errorValidate" style="visibility: hidden"></div>
+
                     </div>
                 @endforeach
                 <div class="card d-flex row justify-content-center flex-wrap text-center bg-success text-white">
+                    <input type="hidden" id="1" />
+                    <input type="hidden" id="2" />
+                    <input type="hidden" id="3" />
+                    <input type="hidden" id="4" />
+                    <input type="hidden" id="5" />
+                    <input type="hidden" id="kitchenLength" />
+                    <input type="hidden" id="kitchenHeight" />
                     <h5 class="card-title" style="min-width: 50vw">Итоговая цена</h5>
                     <h1 id="totalPrice" class="info card-text">0</h1>
                     <a href="#" class="btn btn-secondary">Сохранить</a>

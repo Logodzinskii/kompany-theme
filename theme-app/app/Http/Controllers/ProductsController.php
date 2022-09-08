@@ -18,42 +18,26 @@ class ProductsController extends Controller
         $arrayParametrsForkitchen = [
             [
                 'id'=>'1',
-                'titleCard'=>'Размеры антресолей',
-                'placeholderInput'=>'Длинна, м',
+                'titleCard'=>'Общая длинна кухни',
+                'placeholderInput'=>'Длинна, мм',
                 'initPrice'=>'25000',
             ],
             [
                 'id'=>'2',
-                'titleCard'=>'Размеры верхнего модуля',
-                'placeholderInput'=>'Длинна, м',
-                'initPrice'=>'25000',
-            ],
-            [
-                'id'=>'3',
-                'titleCard'=>'Размеры нижних модулей',
-                'placeholderInput'=>'Длинна, м',
-                'initPrice'=>'25000',
-            ],
-            [
-                'id'=>'4',
-                'titleCard'=>'Шкафы над холодильником',
-                'placeholderInput'=>'Длинна, м',
-                'initPrice'=>'25000',
-            ],
-            [
-                'id'=>'5',
-                'titleCard'=>'Холодильник',
-                'placeholderInput'=>'Длинна, м',
+                'titleCard'=>'Общая высота кухни',
+                'placeholderInput'=>'Высота, мм',
                 'initPrice'=>'25000',
             ],
 
         ];
+
 
         return view('calculate',
             ['parametrs' => $arrayParametrsForkitchen,
             'products'=>[
                 'type'=>$products->productType,
                 'name'=>$products->productName,
+                'initalizePrice'=>$products->initializePrice,
                 ]
             ]
 

@@ -13,5 +13,6 @@ class Product extends Model
         'productType',
         'productName',
         'price',
+        'initializePrice',
     ];
 }

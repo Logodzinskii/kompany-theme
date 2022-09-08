@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/theme-app/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/theme-app/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/theme-app/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/theme-app/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/theme-app/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/theme-app/vendor/nette/schema" />
