@@ -21,3 +21,4 @@
     </div>
 </div>
 @endsection
+PHP_PATH=/opt/php/8.1/bin
