@@ -229,10 +229,5 @@
                 </div>
             </div>
         </section>
-        <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
-            <div class="row">
-                <h5>Контакты</h5>
-            </div>
-        </footer>
+        @extends('footer')
     </body>
-</html>

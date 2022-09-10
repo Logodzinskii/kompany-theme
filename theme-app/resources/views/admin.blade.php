@@ -20,14 +20,9 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <section class="col-12 row d-flex justify-content-start">
-            @include('adminLeftPanel')
-            @include('adminCenterPanel')
-        </section>
-        <footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0">
-            <div class="row">
-                <h5>Контакты</h5>
-            </div>
-        </footer>
+
+
+        @include('adminCenterPanel')
+
+        @extends('footer')
     </body>
-</html>

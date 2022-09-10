@@ -1,4 +1,4 @@
-<section class="p-0 m-0 col-10 col-md-10 col-lg-10 col-xl-10 d-flex flex-wrap justify-content-start" style="min-height: 80vh">
+<section class="p-0 m-0 col-12 d-flex flex-wrap justify-content-start" style="min-height: 80vh">
     <table class="table xs-auto">
         <thead>
         <tr>
