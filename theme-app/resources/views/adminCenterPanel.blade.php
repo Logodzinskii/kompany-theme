@@ -3,9 +3,9 @@
         <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">email</th>
+            <th scope="col" class="d-none d-lg-block">email</th>
             <th scope="col">name</th>
-            <th scope="col">Кухня</th>
+            <th scope="col" class="d-none d-lg-block">Кухня</th>
             <th scope="col">Итоговая цена</th>
             <th scope="col">Статус заказа</th>
         </tr>
@@ -14,9 +14,9 @@
         @foreach($orders as $order)
             <tr >
                 <th scope="row">1</th>
-                <td>{{$order['userEmail']}}</td>
+                <td class="d-none d-lg-block">{{$order['userEmail']}}</td>
                 <td>{{$order['name']}}</td>
-                <td>{{$order['kitchenConfigurations']}}</td>
+                <td class="d-none d-lg-block">{{$order['kitchenConfigurations']}}</td>
                 <td>{{$order['totalPrice']}}</td>
                 <td>{{$order['status']}}</td>
             </tr>
