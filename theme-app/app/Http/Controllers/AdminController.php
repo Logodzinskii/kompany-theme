@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         $orders = Orders::all();
 
-        return view('admin', ['orders'=>$orders]);
+        return view('admin/admin', ['orders'=>$orders]);
 
     }
 }

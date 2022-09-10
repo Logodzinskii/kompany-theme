@@ -29,6 +29,9 @@
                         @guest
                             <a href="home/">вход</a>
                         @else
+                            @if(Auth::user()->status == 'admin')
+                                <a href="oreder/">{{ Auth::user()->status }}</a>
+                            @endif
                             <a href="home/">{{ Auth::user()->name }}</a>
                         @endguest
                     </div>

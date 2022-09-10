@@ -21,8 +21,7 @@
     <body class="container-fluid p-0 m-0">
         @include('header')
 
-
-        @include('adminCenterPanel')
+        @include('users/UsersPageCenterPanel')
 
         @extends('footer')
     </body>
