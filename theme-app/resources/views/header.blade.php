@@ -16,9 +16,14 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @guest
-                                <li><a class="dropdown-item" href="#">Заказы</a></li>
+                                <li><a href="home/">вход</a></li>
                             @else
-                                <li><a class="dropdown-item" href="admin/">Кабинет</a></li>
+                                @if(Auth::user()->status == 'admin')
+                                    <li><a href="admin/">Заказы пользователей</a></li>
+                                @elseif(Auth::user()->status == 'user')
+                                    <li><a href="cart/">Мой заказы</a></li>
+                                @else
+                                @endif
                             @endguest
                         </ul>
                     </li>
@@ -29,9 +34,6 @@
                         @guest
                             <a href="home/">вход</a>
                         @else
-                            @if(Auth::user()->status == 'admin')
-                                <a href="oreder/">{{ Auth::user()->status }}</a>
-                            @endif
                             <a href="home/">{{ Auth::user()->name }}</a>
                         @endguest
                     </div>
