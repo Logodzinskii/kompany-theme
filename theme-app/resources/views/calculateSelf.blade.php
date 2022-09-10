@@ -2,7 +2,7 @@
 <h1 class="text-center"> Выберите конфигурацию кухни </h1>
 
 
-    <h2>{{$products['type']}} - {{$products['name']}}</h2>
+    <h2></h2>
 
 
 <section class="p-0 m-0 row col-12 col-md-12 col-lg-12 col-xl-12 d-flex flex-nowrap justify-content-center" style="min-height: 50vh">

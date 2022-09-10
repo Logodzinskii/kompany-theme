@@ -10,7 +10,7 @@ class ProductsController extends Controller
 {
     public function listProducts($id)
     {
-        $products = DB::table('products')->where('id',$id)->first();
+        $products = DB::table('products')->where('id',$id)->get();
         /**
          * массив данных для заполнения карточек с размерами
          *
@@ -35,9 +35,9 @@ class ProductsController extends Controller
         return view('calculate',
             ['parametrs' => $arrayParametrsForkitchen,
             'products'=>[
-                'type'=>$products->productType,
-                'name'=>$products->productName,
-                'initalizePrice'=>$products->initializePrice,
+                'type'=>'1',
+                'name'=>'1',
+                'initalizePrice'=>'1',
                 ]
             ]
 

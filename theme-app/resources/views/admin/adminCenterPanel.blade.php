@@ -1,4 +1,4 @@
-<section class="p-0 m-0 col-12 d-flex flex-wrap justify-content-start" style="min-height: 80vh">
+<section class="p-0 m-0 col-12 d-flex flex-wrap justify-content-start " style="min-height: 80vh">
     <table class="table xs-auto">
         <thead>
         <tr>
@@ -11,16 +11,32 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($orders as $order)
+        @foreach($orders['data'] as $order)
             <tr >
                 <th scope="row">1</th>
-                <td class="d-none d-lg-block">{{$order['userEmail']}}</td>
+                <td >{{$order['userEmail']}}</td>
                 <td>{{$order['name']}}</td>
-                <td class="d-none d-lg-block">{{$order['kitchenConfigurations']}}</td>
+                <td >{{$order['kitchenConfigurations']}}</td>
                 <td>{{$order['totalPrice']}}</td>
                 <td>{{$order['status']}}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    {{-- Pagination --}}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            @foreach($orders['links'] as $link)
+                @if($link['active'] === true)
+                    <li class="page-item active"><a class="page-link" href="{{$link['url']}}">{{$link['label']}}</a></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{$link['url']}}">{{html_entity_decode($link['label'])}}</a></li>
+
+                @endif
+                    @endforeach
+
+        </ul>
+    </nav>
+
 </section>

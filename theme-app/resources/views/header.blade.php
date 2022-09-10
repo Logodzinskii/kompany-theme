@@ -19,9 +19,9 @@
                                 <li><a href="home/">вход</a></li>
                             @else
                                 @if(Auth::user()->status == 'admin')
-                                    <li><a href="admin/">Заказы пользователей</a></li>
+                                    <li><a href="/admin/">Заказы пользователей</a></li>
                                 @elseif(Auth::user()->status == 'user')
-                                    <li><a href="cart/">Мой заказы</a></li>
+                                    <li><a href="/cart/">Мой заказы</a></li>
                                 @else
                                 @endif
                             @endguest
