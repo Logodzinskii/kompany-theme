@@ -3,9 +3,9 @@
 class DateBase
 {
     private $host = 'localhost';
-    private $dbname = 'u1690254_default';
-    private $username = 'u1690254_default';
-    private $password = 'bbZDF0JfeZkO55M4';
+    private $dbname = '';
+    private $username = '';
+    private $password = '';
     public  $connection;
 
     static private $_ins = NULL;
