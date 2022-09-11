@@ -22,9 +22,9 @@ class TelegramBotHandMadeConfiguration
         /**
          * token для бота кухни t.me/ThemeGroupBot
          */
-        $this->botToken = "5729002687:AAHbOrvUvUiGUdzNwA9LiSTPMAdIMS9InwI";
-        $this->managerId = '1454009127';
-        $this->managerIdSecond = '645879928';
+        $this->botToken = "";
+        $this->managerId = '';
+        $this->managerIdSecond = '';
 
     }
 
