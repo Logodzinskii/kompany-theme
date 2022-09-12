@@ -20,7 +20,7 @@ $telegram = new Api($botApiConfiguration->getBotToken());
  */
 $result = $telegram -> getWebhookUpdates();
 $message_id = $result["message"]["message_id"];
-file_put_contents('res.txt', 'asd');
+//file_put_contents('res.txt', 'asd');
 /**
  * Текст сообщения
  */

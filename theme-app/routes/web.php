@@ -21,12 +21,16 @@ Route::get('/', function () {
 
 Route::get('/calculate/{id}', [\App\Http\Controllers\ProductsController::class, 'listProducts']);
 
-Route::get('admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
+Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
 
-Route::post('/order-user', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');
+Route::post('/order-user/', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/cart/', [\App\Http\Controllers\UsersControllers::class, 'cartShow'])->middleware('auth');
+
+Route::get('/calcv2/', function (){
+    return view('/calculator/calcForm');
+});

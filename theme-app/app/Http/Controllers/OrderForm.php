@@ -9,6 +9,8 @@ use Illuminate\Database;
 use Illuminate\Support\Facades\DB;
 use Monolog\Handler\TelegramBotHandler;
 
+use Telegram\Bot\Api;
+
 
 class OrderForm extends Controller
 {
@@ -31,7 +33,9 @@ class OrderForm extends Controller
         $order->totalPrice = '250000';
         $order->status = 'new';
 
+
         $order->save();
+
         return response()->json($orderData);
     }
 }
