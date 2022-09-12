@@ -1,4 +1,5 @@
 /node_modules
+/botapi/YaDisk/tmebot/Configuration
 /public/hot
 /public/storage
 /storage/*.key
