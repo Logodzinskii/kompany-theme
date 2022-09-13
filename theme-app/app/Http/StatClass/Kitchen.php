@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\StatClass;
+
 class Kitchen
 {
     public int $priceBox;
@@ -65,8 +66,9 @@ class Kitchen
     {
         $this->kitchenTotalLength = $this->kitchenLengthTypeB + $this->kitchenBoxWashingLength + $this->kitchenBoxDishwasherLength + $this->kitchenBoxShelvesLength + $this->kitchenBottleMakerLength;
         $this->kitchenTotalHeight = $this->heightKitchenTotal + 550;
-        $this->kitchenBoxTopHeight = '600';
-        $this->kitchenBoxMiddleHeight = $this->heightKitchenTotal - $this->heightKitchenBoxDown;
+        $this->kitchenBoxMiddleHeight = '600';
+        $this->kitchenBoxTopHeight = $this->heightKitchenTotal - $this->heightKitchenBoxDown - $this->kitchenBoxMiddleHeight;
+
     }
 
     /**
@@ -119,6 +121,44 @@ class Kitchen
     public function getCostPLHD(float $price, int $length, int $height, float $priceOptions):float
     {
         return ($price) * ($length/1000) * ($height/1000) + $priceOptions;
+    }
+
+    /**
+     *
+     */
+    public function sumBaseComplectations()
+    {
+        //антресоли + верхние модули + длинна Б + шкаф под мойку + под посудомойку + 3 ящика + бутылошница
+        $priceBox = $this->priceBox;
+        $priceFacade = $this->priceFacade;
+        $lTolal = $this->kitchenTotalLength;
+
+        $costKitchenTopBox = $this->getCostPLH($priceBox, $lTolal, $this->kitchenBoxTopHeight);
+        $costKitchenTopFacades = $this->getCostPLH($priceFacade, $lTolal, $this->kitchenBoxTopHeight);
+
+        $costKitchenMiddleBox = $this->getCostPLH($priceBox, $lTolal, $this->kitchenBoxMiddleHeight);
+        $costKitchenMiddleFacades = $this->getCostPLH($priceFacade, $lTolal, $this->kitchenBoxMiddleHeight);
+
+        $costKitchentypeBBox = $this->getCostPLH($priceBox, $this->kitchenLengthTypeB, $this->heightKitchenBoxDown);
+        $costKitchentypeBFacades = $this->getCostPLH($priceFacade, $this->kitchenLengthTypeB, $this->heightKitchenBoxDown);
+
+        $costKitchenBoxWashingBox = $this->getCostPLH($priceBox, $this->kitchenBoxWashingLength, $this->heightKitchenBoxDown);
+        $costKitchenBoxWashingFacades = $this->getCostPLH($priceFacade, $this->kitchenBoxWashingLength, $this->heightKitchenBoxDown);
+
+        $costKitchenBoxDishwasherBox = $this->getCostPLH($priceBox, $this->kitchenBoxDishwasherLength, $this->heightKitchenBoxDown);
+        $costKitchenBoxDishwasherFacades = $this->getCostPLH($priceFacade, $this->kitchenBoxDishwasherLength, $this->heightKitchenBoxDown);
+
+        $costKitchenBoxShelvesBox = $this->getCostPLHD($priceBox, $this->kitchenBoxShelvesLength, $this->heightKitchenBoxDown, 7500);
+        $costKitchenBoxShelvesFacades = $this->getCostPLHD($priceFacade, $this->kitchenBoxShelvesLength, $this->heightKitchenBoxDown, 7500);
+
+        $costKitchenBottleMakerBox = $this->getCostPLHD($priceBox, $this->kitchenBottleMakerLength, $this->heightKitchenBoxDown, 2500);
+        $costKitchenBottleMakerFacades = $this->getCostPLHD($priceFacade, $this->kitchenBottleMakerLength, $this->heightKitchenBoxDown, 2500);
+
+        $costBox = $costKitchenTopBox + $costKitchenMiddleBox + $costKitchentypeBBox + $costKitchenBoxWashingBox + $costKitchenBoxDishwasherBox + $costKitchenBoxShelvesBox + $costKitchenBottleMakerBox;
+        $costFacades = $costKitchenTopFacades + $costKitchenMiddleFacades + $costKitchentypeBFacades + $costKitchenBoxWashingFacades + $costKitchenBoxDishwasherFacades + $costKitchenBoxShelvesFacades + $costKitchenBottleMakerFacades;
+
+        //return $costBox . '=' . $costKitchenTopBox .'+'. $costKitchenMiddleBox .'+'. $costKitchentypeBBox .'+'. $costKitchenBoxWashingBox .'+'. $costKitchenBoxDishwasherBox .'+'. $costKitchenBoxShelvesBox;
+        return $costBox + $costFacades;
     }
 
 }
