@@ -1,12 +1,22 @@
 $(document).ready(function () {
-    $("body").on('click', function (e) {
-        $("#live").text(getPosition(e));
+    $(".calc_body").on('click', function (e) {
+        //$("#live").text(getPosition(e));
+        console.log((getPosition(e)));
 
     });
-    $("input").on('change', function () {
-        console.log($(this).val());
-        $("#live").text($(this).val());
-    });
+
+    $('.checkbox').on("click", function () {
+        if ($(this).is(":checked")) {
+            $(this).parent().parent().children().last().attr('type',  'text');
+            $(this).parent().parent().css({opacity:1});
+        } else {
+            // checkbox unchecked
+            $(this).parent().parent().children().last().val(0);
+            $(this).parent().parent().children().last().attr('type',  'hidden');
+            $(this).parent().parent().css({opacity:0.7});
+        }
+    })
+
 
     function getPosition(e) {
         var x = y = 0;
