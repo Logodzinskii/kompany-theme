@@ -11,53 +11,24 @@
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
         <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
-
         <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
-
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
         <section class="calc_container">
             <div class="cel calc_body" >
                 <form >
-                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:26%; right: 0%; opacity: 0.7">
-                        <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="BoxTop">
-                            <label class="p-1" for="BoxTop">Антресоли</label>
+                    @foreach( $items as $item)
+                        <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:{{$item['topPositionBottom']}}; left: {{$item['leftPositionBottom']}}; opacity: 0.7">
+                            <div class="col d-flex flex-nowrap">
+                                <input type="checkbox" class="checkbox" value="200" name="{{$item['nameClassBox']}}">
+                                <label class="p-1" for="{{$item['nameClassBox']}}">{{$item['nameBoxBottom']}}</label>
+                            </div>
+                            <input type="hidden" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="">
                         </div>
-                        <input type="hidden" name="BoxTop" id="login" placeholder="длинна, мм" value="">
-                    </div>
-                    <div class="parallelogram BoxTop"></div>
-                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:36%; right: 0%; opacity: 0.7">
-                        <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="BoxMiddle">
-                            <label class="p-1" for="BoxMiddle">Верхние мод</label>
-                        </div>
-                        <input type="hidden" name="BoxMiddle" id="login" placeholder="высота, мм" value="">
-                    </div>
-                    <div class="parallelogram BoxMiddle"></div>
-                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:46%; right: 0%; opacity: 0.7">
-                        <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="HTotal">
-                            <label class="p-1" for="HTotal">Высота кухни</label>
-                        </div>
-                        <input type="hidden" name="HTotal" id="login" placeholder="высота, мм" value="">
-                    </div>
-                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:56%; right: 0%; opacity: 0.7">
-                        <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="BoxDown">
-                            <label class="p-1" for="BoxDown">Нижние мод</label>
-                        </div>
-                        <input type="hidden" name="BoxDown" id="login" placeholder="высота, мм" value="">
-                    </div>
-                    <div class="modules BoxDown"></div>
-                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:5%; left: 45%; opacity: 0.7">
-                        <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="boxtop">
-                            <label class="p-1" for="boxtop">Длинна кухни B</label>
-                        </div>
-                        <input type="hidden" name="boxtop" id="login" placeholder="длинна, мм" value="">
-                    </div>
+                        <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
+                    @endforeach
                 </form>
             </div>
 

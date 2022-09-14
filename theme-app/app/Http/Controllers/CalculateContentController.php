@@ -37,6 +37,104 @@ class CalculateContentController extends Controller
         //
     }
 
+    public function showKitchen()
+    {
+        $arr = [
+            [   'nameClassBox'=>'BoxTop',
+                'nameBoxBottom'=>'Антресоли',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'126px',
+                'leftPositionBottom'=>'600px',
+
+            ],
+            [   'nameClassBox'=>'BoxMiddle',
+                'nameBoxBottom'=>'Верхние мод',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'176px',
+                'leftPositionBottom'=>'600px',
+
+            ],
+            [   'nameClassBox'=>'HTotal',
+                'nameBoxBottom'=>'Высота кухни',
+                'placeholder'=>'Высота, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'226px',
+                'leftPositionBottom'=>'600px',
+
+            ],
+            [   'nameClassBox'=>'BoxDown',
+                'nameBoxBottom'=>'Нижние мод',
+                'placeholder'=>'Высота, мм',
+                'typeBox'=>'modules',
+                'topPositionBottom'=>'276px',
+                'leftPositionBottom'=>'600px',
+
+            ],
+            [   'nameClassBox'=>'PenalFridge',
+                'nameBoxBottom'=>'Пенал холодильник',
+                'placeholder'=>'Длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'396px',
+                'leftPositionBottom'=>'20px',
+
+            ],
+            [   'nameClassBox'=>'PenalMicrowave',
+                'nameBoxBottom'=>'Пенал микроволновка',
+                'placeholder'=>'Длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'326px',
+                'leftPositionBottom'=>'20px',
+
+            ],
+            [   'nameClassBox'=>'PenalShelves',
+                'nameBoxBottom'=>'Пенал полки',
+                'placeholder'=>'Длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'256px',
+                'leftPositionBottom'=>'20px',
+
+            ],
+            [   'nameClassBox'=>'BottleMaker',
+                'nameBoxBottom'=>'Бутылошница',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'450px',
+                'leftPositionBottom'=>'409px',
+
+            ],
+            [   'nameClassBox'=>'BoxShelves',
+                'nameBoxBottom'=>'Шкаф с ящиками',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'400px',
+                'leftPositionBottom'=>'409px',
+
+            ],
+            [   'nameClassBox'=>'BoxDishwasher',
+                'nameBoxBottom'=>'Для посудомойки',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'450px',
+                'leftPositionBottom'=>'250px',
+
+            ],
+            [   'nameClassBox'=>'BoxWashing',
+                'nameBoxBottom'=>'Для мойки',
+                'placeholder'=>'длинна, мм',
+                'typeBox'=>'parallelogram',
+                'topPositionBottom'=>'400px',
+                'leftPositionBottom'=>'250px',
+
+            ],
+
+        ];
+
+        return view('/calculator/calcForm', ['items' => $arr]);
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -64,6 +162,21 @@ class CalculateContentController extends Controller
 
         ];
         return view('calculate',['parametrs' => $arrayParametrsForkitchen]);
+    }
+
+    public function getCoordinates(Request $request)
+    {
+        $request->validate([
+            'name'      => 'required',
+            'email'     => 'required',
+            'mobile'    => 'required',
+            'message'   => 'required',
+        ]);
+
+        $data = $request->all();
+        #create or update your data here
+
+        return response()->json(['success'=>'Ajax request submitted successfully']);
     }
 
     /**

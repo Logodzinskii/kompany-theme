@@ -25,11 +25,15 @@ Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->m
 
 Route::post('/order-user/', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');
 
+Route::post('/calculate/', [\App\Http\Controllers\CalculateContentController::class, 'getCoordinates'])->name('getCoordinates');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/cart/', [\App\Http\Controllers\UsersControllers::class, 'cartShow'])->middleware('auth');
+
+Route::get('/calculate/', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
 
 Route::get('/calcv2/', function (){
     return view('/calculator/calcForm');
