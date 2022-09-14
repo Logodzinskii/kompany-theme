@@ -41,8 +41,8 @@ and (max-device-width : 550px) {
 .calc_container
 {
     display: flex;
-    justify-content: center;
-    justify-items: center;
+    justify-content: start;
+    justify-items: stretch;
 
 }
 .calc_body
