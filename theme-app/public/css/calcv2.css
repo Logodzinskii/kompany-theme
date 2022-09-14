@@ -74,12 +74,22 @@ and (max-device-width : 550px) {
     border-radius: 5px;
 }
 
-#parallelogram {
-    width: 160px;
-    height: 100px;
-    background: #8734f7;
-    -webkit-transform: skew(-30deg);
-    -moz-transform: skew(-30deg);
-    -o-transform: skew(-30deg);
-    transform: skew(-30deg);
+.parallelogram {
+    position: absolute;
+    background: grey;
+    -webkit-transform: skewY(14deg);
+    -moz-transform: skewY(14deg);
+    -o-transform: skewY(14deg);
+    transform: skewY(14deg);
+    opacity: 0.5;
+}
+
+.modules {
+    position: absolute;
+    background: grey;
+    -webkit-transform: skewY(-26deg);
+    -moz-transform: skewY(-26deg);
+    -o-transform: skewY(-26deg);
+    transform: skewY(-26deg);
+    opacity: 0.5;
 }

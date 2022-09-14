@@ -22,21 +22,20 @@
                 <form >
                     <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:26%; right: 0%; opacity: 0.7">
                         <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="Achor">
-                            <label class="p-1" for="Achor">Антресоли</label>
+                            <input type="checkbox" class="checkbox" value="200" name="BoxTop">
+                            <label class="p-1" for="BoxTop">Антресоли</label>
                         </div>
-                        <input type="hidden" name="Achor" id="login" placeholder="длинна, мм" value="">
+                        <input type="hidden" name="BoxTop" id="login" placeholder="длинна, мм" value="">
                     </div>
-                    <div id="parallelogram">
-
-                    </div>
+                    <div class="parallelogram BoxTop"></div>
                     <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:36%; right: 0%; opacity: 0.7">
                         <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="topBox">
-                            <label class="p-1" for="topBox">Верхние мод</label>
+                            <input type="checkbox" class="checkbox" value="200" name="BoxMiddle">
+                            <label class="p-1" for="BoxMiddle">Верхние мод</label>
                         </div>
-                        <input type="hidden" name="topBox" id="login" placeholder="высота, мм" value="">
+                        <input type="hidden" name="BoxMiddle" id="login" placeholder="высота, мм" value="">
                     </div>
+                    <div class="parallelogram BoxMiddle"></div>
                     <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:46%; right: 0%; opacity: 0.7">
                         <div class="col d-flex flex-nowrap">
                             <input type="checkbox" class="checkbox" value="200" name="HTotal">
@@ -46,11 +45,12 @@
                     </div>
                     <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:56%; right: 0%; opacity: 0.7">
                         <div class="col d-flex flex-nowrap">
-                            <input type="checkbox" class="checkbox" value="200" name="DownH">
-                            <label class="p-1" for="DownH">Нижние мод</label>
+                            <input type="checkbox" class="checkbox" value="200" name="BoxDown">
+                            <label class="p-1" for="BoxDown">Нижние мод</label>
                         </div>
-                        <input type="hidden" name="DownH" id="login" placeholder="высота, мм" value="">
+                        <input type="hidden" name="BoxDown" id="login" placeholder="высота, мм" value="">
                     </div>
+                    <div class="modules BoxDown"></div>
                     <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:5%; left: 45%; opacity: 0.7">
                         <div class="col d-flex flex-nowrap">
                             <input type="checkbox" class="checkbox" value="200" name="boxtop">
@@ -58,10 +58,6 @@
                         </div>
                         <input type="hidden" name="boxtop" id="login" placeholder="длинна, мм" value="">
                     </div>
-                    <input type="checkbox" value="400" name="boxtop1" style="position: absolute; top:466px; left: 376px;">
-                    <input type="checkbox" value="500" name="boxtop2" style="position: absolute; top:300px; left: 215px;">
-                    <input type="radio" value="" name="q1" style="position: absolute; top:367px; left: 200px;">
-                    <input type="radio" value="" name="q1" style="position: absolute; top:400px; left: 200px;">
                 </form>
             </div>
 
