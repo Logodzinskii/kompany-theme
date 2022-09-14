@@ -20,19 +20,46 @@
         <section class="calc_container">
             <div class="cel calc_body" >
                 <form >
-                    <div class="bg-secondary rounded-2 text-white" style="position: absolute; top:238px; left: 546px;">
-                        <input type="checkbox" class="checkbox" value="200" name="boxtop">
-                        <label for="boxtop">Антресоли</label>
-                        <input type="hidden" name="boxtop" id="login" placeholder="Login" value="длинна, мм">
+                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:26%; right: 0%; opacity: 0.7">
+                        <div class="col d-flex flex-nowrap">
+                            <input type="checkbox" class="checkbox" value="200" name="Achor">
+                            <label class="p-1" for="Achor">Антресоли</label>
+                        </div>
+                        <input type="hidden" name="Achor" id="login" placeholder="длинна, мм" value="">
                     </div>
-                    <div class="bg-secondary rounded-2 text-white" style="position: absolute; top:113px; left: 729px;">
-                        <input type="checkbox" class="checkbox" value="200" name="boxtop">
-                        <label for="boxtop">Длинна кухни B</label>
-                        <input type="hidden" name="boxtop" id="login" placeholder="Login" value="длинна, мм">
+                    <div id="parallelogram">
+
+                    </div>
+                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:36%; right: 0%; opacity: 0.7">
+                        <div class="col d-flex flex-nowrap">
+                            <input type="checkbox" class="checkbox" value="200" name="topBox">
+                            <label class="p-1" for="topBox">Верхние мод</label>
+                        </div>
+                        <input type="hidden" name="topBox" id="login" placeholder="высота, мм" value="">
+                    </div>
+                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:46%; right: 0%; opacity: 0.7">
+                        <div class="col d-flex flex-nowrap">
+                            <input type="checkbox" class="checkbox" value="200" name="HTotal">
+                            <label class="p-1" for="HTotal">Высота кухни</label>
+                        </div>
+                        <input type="hidden" name="HTotal" id="login" placeholder="высота, мм" value="">
+                    </div>
+                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:56%; right: 0%; opacity: 0.7">
+                        <div class="col d-flex flex-nowrap">
+                            <input type="checkbox" class="checkbox" value="200" name="DownH">
+                            <label class="p-1" for="DownH">Нижние мод</label>
+                        </div>
+                        <input type="hidden" name="DownH" id="login" placeholder="высота, мм" value="">
+                    </div>
+                    <div class="bg-secondary rounded-2 text-white d-flex row" style="width: 20%; position: absolute; top:5%; left: 45%; opacity: 0.7">
+                        <div class="col d-flex flex-nowrap">
+                            <input type="checkbox" class="checkbox" value="200" name="boxtop">
+                            <label class="p-1" for="boxtop">Длинна кухни B</label>
+                        </div>
+                        <input type="hidden" name="boxtop" id="login" placeholder="длинна, мм" value="">
                     </div>
                     <input type="checkbox" value="400" name="boxtop1" style="position: absolute; top:466px; left: 376px;">
                     <input type="checkbox" value="500" name="boxtop2" style="position: absolute; top:300px; left: 215px;">
-                    <input type="text" value="" style="position: absolute; top:370px; left: 584px;">
                     <input type="radio" value="" name="q1" style="position: absolute; top:367px; left: 200px;">
                     <input type="radio" value="" name="q1" style="position: absolute; top:400px; left: 200px;">
                 </form>

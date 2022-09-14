@@ -47,7 +47,7 @@ and (max-device-width : 550px) {
 }
 .calc_body
 {
-    background-image: url('../images/example.jpeg');
+    background-image: url('../images/k2.jpg');
     width: 700px;
     height: 500px;
     background-position: center;
@@ -63,6 +63,7 @@ and (max-device-width : 550px) {
     left: 0;
     width: 700px;
     height: 500px;
+    font-size: 70%;
 }
 .calc_body font input[type="text"]
 {
@@ -71,4 +72,14 @@ and (max-device-width : 550px) {
     line-height: inherit; /* 1 */
     margin: 0; /* 2 */
     border-radius: 5px;
+}
+
+#parallelogram {
+    width: 160px;
+    height: 100px;
+    background: #8734f7;
+    -webkit-transform: skew(-30deg);
+    -moz-transform: skew(-30deg);
+    -o-transform: skew(-30deg);
+    transform: skew(-30deg);
 }
