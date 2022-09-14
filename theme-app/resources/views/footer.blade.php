@@ -7,6 +7,6 @@
     </div>
     <div class="row card bg-dark">
         <h5 class="card-header">На карте</h5>
-        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A395b067a3d72aa073ffcc90b7b9499c9b026103127768924ab33ed363660d196&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+
     </div>
 </footer>
