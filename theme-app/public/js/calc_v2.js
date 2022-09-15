@@ -12,7 +12,7 @@ $(document).ready(function () {
         } else {
             // checkbox unchecked
             $(this).parent().parent().children().last().val(0);
-            $(this).parent().parent().children().last().attr('type',  'hidden');
+            $(this).parent().parent().children().last().attr('type',  'text');
             $(this).parent().parent().css({opacity:0.7});
             $('.' + $(this).attr('name')).css('background', 'grey');
         }
