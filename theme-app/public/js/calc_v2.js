@@ -7,21 +7,31 @@ $(document).ready(function () {
         //$('.' + clarr[1]+'color' ).css('background','green');
 
     });
+
     $('.checkbox').on("click", function () {
         if ($(this).is(":checked")) {
-            $(this).parent().parent().children().last().attr('type',  'text');
-            $(this).parent().parent().css({opacity:1});
-            $(this).parent().parent().children().last().attr('disabled', false);
+            $(this).parent().parent().children().children().eq(2).attr('disabled', false);
+            $(this).parent().parent().children().children().eq(3).attr('disabled', false);
+
+            var price = $(this).data('price');
+            var count = $(this).parent().parent().children().children().eq(3).val();
+            $(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
+
             $('.' + $(this).attr('name')).css('background', 'green');
         } else {
             // checkbox unchecked
-            $(this).parent().parent().children().last().val('');
-            $(this).parent().parent().children().last().attr('type',  'text');
-            $(this).parent().parent().css({opacity:0.7});
-            $(this).parent().parent().children().last().attr('disabled', true);
+            $(this).parent().parent().children().children().eq(2).attr('disabled', true);
+            $(this).parent().parent().children().children().eq(3).attr('disabled', true);
+            $(this).parent().parent().children().eq(4).text(0);
             $('.' + $(this).attr('name')).css('background', 'grey');
         }
     });
+
+    $('.countItems').on("change", function () {
+        var count = $(this).val();
+        var price = $(this).parent().parent().children().eq(0).children().last().data('price');
+        $(this).parent().parent().children().eq(4).text(parseInt(count) * parseInt(price));
+    })
 
     function initialize()
     {

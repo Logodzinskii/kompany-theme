@@ -16,25 +16,55 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <section class="calc_container d-flex col justify-content-between flex-wrap">
-            <div class="cel calc_body">
+        <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap">
+            <div class="cel calc_body col-lg-6">
 
             </div>
-            <div class="d-flex justify-content-around row col-lg-4 col-xs-12 col-md-12">
+            <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12">
                 <h4>Выберите комплектацию кухни</h4>
                 <form class="d-flex justify-content-around flex-wrap">
-                    @foreach( $items as $item)
-                        <div class="bg-secondary rounded-2 text-white d-flex col " style="margin: 5px; opacity: 0.7" data-box="{{$item['nameClassBox']}}">
-                            <div class="col d-flex flex-nowrap">
-                                <input type="checkbox" class="checkbox" value="200" name="{{$item['nameClassBox']}}">
-                                <label class="p-1" for="{{$item['nameClassBox']}}">{{$item['nameBoxBottom']}}</label>
-                            </div>
-                            <input type="number" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="" disabled>
-                        </div>
-                        <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
-                    @endforeach
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Наименование</th>
+                            <th scope="col">Размер</th>
+                            <th scope="col">Количество</th>
+                            <th scope="col">Предварительная Цена</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        @foreach( $items as $item)
+                            <tr>
+                                <th scope="row">
+                                    <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
+                                    <input type="checkbox" class="checkbox" value="200" name="{{$item['nameClassBox']}}" data-price="{{$item['price']}}">
+                                </th>
+                                <td>
+                                    {{$item['nameBoxBottom']}}
+                                </td>
+                                <td>
+                                    <select disabled>
+                                        @foreach($item['defaultLen'] as $len)
+                                        <option value="{{$len}}">{{$len}} мм</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" class="countItems" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="{{$item['defaultNum']}}" disabled>
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </form>
             </div>
+        </section>
+        <section>
+
         </section>
         <section class="d-flex justify-content-center row">
             <h2 class="text-center">Предварительная стоимость составляет</h2>
