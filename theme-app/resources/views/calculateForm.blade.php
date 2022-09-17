@@ -125,7 +125,6 @@
             <label for="exampleFormControlTextarea1" class="form-label">Дополнительная информация</label>
             <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
     <p></p>

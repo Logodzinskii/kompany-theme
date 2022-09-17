@@ -1,12 +1,24 @@
-@media only screen and (max-width: 450px) {
+@media (max-width: 550px) {
     .calc_container {
         font-size: 0.6em; /* 1 */
     }
+    .calc_container h5{
+        font-size: 0.9em;
+    }
+    .parametrs{
+        padding-top: 90px;
+    }
+    .choiceFacades{
+        position: absolute;
+        top:380px;
+        left: 20px;
+    }
+
 }
 .calc_container
 {
     display: block;
-    min-height: 80vh;
+    min-height: 100vh;
     min-width: 70vw;
     /*position: relative;*/
 
@@ -20,16 +32,12 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.calc_body
-{
-    display: block;
-    width: 700px;
-    height: 500px;
+.choiceFacades{
+    position: absolute;
+    top:480px;
+    left: 20px;
+    min-height: 600px;
 
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 70%;*/
 }
 input[type="number"]
 {

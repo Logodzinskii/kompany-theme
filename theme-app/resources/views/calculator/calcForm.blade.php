@@ -11,6 +11,7 @@
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
         <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
+
         <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
@@ -21,10 +22,52 @@
                 @foreach( $items as $item)
                 <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
                 @endforeach
+                    <div class="d-flex col justify-content-around choiceFacades">
+                        <div class="p-2">
+                            <h5>Фрезеровка</h5>
+                            <img src="{{asset('images/frez.png')}}" height="80" />
+                            <div>
+                                <input type="radio" name="frezer" value="plen"/>
+                                <label name="frezer">Пленка</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="frezer" value="emal"/>
+                                <label name="frezer">Эмаль</label>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <h5>3D Фрезеровка</h5>
+                            <img src="{{asset('images/3dfrez.png')}}" height="80" />
+                            <div>
+                                <input type="radio" name="frezer" value="plen"/>
+                                <label name="frezer">Пленка</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="frezer" value="emal"/>
+                                <label name="frezer">Эмаль</label>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <h5>Прямой</h5>
+                            <img src="{{asset('images/prjam.png')}}" height="80" />
+                            <div>
+                                <input type="radio" name="frezer" value="plen"/>
+                                <label name="frezer">Пленка</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="frezer" value="emal"/>
+                                <label name="prfrezer">Эмаль</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="frezer" value="past"/>
+                                <label name="frezer">Пластик</label>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12">
+            <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs">
                 <h4>Выберите комплектацию кухни</h4>
-                <form class="d-flex justify-content-around flex-wrap">
+                <form class="d-flex justify-content-between flex-wrap">
                     <table class="table">
                         <thead>
                         <tr>
@@ -45,11 +88,15 @@
                                     {{$item['nameBoxBottom']}}
                                 </td>
                                 <td>
+                                    @if(count($item['defaultLen']) == 0 )
+                                        -
+                                        @else
                                     <select disabled>
                                         @foreach($item['defaultLen'] as $len)
                                         <option value="{{$len}}">{{$len}} мм</option>
                                         @endforeach
                                     </select>
+                                    @endif
                                 </td>
                                 <td>
                                     <input type="number" class="countItems" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="{{$item['defaultNum']}}" disabled>
