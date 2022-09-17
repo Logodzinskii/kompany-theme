@@ -18,7 +18,9 @@
         @include('header')
         <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap">
             <div class="cel calc_body col-lg-6">
-
+                @foreach( $items as $item)
+                <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
+                @endforeach
             </div>
             <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12">
                 <h4>Выберите комплектацию кухни</h4>
@@ -30,14 +32,13 @@
                             <th scope="col">Наименование</th>
                             <th scope="col">Размер</th>
                             <th scope="col">Количество</th>
-                            <th scope="col">Предварительная Цена</th>
+                            <th scope="col">Цена<span style="color:red">*</span></th>
                         </tr>
                         </thead>
                         <tbody class="text-center">
                         @foreach( $items as $item)
                             <tr>
                                 <th scope="row">
-                                    <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
                                     <input type="checkbox" class="checkbox" value="200" name="{{$item['nameClassBox']}}" data-price="{{$item['price']}}">
                                 </th>
                                 <td>
@@ -53,11 +54,18 @@
                                 <td>
                                     <input type="number" class="countItems" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="{{$item['defaultNum']}}" disabled>
                                 </td>
-                                <td>
+                                <td class="SumBoxPrice">
                                     0
                                 </td>
                             </tr>
                         @endforeach
+                            <tr class="table-success">
+                                <td></td>
+                                <td>Итого</td>
+                                <td></td>
+                                <td></td>
+                                <td class="sum">0</td>
+                            </tr>
                         </tbody>
                     </table>
                 </form>
@@ -68,7 +76,8 @@
         </section>
         <section class="d-flex justify-content-center row">
             <h2 class="text-center">Предварительная стоимость составляет</h2>
-            <p class="text-center">250 000</p>
+
+            <p class="text-center sum">0</p>
             <button type="submit" class="btn btn-primary w-25" >Отправить</button>
         </section>
         @include('footer')

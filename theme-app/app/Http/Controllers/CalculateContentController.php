@@ -45,7 +45,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[150,200],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'5400',
 
             ],
@@ -54,7 +54,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600,800,'другой'],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'23400',
 
             ],
@@ -63,7 +63,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600,800],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'6400',
 
             ],
@@ -72,7 +72,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600,800,'другой'],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'12400',
 
             ],
@@ -81,7 +81,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[2450],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'25400',
 
             ],
@@ -90,7 +90,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[2450],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'25400',
 
             ],
@@ -99,7 +99,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[2450],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'12400',
 
             ],
@@ -108,7 +108,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'нет',
                 'typeBox'=>'modules',
                 'defaultLen'=>[870,900],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'5400',
 
             ],
@@ -117,7 +117,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[600],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'19500',
 
             ],
@@ -126,7 +126,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[600],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'19500',
 
             ],
@@ -135,7 +135,7 @@ class CalculateContentController extends Controller
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[600],
-                'defaultNum'=>'1',
+                'defaultNum'=>'0',
                 'price'=>'19500',
 
             ],

@@ -11,19 +11,30 @@ $(document).ready(function () {
     $('.checkbox').on("click", function () {
         if ($(this).is(":checked")) {
             $(this).parent().parent().children().children().eq(2).attr('disabled', false);
-            $(this).parent().parent().children().children().eq(3).attr('disabled', false);
+            $(this).parent().parent().children().eq(2).children().attr('disabled', false);
 
             var price = $(this).data('price');
-            var count = $(this).parent().parent().children().children().eq(3).val();
+            var count = $(this).parent().parent().children().eq(3).children().val();
             $(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
 
             $('.' + $(this).attr('name')).css('background', 'green');
+            var sum = 0;
+            $('.SumBoxPrice').each(function() {
+                sum += Number($(this).text());
+            });
+            $(".sum").text(sum);
         } else {
             // checkbox unchecked
             $(this).parent().parent().children().children().eq(2).attr('disabled', true);
-            $(this).parent().parent().children().children().eq(3).attr('disabled', true);
+            $(this).parent().parent().children().eq(2).children().attr('disabled', true);
             $(this).parent().parent().children().eq(4).text(0);
             $('.' + $(this).attr('name')).css('background', 'grey');
+
+            var sum = 0;
+            $('.SumBoxPrice').each(function() {
+                sum += Number($(this).text());
+            });
+            $(".sum").text(sum);
         }
     });
 
@@ -31,6 +42,11 @@ $(document).ready(function () {
         var count = $(this).val();
         var price = $(this).parent().parent().children().eq(0).children().last().data('price');
         $(this).parent().parent().children().eq(4).text(parseInt(count) * parseInt(price));
+        var sum = 0;
+        $('.SumBoxPrice').each(function() {
+            sum += Number($(this).text());
+        });
+        $(".sum").text(sum);
     })
 
     function initialize()
