@@ -53,13 +53,13 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Шкаф с ящиками',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[450,600,800,'другой'],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'23400',
 
             ],
             [   'nameClassBox'=>'BoxDishwasher',
-                'nameBoxBottom'=>'Для посудомойки',
+                'nameBoxBottom'=>'Ширина посудомойки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600,800],
@@ -80,7 +80,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Антресоли',
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[2450],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'25400',
 
@@ -89,7 +89,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Верхние мод',
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[2450],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'25400',
 
@@ -103,20 +103,11 @@ class CalculateContentController extends Controller
                 'price'=>'12400',
 
             ],
-            [   'nameClassBox'=>'BoxDown',
-                'nameBoxBottom'=>'Нижние мод',
-                'placeholder'=>'нет',
-                'typeBox'=>'modules',
-                'defaultLen'=>[870,900],
-                'defaultNum'=>'0',
-                'price'=>'5400',
-
-            ],
             [   'nameClassBox'=>'PenalFridge',
                 'nameBoxBottom'=>'Пенал холодильник',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[600],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 
@@ -125,7 +116,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Пенал микроволновка',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[600],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 
@@ -134,7 +125,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Пенал полки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[600],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 

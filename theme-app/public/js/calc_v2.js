@@ -1,17 +1,23 @@
 $(document).ready(function () {
-    $(".parallelogram").on('click', function (e) {
+    $("#myCanvas").on('click', function (e) {
 
-        var cl = $(this).attr('class');
-        var clarr = cl.split(' ');
-        //$(this).css('background','green');
-        //$('.' + clarr[1]+'color' ).css('background','green');
+        //alert(getPosition(e));
 
     });
 
     $('.checkbox').on("click", function () {
         if ($(this).is(":checked")) {
-            $(this).parent().parent().children().children().eq(2).attr('disabled', false);
-            $(this).parent().parent().children().eq(2).children().attr('disabled', false);
+            var  attr = $(this).parent().parent().children().children().eq(2);
+
+            if(!$(this).parent().parent().children().children().eq(2).length > 0)
+            {
+                //alert($(this).parent().parent().children().children().eq(2).length);
+                $(this).parent().parent().children().eq(3).children().attr('disabled', false);
+            }else {
+                $(this).parent().parent().children().children().eq(2).attr('disabled', false);
+                $(this).parent().parent().children().eq(2).children().attr('disabled', false);
+            }
+
 
             var price = $(this).data('price');
             var count = $(this).parent().parent().children().eq(3).children().val();
@@ -24,7 +30,20 @@ $(document).ready(function () {
             });
             $(".sum").text(sum);
         } else {
+
             // checkbox unchecked
+            if(!$(this).parent().parent().children().children().eq(2).length > 0)
+            {
+                //alert($(this).parent().parent().children().children().eq(2).length);
+                $(this).parent().parent().children().eq(3).children().attr('disabled', true);
+                $(this).parent().parent().children().eq(3).children().val(0);
+            }else {
+                $(this).parent().parent().children().eq(2).children().attr('disabled', true);
+                $(this).parent().parent().children().children().eq(2).attr('disabled', true);
+                $(this).parent().parent().children().children().eq(2).val(0);
+
+            }
+
             $(this).parent().parent().children().children().eq(2).attr('disabled', true);
             $(this).parent().parent().children().eq(2).children().attr('disabled', true);
             $(this).parent().parent().children().eq(4).text(0);
@@ -158,6 +177,6 @@ $(document).ready(function () {
             y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
         }
 
-        return y + "|" + x;
+        return x + "|" + y;
     }
 })
