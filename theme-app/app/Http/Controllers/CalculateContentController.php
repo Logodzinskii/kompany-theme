@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class CalculateContentController extends Controller
 {
@@ -53,7 +55,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Шкаф с ящиками',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+                'defaultLen'=>[450, 600, 800],
                 'defaultNum'=>'0',
                 'price'=>'23400',
 
@@ -62,7 +64,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Ширина посудомойки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[450,600,800],
+                'defaultLen'=>[450,600],
                 'defaultNum'=>'0',
                 'price'=>'6400',
 
@@ -71,43 +73,62 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Для мойки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[450,600,800,'другой'],
+                'defaultLen'=>[450,600,800],
                 'defaultNum'=>'0',
                 'price'=>'12400',
 
             ],
-            [   'nameClassBox'=>'BoxTop',
-                'nameBoxBottom'=>'Антресоли',
-                'placeholder'=>'нет',
-                'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+
+            [   'nameClassBox'=>'BoxDown',
+                'nameBoxBottom'=>'Фальшфасад для нижнего модуля',
+                'placeholder'=>'кол-во, шт',
+                'typeBox'=>'modules',
+                'defaultLen'=>[600],
                 'defaultNum'=>'0',
                 'price'=>'25400',
-
             ],
-            [   'nameClassBox'=>'BoxMiddle',
-                'nameBoxBottom'=>'Верхние мод',
-                'placeholder'=>'нет',
-                'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+            [   'nameClassBox'=>'BoxDownFf',
+                'nameBoxBottom'=>'Фальшфасад для пенала',
+                'placeholder'=>'кол-во, шт',
+                'typeBox'=>'modules',
+                'defaultLen'=>[600],
                 'defaultNum'=>'0',
                 'price'=>'25400',
-
             ],
+
             [   'nameClassBox'=>'HTotal',
                 'nameBoxBottom'=>'Высота кухни',
                 'placeholder'=>'нет',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[2450],
+                'defaultLen'=>[],
                 'defaultNum'=>'0',
                 'price'=>'12400',
+
+            ],
+
+            [   'nameClassBox'=>'BoxMiddle',
+                'nameBoxBottom'=>'Верхние мод',
+                'placeholder'=>'общая длинна, мм',
+                'typeBox'=>'parallelogram',
+                'defaultLen'=>[],
+                'defaultNum'=>'0',
+                'price'=>'25400',
+
+            ],
+            [   'nameClassBox'=>'BoxTop',
+                'nameBoxBottom'=>'Антресоли',
+                'placeholder'=>'общая длинна, мм',
+                'typeBox'=>'parallelogram',
+                'defaultLen'=>[],
+                'defaultNum'=>'0',
+                'price'=>'25400',
 
             ],
             [   'nameClassBox'=>'PenalFridge',
                 'nameBoxBottom'=>'Пенал холодильник',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+                'defaultLen'=>[600],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 
@@ -116,7 +137,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Пенал микроволновка',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+                'defaultLen'=>[600],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 
@@ -125,7 +146,7 @@ class CalculateContentController extends Controller
                 'nameBoxBottom'=>'Пенал полки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
-                'defaultLen'=>[],
+                'defaultLen'=>[600],
                 'defaultNum'=>'0',
                 'price'=>'19500',
 
@@ -166,19 +187,94 @@ class CalculateContentController extends Controller
         return view('calculate',['parametrs' => $arrayParametrsForkitchen]);
     }
 
-    public function getCoordinates(Request $request)
+    public function ajaxDataResp(Request $request)
     {
-        $request->validate([
-            'name'      => 'required',
-            'email'     => 'required',
-            'mobile'    => 'required',
-            'message'   => 'required',
-        ]);
 
-        $data = $request->all();
-        #create or update your data here
+            // Store Data in DATABASE from HERE
+        $arr = [
+            'priceBox' => 8750,
+            'priceFacade' => 16250,
+            'heightKitchenTotal'=> 2050,
+            'heightKitchenBoxDown' => 820,
+            'kitchenDepth' => 600,
+            'kitchenPriceAprons' => 1200,
+            'kitchenLengthTypeA' => 0,
+            'kitchenLengthTypeB' => 800,
+            'kitchenLengthTypeC' => 0,
+            'pencilCaseForTheKitchenFridgeLength' => 600,
+            'pencilCaseForTheKitchenMicrowaveLength' => 600,
+            'pencilCaseForTheKitchenShelvesLength'=> 600,
+            'pricePencilCaseForTheKitchenFridge'=> 600,
+            'pricePencilCaseForTheKitchenMicrowave'=> 600,
+            'pricePencilCaseForTheKitchenShelves'=> 600,
+            'kitchenBoxTopLength'=> 600,
+            'kitchenBoxMiddleLength'=> 600,
+            'kitchenBoxWashingLength'=> 600,
+            'kitchenBoxDishwasherLength'=> 450,
+            'kitchenBoxShelvesLength'=> 500,
+            'kitchenBoxShelvesOptionsPrice'=>7500,
+            'kitchenBottleMakerLength'=> 200,
+            'kitchenBottleMakerOptionsPrice'=> 2500,
+            'FalseFacadeHiLength'=> 600,
+            'FalseFacade1LowLength'=> 600,
+        ];
+        $kitchen = new Kitchen($arr);
+        $kitchen->initializeKitchen();
+        switch ($request->type)
+        {
+            case 'BottleMaker':
+                $kitchen->setKitchenBottleMakerLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBottleMaker() * $count;
+                break;
+            case 'BoxShelves':
+                $kitchen->setKitchenBoxShelvesLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBoxShelves() * $count;
+                break;
+            case 'BoxDishwasher':
+                $kitchen->setKitchenBoxDishwasherLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBoxDishwasher() * $count;
+                break;
+            case 'BoxWashing':
+                $kitchen->setKitchenBoxWashingLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBoxWashing() * $count;
+                break;
+            case 'BoxTop':
+                $kitchen->setKitchenBoxTopLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBoxTop() * $count;
+                break;
+            case 'BoxMiddle':
+                $kitchen->setKitchenLengthTypeB($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostBoxMiddle() * $count;
+                break;
+            case 'BoxDown':
 
-        return response()->json($data);
+                $count = $request->count;
+                $price = 4500 * $count;
+                break;
+            case 'BoxDownFf':
+
+                $count = $request->count;
+                $price = 9000 * $count;
+                break;
+            case strpos($request->type,'enal') > 0:
+
+                $count = $request->count;
+                $price = 19000 * $count;
+                break;
+
+        }
+
+
+
+        return response()->json([$price]);
+
+
     }
 
     /**

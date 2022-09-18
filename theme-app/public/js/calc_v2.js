@@ -18,10 +18,9 @@ $(document).ready(function () {
                 $(this).parent().parent().children().eq(2).children().attr('disabled', false);
             }
 
-
             var price = $(this).data('price');
             var count = $(this).parent().parent().children().eq(3).children().val();
-            $(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
+            //$(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
 
             $('.' + $(this).attr('name')).css('background', 'green');
             var sum = 0;
@@ -30,23 +29,23 @@ $(document).ready(function () {
             });
             $(".sum").text(sum);
         } else {
-
             // checkbox unchecked
             if(!$(this).parent().parent().children().children().eq(2).length > 0)
             {
                 //alert($(this).parent().parent().children().children().eq(2).length);
                 $(this).parent().parent().children().eq(3).children().attr('disabled', true);
                 $(this).parent().parent().children().eq(3).children().val(0);
+                $(this).parent().parent().children().eq(4).text(0);
             }else {
                 $(this).parent().parent().children().eq(2).children().attr('disabled', true);
                 $(this).parent().parent().children().children().eq(2).attr('disabled', true);
                 $(this).parent().parent().children().children().eq(2).val(0);
-
+                $(this).parent().parent().children().eq(4).text(0);
             }
 
             $(this).parent().parent().children().children().eq(2).attr('disabled', true);
             $(this).parent().parent().children().eq(2).children().attr('disabled', true);
-            $(this).parent().parent().children().eq(4).text(0);
+            //$(this).parent().parent().children().eq(4).text(0);
             $('.' + $(this).attr('name')).css('background', 'grey');
 
             var sum = 0;
@@ -57,45 +56,9 @@ $(document).ready(function () {
         }
     });
 
-    $('.countItems').on("change", function () {
-        var count = $(this).val();
-        var price = $(this).parent().parent().children().eq(0).children().last().data('price');
-        $(this).parent().parent().children().eq(4).text(parseInt(count) * parseInt(price));
-        var sum = 0;
-        $('.SumBoxPrice').each(function() {
-            sum += Number($(this).text());
-        });
-        $(".sum").text(sum);
-    })
-
     function initialize()
     {
-        let name = 'name';
-        let email = 'name';
-        let mobile_number = 'name';
-        let message = 'name';
-        let _token   = $('meta[name="csrf-token"]').attr('content');
 
-        $.ajax({
-            url: "/calculate/",
-            type:"POST",
-            data:{
-                name:name,
-                email:email,
-                mobile_number:mobile_number,
-                message:message,
-                _token: _token
-            },
-            success:function(response){
-                //console.log(response);
-                if(response) {
-                    //alert(response.email);
-                }
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
         $(window).on('load', function(){
             if($('.calc_body').width() < 700)
             {
@@ -130,7 +93,7 @@ $(document).ready(function () {
             var top = 54;
             setBox(top + 177 + (x/10),313 - (x/2.2), 170 - (x/4.2),30 - (x/24), 'BoxTop');
             setBox(top + 209 + (x/15),325 - (x/2.12), 170 - (x/4.2),48 - (x/14), 'BoxMiddle');
-            setBox(top + 319 + (x/10),484 - (x/2.2), 28 - (x/4.2),68 - (x/24), 'BoxDown');
+            setBox(top + 319 - (x/12),484 - (x/1.45), 28 - (x/30.2),68 - (x/11), 'BoxDown');
             setBox(top + 329 - (x/9),469 - (x/1.5), 14 - (x/35),54 - (x/15), 'BottleMaker');
             setBox(top + 312 - (x/10),392 - (x/1.8), 38 - (x/19),54 - (x/15), 'BoxShelves');
             setBox(top + 303 - (x/12),364 - (x/1.92), 28 - (x/24),54 - (x/15), 'BoxDishwasher');

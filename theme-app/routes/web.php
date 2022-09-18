@@ -25,7 +25,7 @@ Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->m
 
 Route::post('/order-user/', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');
 
-Route::post('/calculate/', [\App\Http\Controllers\CalculateContentController::class, 'getCoordinates'])->name('getCoordinates');
+Route::post('ajax/data/resp', [\App\Http\Controllers\CalculateContentController::class, 'ajaxDataResp'])->name('ajax.data.resp');;
 
 Auth::routes();
 
