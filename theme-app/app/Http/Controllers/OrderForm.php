@@ -23,19 +23,18 @@ class OrderForm extends Controller
         $orders = Orders::all();
         return response()->json($orders);
     }
-    public function store(Request $request)
+    public function orderUserStore(Request $request)
     {
-        $orderData = ['email' => $request->email, 'body'=>$request->body];
+
         $order = new Orders();
+
         $order->userEmail = $request->email;
-        $order->name = 'test';
+        $order->name = $request->firstname . '|' . $request->tel;
         $order->kitchenConfigurations = $request->body;
-        $order->totalPrice = '250000';
+        $order->totalPrice = $request->sumForm;
         $order->status = 'new';
-
-
         $order->save();
 
-        return response()->json($orderData);
+        return response()->json([$request->sumForm]);
     }
 }
