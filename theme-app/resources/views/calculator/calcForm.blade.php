@@ -10,9 +10,59 @@
         <link rel="stylesheet" href={{ asset('css/owl.carousel.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
+        <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-submit").click(function (e) {
+                e.preventDefault();
 
-        <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
+            });
+            $('.selectBox').on('change', function(){
+                var length = $(this).val();
+                var count = $(this).parent().parent().children().eq(3).children().val();
+                var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
+
+                sendAjax(length, count, nameBox);
+
+            })
+            $('.countItems').on("change", function () {
+                var count = $(this).val();
+                var length = $(this).parent().parent().children().eq(2).children().val();
+                var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
+
+                sendAjax(length, count, nameBox);
+
+            })
+
+            function sendAjax(lengthBox, countBox, typeBox){
+                var _token = $('meta[name="csrf-token"]').attr('content');
+                var length = lengthBox;
+                var count = countBox;
+                var type = typeBox;
+
+                $.ajax({
+                    url: "{{ route('ajax.data.resp') }}",
+                    type: 'POST',
+                    data: {_token: _token, length: length, count: count, type: type},
+                    success: function (data) {
+                        $('.SumBoxPrice'+ type).text(data);
+                        sumTotal();
+                    }
+                });
+            }
+
+            function sumTotal()
+            {
+                var sum = 0;
+                $('.SumBoxPrice').each(function() {
+                    sum += Number($(this).text());
+                });
+                $(".sum").text(sum);
+            }
+        });
+        </script>
+            <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
     <body class="container-fluid p-0 m-0">
@@ -22,7 +72,7 @@
                 @foreach( $items as $item)
                 <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
                 @endforeach
-                    <div class="d-flex col justify-content-around choiceFacades">
+                    <div class="d-flex col justify-content-around choiceFacades col-6">
                         <div class="p-2">
                             <h5>Фрезеровка</h5>
                             <img src="{{asset('images/frez.png')}}" height="80" />
@@ -89,9 +139,9 @@
                                 </td>
                                 <td>
                                     @if(count($item['defaultLen']) == 0 )
-                                        -
+                                        <input type="number" min="1250" class="selectBox" placeholder="{{$item['placeholder']}}" disabled>
                                         @else
-                                    <select disabled>
+                                    <select class="selectBox" disabled>
                                         @foreach($item['defaultLen'] as $len)
                                         <option value="{{$len}}">{{$len}} мм</option>
                                         @endforeach
@@ -101,7 +151,7 @@
                                 <td>
                                     <input type="number" class="countItems" name="{{$item['nameClassBox']}}" id="login" placeholder="{{$item['placeholder']}}" value="{{$item['defaultNum']}}" disabled>
                                 </td>
-                                <td class="SumBoxPrice">
+                                <td class="SumBoxPrice{{$item['nameClassBox']}} SumBoxPrice">
                                     0
                                 </td>
                             </tr>
@@ -125,7 +175,7 @@
             <h2 class="text-center">Предварительная стоимость составляет</h2>
 
             <p class="text-center sum">0</p>
-            <button type="submit" class="btn btn-primary w-25" >Отправить</button>
+            <button type="submit" class="btn btn-primary w-25 btn-submit" >Отправить</button>
         </section>
         @include('footer')
     </body>

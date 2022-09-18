@@ -1,4 +1,4 @@
-@media (max-width: 550px) {
+@media (max-width: 700px) {
     .calc_container {
         font-size: 0.6em; /* 1 */
     }
@@ -15,6 +15,7 @@
     }
 
 }
+
 .calc_container
 {
     display: block;
@@ -47,7 +48,7 @@ input[type="number"]
     line-height: inherit; /* 1 */
     margin: 0; /* 2 */
     border-radius: 5px;
-    width: 50px;
+    width: 80px;
 }
 
 .parallelogram {
