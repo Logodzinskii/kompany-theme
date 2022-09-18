@@ -23,7 +23,7 @@ Route::get('/calculate/{id}', [\App\Http\Controllers\ProductsController::class, 
 
 Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
 
-Route::post('/order-user/', [\App\Http\Controllers\OrderForm::class, 'store'])->name('order-user');
+Route::post('order/user/store', [\App\Http\Controllers\OrderForm::class, 'orderUserStore'])->name('order.user.store');
 
 Route::post('ajax/data/resp', [\App\Http\Controllers\CalculateContentController::class, 'ajaxDataResp'])->name('ajax.data.resp');;
 

@@ -48,7 +48,7 @@
                         <p style="min-height:5vh ">Изготовление кухонь по индивидуальным размерам</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">65 000</span> &#x20bd</p>
-                        <a href="calculate/1/" class="btn btn-primary">Расчет цены</a>
+                        <a href="/calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
                 <div class="card col-lg-4 ">
@@ -58,7 +58,7 @@
                         <p style="min-height:5vh ">Изготовление шкафа от 7 рабочих дней</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">35 000</span> &#x20bd</p>
-                        <a href="calculate/2/" class="btn btn-primary">Расчет цены</a>
+                        <a href="/calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
                 <div class="card col-lg-4 ">
@@ -68,7 +68,7 @@
                         <p style="min-height:5vh ">Изготовление тумбы от 7 рабочих дней</p>
                         <p class="card-text">Цена от </p>
                         <p><span style="font-size: xx-large">20 000</span> &#x20bd</p>
-                        <a href="calculate/" class="btn btn-primary">Расчет цены</a>
+                        <a href="/calculate/" class="btn btn-primary">Расчет цены</a>
                     </div>
                 </div>
             </div>

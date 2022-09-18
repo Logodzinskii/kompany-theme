@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use App\Models\Orders;
 
 class CalculateContentController extends Controller
 {
@@ -253,7 +253,6 @@ class CalculateContentController extends Controller
                 $price = $kitchen->getCostBoxMiddle() * $count;
                 break;
             case 'BoxDown':
-
                 $count = $request->count;
                 $price = 4500 * $count;
                 break;
@@ -270,12 +269,10 @@ class CalculateContentController extends Controller
 
         }
 
-
-
         return response()->json([$price]);
 
-
     }
+
 
     /**
      * Show the form for editing the specified resource.
