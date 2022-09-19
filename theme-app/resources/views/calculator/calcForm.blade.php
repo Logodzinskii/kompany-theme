@@ -12,7 +12,6 @@
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
         <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
-
         <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
         <script type="text/javascript">
         $(document).ready(function() {
@@ -28,7 +27,7 @@
                     type: 'POST',
                     data: formData,
                     success: function (data) {
-                        $('.result').text('Мы приняли ваш заказ, свяжемся с вами в ближайшее время');
+                        $('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
                     }
                 });
 
@@ -37,8 +36,9 @@
                 var length = $(this).val();
                 var count = $(this).parent().parent().children().eq(3).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
-
-                sendAjax(length, count, nameBox);
+                var facadesPrice = $('input[name="facadesPrice"]').val();
+                alert(facadesPrice);
+                sendAjax(length, count, nameBox, facadesPrice);
 
             })
             $('.countItems').on("change", function () {
@@ -46,20 +46,21 @@
                 var length = $(this).parent().parent().children().eq(2).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
 
-                sendAjax(length, count, nameBox);
+                sendAjax(length, count, nameBox, facadesPrice);
 
             })
 
-            function sendAjax(lengthBox, countBox, typeBox){
+            function sendAjax(lengthBox, countBox, typeBox, facadesPrice){
                 var _token = $('meta[name="csrf-token"]').attr('content');
                 var length = lengthBox;
                 var count = countBox;
                 var type = typeBox;
+                var facadesPrice = facadesPrice;
 
                 $.ajax({
                     url: "{{ route('ajax.data.resp') }}",
                     type: 'POST',
-                    data: {_token: _token, length: length, count: count, type: type},
+                    data: {_token: _token, length: length, count: count, type: type, facadesPrice: facadesPrice},
                     success: function (data) {
                         $('.SumBoxPrice'+ type).text(data);
                         sumTotal();
@@ -95,40 +96,40 @@
                             <h5>Фрезеровка</h5>
                             <img src="{{asset('images/frez.png')}}" height="80" />
                             <div>
-                                <input type="radio" name="frezer" value="plen"/>
-                                <label name="frezer">Пленка</label>
+                                <input type="radio" name="facadesPrice" value="16250"/>
+                                <label name="facadesPrice">Пленка</label>
                             </div>
                             <div>
-                                <input type="radio" name="frezer" value="emal"/>
-                                <label name="frezer">Эмаль</label>
+                                <input type="radio" name="facadesPrice" value="16250"/>
+                                <label name="facadesPrice">Эмаль</label>
                             </div>
                         </div>
                         <div class="p-2">
                             <h5>3D Фрезеровка</h5>
                             <img src="{{asset('images/3dfrez.png')}}" height="80" />
                             <div>
-                                <input type="radio" name="frezer" value="plen"/>
-                                <label name="frezer">Пленка</label>
+                                <input type="radio" name="facadesPrice" value="20000"/>
+                                <label name="facadesPrice">Пленка</label>
                             </div>
                             <div>
-                                <input type="radio" name="frezer" value="emal"/>
-                                <label name="frezer">Эмаль</label>
+                                <input type="radio" name="facadesPrice" value="20000"/>
+                                <label name="facadesPrice">Эмаль</label>
                             </div>
                         </div>
                         <div class="p-2">
                             <h5>Прямой</h5>
                             <img src="{{asset('images/prjam.png')}}" height="80" />
                             <div>
-                                <input type="radio" name="frezer" value="plen"/>
-                                <label name="frezer">Пленка</label>
+                                <input type="radio" name="facadesPrice" value="22000"/>
+                                <label name="facadesPrice">Пленка</label>
                             </div>
                             <div>
-                                <input type="radio" name="frezer" value="emal"/>
-                                <label name="prfrezer">Эмаль</label>
+                                <input type="radio" name="facadesPrice" value="22000"/>
+                                <label name="facadesPrice">Эмаль</label>
                             </div>
                             <div>
-                                <input type="radio" name="frezer" value="past"/>
-                                <label name="frezer">Пластик</label>
+                                <input type="radio" name="facadesPrice" value="22000"/>
+                                <label name="facadesPrice">Пластик</label>
                             </div>
                         </div>
                     </div>
@@ -232,5 +233,4 @@
             </div>
         </form>
         @include('footer')
-
     </body>

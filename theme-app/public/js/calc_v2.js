@@ -69,7 +69,7 @@ $(document).ready(function () {
                 x= 700 - parseInt($('.calc_body').width());
                 setCoord(x);
             }else{
-                setDefCoord();
+                //setDefCoord();
             }
         })
 
@@ -95,6 +95,9 @@ $(document).ready(function () {
             setBox(top + 209 + (x/15),325 - (x/2.12), 170 - (x/4.2),48 - (x/14), 'BoxMiddle');
             setBox(top + 319 - (x/12),484 - (x/1.45), 28 - (x/30.2),68 - (x/11), 'BoxDown');
             setBox(top + 329 - (x/9),469 - (x/1.5), 14 - (x/35),54 - (x/15), 'BottleMaker');
+
+            setBox(top + 320 - (x/9.8),430 - (x/1.65), 39 - (x/19),54 - (x/15), 'BoxOven');
+
             setBox(top + 312 - (x/10),392 - (x/1.8), 38 - (x/19),54 - (x/15), 'BoxShelves');
             setBox(top + 303 - (x/12),364 - (x/1.92), 28 - (x/24),54 - (x/15), 'BoxDishwasher');
             setBox(top + 293 - (x/14),313 - (x/2.2), 52 - (x/15),54 - (x/15), 'BoxWashing');
@@ -109,6 +112,7 @@ $(document).ready(function () {
             setBox(top + 209,325, 170,48, 'BoxMiddle');
             setBox(top + 319,484, 28,68, 'BoxDown');
             setBox(top + 329,469, 14,54, 'BottleMaker');
+            setBox(top + 329,469, 14,54, 'BoxOven');
             setBox(top + 312,392, 38,54, 'BoxShelves');
             setBox(top + 303,364, 28,54, 'BoxDishwasher');
             setBox(top + 293,313, 52,54, 'BoxWashing');

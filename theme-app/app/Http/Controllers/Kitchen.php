@@ -19,19 +19,18 @@ class Kitchen extends Controller
     public int $kitchenLengthTypeA;
     public int $kitchenLengthTypeB;
     public int $kitchenLengthTypeC;
-
     public int $pencilCaseForTheKitchenFridgeLength;
     public int $pencilCaseForTheKitchenMicrowaveLength;
     public int $pencilCaseForTheKitchenShelvesLength;
     public float $pricePencilCaseForTheKitchenFridge;
     public float $pricePencilCaseForTheKitchenMicrowave;
     public float $pricePencilCaseForTheKitchenShelves;
-
     public int $kitchenBoxTopLength;
     public int $kitchenBoxMiddleLength;
     public int $kitchenBoxWashingLength;
     public int $kitchenBoxDishwasherLength;
     public int $kitchenBoxShelvesLength;
+    public int $kitchenBoxOvenLength;
     public int $kitchenBoxShelvesOptionsPrice;
     public int $kitchenBottleMakerLength;
     public int $kitchenBottleMakerOptionsPrice;
@@ -42,6 +41,7 @@ class Kitchen extends Controller
     protected int $kitchenBoxTopHeight;
     protected int $kitchenBoxMiddleHeight;
     protected float $costBottleMaker;
+    protected float $costBoxOven;
     protected float $costBoxShelves;
     protected float $costBoxDishwasher;
     protected float $costBoxWashing;
@@ -70,6 +70,7 @@ class Kitchen extends Controller
         $this->kitchenBoxMiddleLength= $arr['kitchenBoxMiddleLength'];
         $this->kitchenBoxWashingLength= $arr['kitchenBoxWashingLength'];
         $this->kitchenBoxDishwasherLength= $arr['kitchenBoxDishwasherLength'];
+        $this->kitchenBoxDishwasherLength= $arr['kitchenBoxOvenLength'];
         $this->kitchenBoxShelvesLength= $arr['kitchenBoxShelvesLength'];
         $this->kitchenBoxShelvesOptionsPrice = $arr['kitchenBoxShelvesOptionsPrice'];
         $this->kitchenBottleMakerLength= $arr['kitchenBottleMakerLength'];
@@ -208,6 +209,18 @@ class Kitchen extends Controller
     }
 
     /**
+     * стоимость модулей для духовки
+     * @return float
+     */
+    public function getCostOven(): float
+    {
+        $costBoxOven = $this->getCostPLH($this->priceBox, $this->kitchenBoxOvenLength, $this->heightKitchenBoxDown);
+        $costBoxOvenFacades = $this->getCostPLH($this->priceFacade, $this->kitchenBoxOvenLength, $this->heightKitchenBoxDown);
+        $this->costBoxOven = $costBoxOven + $costBoxOvenFacades;
+        return $this->costBoxOven;
+    }
+
+    /**
      * Стоимость Шкаф с ящиками с фасадом
      * @return float
      */
@@ -294,6 +307,14 @@ class Kitchen extends Controller
     }
 
     /**
+     * @param int $kitchenBoxOvenLength
+     */
+    public function setKitchenBoxOvenLength(int $kitchenBoxOvenLength): void
+    {
+        $this->kitchenBoxOvenLength = $kitchenBoxOvenLength;
+    }
+
+    /**
      * @param int|mixed $kitchenLengthTypeB
      */
     public function setKitchenLengthTypeB(mixed $kitchenLengthTypeB): void
@@ -331,6 +352,14 @@ class Kitchen extends Controller
     public function setKitchenBoxTopLength(mixed $kitchenBoxTopLength): void
     {
         $this->kitchenBoxTopLength = $kitchenBoxTopLength;
+    }
+
+    /**
+     * @param int|mixed $priceFacade
+     */
+    public function setPriceFacade(mixed $priceFacade): void
+    {
+        $this->priceFacade = $priceFacade;
     }
 
 }

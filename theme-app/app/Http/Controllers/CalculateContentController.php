@@ -51,6 +51,15 @@ class CalculateContentController extends Controller
                 'price'=>'5400',
 
             ],
+            [   'nameClassBox'=>'BoxOven',
+                'nameBoxBottom'=>'Для Духовки',
+                'placeholder'=>'кол-во, шт',
+                'typeBox'=>'parallelogram',
+                'defaultLen'=>[600,800],
+                'defaultNum'=>'0',
+                'price'=>'12400',
+
+            ],
             [   'nameClassBox'=>'BoxShelves',
                 'nameBoxBottom'=>'Шкаф с ящиками',
                 'placeholder'=>'кол-во, шт',
@@ -211,6 +220,7 @@ class CalculateContentController extends Controller
             'kitchenBoxMiddleLength'=> 600,
             'kitchenBoxWashingLength'=> 600,
             'kitchenBoxDishwasherLength'=> 450,
+            'kitchenBoxOvenLength'=>600,
             'kitchenBoxShelvesLength'=> 500,
             'kitchenBoxShelvesOptionsPrice'=>7500,
             'kitchenBottleMakerLength'=> 200,
@@ -220,12 +230,20 @@ class CalculateContentController extends Controller
         ];
         $kitchen = new Kitchen($arr);
         $kitchen->initializeKitchen();
+
+        $kitchen->setPriceFacade($request->facadesPrice);
+
         switch ($request->type)
         {
             case 'BottleMaker':
                 $kitchen->setKitchenBottleMakerLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBottleMaker() * $count;
+                break;
+            case 'BoxOven':
+                $kitchen->setKitchenBoxOvenLength($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostOven() * $count;
                 break;
             case 'BoxShelves':
                 $kitchen->setKitchenBoxShelvesLength($request->length);
@@ -257,16 +275,13 @@ class CalculateContentController extends Controller
                 $price = 4500 * $count;
                 break;
             case 'BoxDownFf':
-
                 $count = $request->count;
                 $price = 9000 * $count;
                 break;
             case strpos($request->type,'enal') > 0:
-
                 $count = $request->count;
                 $price = 19000 * $count;
                 break;
-
         }
 
         return response()->json([$price]);
