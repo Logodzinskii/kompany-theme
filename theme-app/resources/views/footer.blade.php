@@ -1,12 +1,10 @@
-<footer style="min-height: 50vh; background-color: black; color: white" class="p-0 m-0 d-flex justify-content-around flex-wrap" >
-    <div class="row card bg-dark">
+<footer class="d-flex col-12 justify-content-around align-items-center bg-dark">
+    <div class="d-flex text-white justify-content-around align-items-center row card bg-dark col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
         <h5 class="card-header">НАШИ КОНТАКТНЫЕ ДАННЫЕ</h5>
-        <p>г. Екатеринбург ул. Студенческая 11 офис 509</p>
-        <a href="mailto:temagroupekb@gmail.com">temagroupekb@gmail.com</a>
-        <a href=":tel"> +7 963 272 72 82</a>
-    </div>
-    <div class="row card bg-dark">
-        <h5 class="card-header">На карте</h5>
-
+        <div class="card-body list-group">
+            <p class="list-group-item" >г. Екатеринбург ул. Студенческая 11 офис 509</p>
+            <a class="list-group-item" href="mailto:temagroupekb@gmail.com">temagroupekb@gmail.com</a>
+            <a class="list-group-item" href=":tel"> +7 963 272 72 82</a>
+        </div>
     </div>
 </footer>

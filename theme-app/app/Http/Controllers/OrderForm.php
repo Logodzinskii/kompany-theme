@@ -33,6 +33,23 @@ class OrderForm extends Controller
         $order->kitchenConfigurations = $request->body;
         $order->totalPrice = $request->sumForm;
         $order->status = 'new';
+        //601768998
+        /*
+        $text = '💬 заказ от ' . $request->email . '📱 - +79030817322. 👋 - Александр. 💳 - 250000';
+        $response = array(
+            'chat_id' => 601768998,
+            'text' => $text
+        );
+
+        $ch = curl_init('https://api.telegram.org/bot{token}/sendMessage');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_exec($ch);
+        curl_close($ch);*/
+
+
         $order->save();
 
         return response()->json([$request->sumForm]);

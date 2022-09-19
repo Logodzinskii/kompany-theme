@@ -90,7 +90,7 @@
                     @foreach( $items as $item)
                         <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
                     @endforeach
-                    <div class="d-flex col justify-content-around choiceFacades col-6">
+                    <div class="d-flex col justify-content-around choiceFacades col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         <div class="p-2">
                             <h5>Фрезеровка</h5>
                             <img src="{{asset('images/frez.png')}}" height="80" />
@@ -187,7 +187,7 @@
                 </div>
             </section>
             <div class="col-12 d-flex justify-content-center row result">
-                <section class="d-flex justify-content-center row col-6">
+                <section class="d-flex justify-content-center row col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <h2 class="text-center">Предварительная стоимость составляет</h2>
                     <p class="text-center sum">0</p>
                     <input type="hidden" class="sumForm" name="sumForm" />
