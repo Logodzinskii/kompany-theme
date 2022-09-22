@@ -32,20 +32,39 @@
                 });
 
             });
+
+            $('input[name="facadesPrice"]').on('change', function (){
+
+               alert($(this).val());
+
+            });
+
             $('.selectBox').on('change', function(){
+                var formData =$('#orderForm').serialize();
+                $.ajax({
+                    url: "{{ route('update.price.facadesBoxModules') }}",
+                    type: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        alert(data);
+                        //$('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
+                    }
+                });
+            });
+
+            /*$('.selectBox').on('change', function(){
                 var length = $(this).val();
                 var count = $(this).parent().parent().children().eq(3).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
-                var facadesPrice = $('input[name="facadesPrice"]').val();
-                alert(facadesPrice);
+                var facadesPrice = $('input[name="facadesPrice"]:checked').val();
                 sendAjax(length, count, nameBox, facadesPrice);
 
-            })
+            })*/
             $('.countItems').on("change", function () {
                 var count = $(this).val();
                 var length = $(this).parent().parent().children().eq(2).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
-
+                var facadesPrice = $('input[name="facadesPrice"]:checked').val();
                 sendAjax(length, count, nameBox, facadesPrice);
 
             })
@@ -55,12 +74,12 @@
                 var length = lengthBox;
                 var count = countBox;
                 var type = typeBox;
-                var facadesPrice = facadesPrice;
+                var facades = facadesPrice;
 
                 $.ajax({
                     url: "{{ route('ajax.data.resp') }}",
                     type: 'POST',
-                    data: {_token: _token, length: length, count: count, type: type, facadesPrice: facadesPrice},
+                    data: {_token: _token, length: length, count: count, type: type, facadesPrice: facades},
                     success: function (data) {
                         $('.SumBoxPrice'+ type).text(data);
                         sumTotal();
@@ -86,6 +105,7 @@
         @include('header')
         <form id="orderForm" class="was-validated" novalidate>
             @csrf
+            <input type="hidden" id="_token" value="{{ csrf_token() }}">
             <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap">
                 <div class="cel calc_body col-lg-6">
                     @foreach( $items as $item)

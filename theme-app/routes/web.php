@@ -25,7 +25,9 @@ Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->m
 
 Route::post('order/user/store', [\App\Http\Controllers\OrderForm::class, 'orderUserStore'])->name('order.user.store');
 
-Route::post('ajax/data/resp', [\App\Http\Controllers\CalculateContentController::class, 'ajaxDataResp'])->name('ajax.data.resp');;
+Route::post('ajax/data/resp', [\App\Http\Controllers\CalculateContentController::class, 'ajaxDataResp'])->name('ajax.data.resp');
+
+Route::post('update/Price/FacadesBoxModules', [\App\Http\Controllers\CalculateContentController::class, 'updatePriceFacadesBoxModules'])->name('update.price.facadesBoxModules');
 
 Auth::routes();
 

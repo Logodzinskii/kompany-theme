@@ -288,6 +288,51 @@ class CalculateContentController extends Controller
 
     }
 
+    public function updatePriceFacadesBoxModules(Request $request)
+    {
+        $arr = [
+            'priceBox' => 8750,
+            'priceFacade' => 16250,
+            'heightKitchenTotal'=> 2050,
+            'heightKitchenBoxDown' => 820,
+            'kitchenDepth' => 600,
+            'kitchenPriceAprons' => 1200,
+            'kitchenLengthTypeA' => 0,
+            'kitchenLengthTypeB' => 800,
+            'kitchenLengthTypeC' => 0,
+            'pencilCaseForTheKitchenFridgeLength' => 600,
+            'pencilCaseForTheKitchenMicrowaveLength' => 600,
+            'pencilCaseForTheKitchenShelvesLength'=> 600,
+            'pricePencilCaseForTheKitchenFridge'=> 600,
+            'pricePencilCaseForTheKitchenMicrowave'=> 600,
+            'pricePencilCaseForTheKitchenShelves'=> 600,
+            'kitchenBoxTopLength'=> 600,
+            'kitchenBoxMiddleLength'=> 600,
+            'kitchenBoxWashingLength'=> 600,
+            'kitchenBoxDishwasherLength'=> 450,
+            'kitchenBoxOvenLength'=>600,
+            'kitchenBoxShelvesLength'=> 500,
+            'kitchenBoxShelvesOptionsPrice'=>7500,
+            'kitchenBottleMakerLength'=> 200,
+            'kitchenBottleMakerOptionsPrice'=> 2500,
+            'FalseFacadeHiLength'=> 600,
+            'FalseFacade1LowLength'=> 600,
+        ];
+        $kitchen = new Kitchen($arr);
+        $kitchen->initializeKitchen();
+
+        $arrq =[];
+        /**
+         * Получу значение всех активных инпутов
+         * Произведу вычисления
+         */
+        foreach ($request->input() as $key=>$value)
+        {
+            $arrq[]=[$key . '=' . $value];
+        }
+        return  response()->json([$arrq]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
