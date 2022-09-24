@@ -4,7 +4,6 @@ $(document).ready(function () {
         //alert(getPosition(e));
 
     });
-
     $('.checkbox').on("click", function () {
         if ($(this).is(":checked")) {
             var  attr = $(this).parent().parent().children().children().eq(2);
@@ -74,7 +73,7 @@ $(document).ready(function () {
         })
 
         $(window).on('resize',function (){
-            if($('.calc_body').width() < 700){
+            if($('.calc_body').width() < 1024){
                 console.log($('.calc_body').width());
                 var y = 0;
                 var x = 0;

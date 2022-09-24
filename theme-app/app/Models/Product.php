@@ -14,5 +14,12 @@ class Product extends Model
         'productName',
         'price',
         'initializePrice',
+        'nameClassBox',
+        'nameBoxBottom',
+        'placeholder',
+        'typeBox',
+        'defaultLen',
+        'defaultNum',
+        'priceDopOptions',
     ];
 }

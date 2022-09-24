@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Orders;
+use Illuminate\Support\Facades\DB;
 
 class CalculateContentController extends Controller
 {
@@ -39,7 +40,7 @@ class CalculateContentController extends Controller
         //
     }
 
-    public function showKitchen()
+    public function showKitchen($model)
     {
         $arr = [
             [   'nameClassBox'=>'BottleMaker',
@@ -52,7 +53,7 @@ class CalculateContentController extends Controller
 
             ],
             [   'nameClassBox'=>'BoxOven',
-                'nameBoxBottom'=>'Для Духовки',
+                'nameBoxBottom'=>'Шкаф для Духовки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[600,800],
@@ -79,7 +80,7 @@ class CalculateContentController extends Controller
 
             ],
             [   'nameClassBox'=>'BoxWashing',
-                'nameBoxBottom'=>'Для мойки',
+                'nameBoxBottom'=>'Шкаф для мойки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600,800],
@@ -208,7 +209,9 @@ class CalculateContentController extends Controller
 
         ];
 
-        return view('/calculator/calcForm', ['items' => $arr, 'facades'=> $facades]);
+        $newArr = DB::table('products')->where('productName', $model)->get();
+
+        return view('/calculator/calcForm', ['items' => json_decode($newArr,true), 'facades'=> $facades]);
 
     }
 

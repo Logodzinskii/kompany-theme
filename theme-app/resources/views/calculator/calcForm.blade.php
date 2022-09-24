@@ -28,11 +28,8 @@
                 }else{
                     $('.summError').text('');
 
-                    e.preventDefault();
-
-                    var _token = $('meta[name="csrf-token"]').attr('content');
                     var formData =$('#orderForm').serialize();
-
+                    alert(formData);
                     $.ajax({
                         url: "{{ route('order.user.store') }}",
                         type: 'POST',
@@ -42,7 +39,7 @@
                         }
                     });
                 }
-
+                e.preventDefault();
             });
 
             $('input[name="facadesPrice"]').on('change', function (){
@@ -158,11 +155,11 @@
                                         {{$item['nameBoxBottom']}}
                                     </td>
                                     <td>
-                                        @if(count($item['defaultLen']) == 0 )
+                                        @if(count(json_decode($item['defaultLen']),true) == 0 )
                                             <input type="number" min="1250" name="length{{$item['nameClassBox']}}" class="selectBox" placeholder="{{$item['placeholder']}}" disabled>
                                         @else
                                             <select class="selectBox" name="length{{$item['nameClassBox']}}" disabled>
-                                                @foreach($item['defaultLen'] as $len)
+                                                @foreach(json_decode($item['defaultLen'],true) as $len)
                                                     <option value="{{$len}}">{{$len}} мм</option>
                                                 @endforeach
                                             </select>
