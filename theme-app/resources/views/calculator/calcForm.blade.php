@@ -15,6 +15,9 @@
         <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
         <script type="text/javascript">
         $(document).ready(function() {
+
+            $("#orderForm input:radio:first").attr('checked', true);
+
             $(".btn-submit").click(function (e) {
 
                 e.preventDefault();
@@ -35,31 +38,27 @@
 
             $('input[name="facadesPrice"]').on('change', function (){
 
-               alert($(this).val());
+               //alert($(this).val());
+               $('.tableValue input:checked').each(function (){
+                   var length = $(this).parent().parent().children().eq(2).children().val();
+                   var count = $(this).parent().parent().children().eq(3).children().val();
+                   var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
+                   var facadesPrice = $('input[name="facadesPrice"]:checked').val();
+
+                   sendAjax(length, count, nameBox, facadesPrice);
+               });
 
             });
+
 
             $('.selectBox').on('change', function(){
-                var formData =$('#orderForm').serialize();
-                $.ajax({
-                    url: "{{ route('update.price.facadesBoxModules') }}",
-                    type: 'POST',
-                    data: formData,
-                    success: function (data) {
-                        alert(data);
-                        //$('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
-                    }
-                });
-            });
-
-            /*$('.selectBox').on('change', function(){
                 var length = $(this).val();
                 var count = $(this).parent().parent().children().eq(3).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
                 var facadesPrice = $('input[name="facadesPrice"]:checked').val();
                 sendAjax(length, count, nameBox, facadesPrice);
 
-            })*/
+            })
             $('.countItems').on("change", function () {
                 var count = $(this).val();
                 var length = $(this).parent().parent().children().eq(2).children().val();
@@ -112,46 +111,18 @@
                         <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
                     @endforeach
                     <div class="d-flex col justify-content-around choiceFacades col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        @foreach($facades as $facade)
                         <div class="p-2">
-                            <h5>Фрезеровка</h5>
-                            <img src="{{asset('images/frez.png')}}" height="80" />
+                            <h5>{{$facade['name']}}</h5>
+                            <img src="{{asset($facade['image'])}}" height="80" />
+                            @foreach($facade['type'] as $type)
                             <div>
-                                <input type="radio" name="facadesPrice" value="16250"/>
-                                <label name="facadesPrice">Пленка</label>
+                                <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}"/>
+                                <label name="facadesPrice">{{$type['nameFacades']}}</label>
                             </div>
-                            <div>
-                                <input type="radio" name="facadesPrice" value="16250"/>
-                                <label name="facadesPrice">Эмаль</label>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="p-2">
-                            <h5>3D Фрезеровка</h5>
-                            <img src="{{asset('images/3dfrez.png')}}" height="80" />
-                            <div>
-                                <input type="radio" name="facadesPrice" value="20000"/>
-                                <label name="facadesPrice">Пленка</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="facadesPrice" value="20000"/>
-                                <label name="facadesPrice">Эмаль</label>
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            <h5>Прямой</h5>
-                            <img src="{{asset('images/prjam.png')}}" height="80" />
-                            <div>
-                                <input type="radio" name="facadesPrice" value="22000"/>
-                                <label name="facadesPrice">Пленка</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="facadesPrice" value="22000"/>
-                                <label name="facadesPrice">Эмаль</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="facadesPrice" value="22000"/>
-                                <label name="facadesPrice">Пластик</label>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs">
@@ -167,7 +138,7 @@
                                 <th scope="col">Цена<span style="color:red">*</span></th>
                             </tr>
                             </thead>
-                            <tbody class="text-center">
+                            <tbody class="text-center tableValue">
                             @foreach( $items as $item)
                                 <tr>
                                     <th scope="row">
