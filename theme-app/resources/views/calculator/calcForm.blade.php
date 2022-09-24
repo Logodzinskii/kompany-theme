@@ -19,20 +19,29 @@
             $("#orderForm input:radio:first").attr('checked', true);
 
             $(".btn-submit").click(function (e) {
+                var sum = $('.sum').text();
+                if(sum == '00')
+                {
+                    $('.summError').text('Вы не выбрали конфигурацию кухни');
 
-                e.preventDefault();
+                    return false;
+                }else{
+                    $('.summError').text('');
 
-                var _token = $('meta[name="csrf-token"]').attr('content');
-                var formData =$('#orderForm').serialize();
+                    e.preventDefault();
 
-                $.ajax({
-                    url: "{{ route('order.user.store') }}",
-                    type: 'POST',
-                    data: formData,
-                    success: function (data) {
-                        $('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
-                    }
-                });
+                    var _token = $('meta[name="csrf-token"]').attr('content');
+                    var formData =$('#orderForm').serialize();
+
+                    $.ajax({
+                        url: "{{ route('order.user.store') }}",
+                        type: 'POST',
+                        data: formData,
+                        success: function (data) {
+                            $('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
+                        }
+                    });
+                }
 
             });
 
@@ -94,6 +103,7 @@
                 });
                 $(".sum").text(sum);
                 $(".sumForm").val(sum);
+                $(".summError").text('');
             }
         });
         </script>
@@ -102,10 +112,10 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <form id="orderForm" class="was-validated" novalidate>
+        <form id="orderForm" class="was-validated" >
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
-            <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap">
+            <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap" style="width: 95%">
                 <div class="cel calc_body col-lg-6">
                     @foreach( $items as $item)
                         <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
@@ -180,9 +190,6 @@
             </section>
             <div class="col-12 d-flex justify-content-center row result">
                 <section class="d-flex justify-content-center row col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <h2 class="text-center">Предварительная стоимость составляет</h2>
-                    <p class="text-center sum">0</p>
-                    <input type="hidden" class="sumForm" name="sumForm" />
                     <div class="mb-3">
                         <label for="InputName" class="form-label">Ваше имя</label>
                         <input type="text" name="firstname" class="form-control" id="InputName" value="" required>
@@ -190,7 +197,7 @@
                             ok
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, выберите имя пользователя.
+                            Пожалуйста, сообщите ваше имя и фамилию.
                         </div>
                     </div>
                     <div class="mb-3">
@@ -206,8 +213,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="InputTel" class="form-label">Ваш контактный телефон</label>
-                        <input type="tel" name="tel" class="form-control" id="InputTel" aria-describedby="emailHelp" required>
-                        <div id="emailHelp" class="form-text">+79XXXXXXXXXX</div>
+                        <input type="tel" name="tel" class="form-control" id="InputTel" aria-describedby="telHelp" required>
+                        <div id="telHelp" class="form-text">+79XXXXXXXXXX</div>
                         <div class="valid-feedback">
                             ok
                         </div>
@@ -217,11 +224,33 @@
                     </div>
                     <div class="mb-3">
                         <label for="Textarea" class="form-label">Дополнительная информация</label>
-                        <textarea class="form-control" name="body" id="Textarea" rows="3"></textarea>
+                        <textarea class="form-control" name="body" id="Textarea" rows="3" placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary w-25 btn-submit" >Отправить</button>
+                    <div class="mb-3">
+                        <h2 class="summError bg-danger"></h2>
+                    </div>
+                    <h2 class="text-center bg-light">Предварительная стоимость составляет</h2>
+                    <h2 class="text-center sum bg-light">0</h2>
+                    <input type="hidden" class="sumForm" name="sumForm" />
                 </section>
             </div>
         </form>
+        <script>
+            // Custom JavaScript for Validation
+            (function() {
+                "use strict";
+                window.addEventListener("load", function() {
+                    var form = document.getElementById("orderForm");
+                    form.addEventListener("submit", function(event) {
+                        if (form.checkValidity() == false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    }, false);
+                }, false);
+            }());
+        </script>
         @include('footer')
     </body>

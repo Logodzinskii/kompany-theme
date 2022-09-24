@@ -11,12 +11,13 @@
         </tr>
         </thead>
         <tbody>
+        <div style="display: none">{{$i=1}}</div>
         @foreach($orders['data'] as $order)
-            <tr >
-                <th scope="row">1</th>
+            <tr>
+                <th scope="row">{{$i++}}</th>
                 <td >{{$order['userEmail']}}</td>
                 <td>{{$order['name']}}</td>
-                <td >{{$order['kitchenConfigurations']}}</td>
+                <td ><a href="/cart/{{$order['id']}}">Детали</a></td>
                 <td>{{$order['totalPrice']}}</td>
                 <td>{{$order['status']}}</td>
             </tr>
