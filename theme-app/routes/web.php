@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/calculate/{id}', [\App\Http\Controllers\ProductsController::class, 'listProducts']);
+
 
 Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
 
@@ -35,7 +35,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/cart/{id}', [\App\Http\Controllers\OrderForm::class, 'showDetailOrder'])->middleware('auth');
 
-Route::get('/calculate/', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
+Route::get('/calculate/{model}', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
 
 Route::get('/calcv2/', function (){
     return view('/calculator/calcForm');
