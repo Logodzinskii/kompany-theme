@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cart/', [\App\Http\Controllers\UsersControllers::class, 'cartShow'])->middleware('auth');
+Route::get('/cart/{id}', [\App\Http\Controllers\OrderForm::class, 'showDetailOrder'])->middleware('auth');
 
 Route::get('/calculate/', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
 
