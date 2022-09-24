@@ -162,8 +162,53 @@ class CalculateContentController extends Controller
             ],
 
         ];
+        $facades = [
+                        [
+                            'name' => 'Фрезеровка',
+                            'image' => 'images/frez.png',
+                            'type'=>
+                                [
+                                    [   'nameFacades' => 'Пленка',
+                                        'priceFacades'=>'16250',
+                                    ],
+                                    [   'nameFacades' => 'Эмаль',
+                                        'priceFacades'=>'17250',
+                                    ],
+                                ]
+                        ],
+                        [
+                            'name' => '3D Фрезеровка',
+                            'image' => 'images/3dfrez.png',
+                            'type'=>
+                                [
+                                    [   'nameFacades' => 'Пленка',
+                                        'priceFacades'=>'18250',
+                                    ],
+                                    [   'nameFacades' => 'Эмаль',
+                                        'priceFacades'=>'19250',
+                                    ],
+                                ]
+                        ],
+                        [
+                            'name' => 'Прямой',
+                            'image' => 'images/prjam.png',
+                            'type'=>
+                                [
+                                    [   'nameFacades' => 'Пленка',
+                                        'priceFacades'=>'20250',
+                                    ],
+                                    [   'nameFacades' => 'Эмаль',
+                                        'priceFacades'=>'21250',
+                                    ],
+                                    [   'nameFacades' => 'Пластик',
+                                        'priceFacades'=>'22250',
+                                    ],
+                                ]
+                        ],
 
-        return view('/calculator/calcForm', ['items' => $arr]);
+        ];
+
+        return view('/calculator/calcForm', ['items' => $arr, 'facades'=> $facades]);
 
     }
 
@@ -286,51 +331,6 @@ class CalculateContentController extends Controller
 
         return response()->json([$price]);
 
-    }
-
-    public function updatePriceFacadesBoxModules(Request $request)
-    {
-        $arr = [
-            'priceBox' => 8750,
-            'priceFacade' => 16250,
-            'heightKitchenTotal'=> 2050,
-            'heightKitchenBoxDown' => 820,
-            'kitchenDepth' => 600,
-            'kitchenPriceAprons' => 1200,
-            'kitchenLengthTypeA' => 0,
-            'kitchenLengthTypeB' => 800,
-            'kitchenLengthTypeC' => 0,
-            'pencilCaseForTheKitchenFridgeLength' => 600,
-            'pencilCaseForTheKitchenMicrowaveLength' => 600,
-            'pencilCaseForTheKitchenShelvesLength'=> 600,
-            'pricePencilCaseForTheKitchenFridge'=> 600,
-            'pricePencilCaseForTheKitchenMicrowave'=> 600,
-            'pricePencilCaseForTheKitchenShelves'=> 600,
-            'kitchenBoxTopLength'=> 600,
-            'kitchenBoxMiddleLength'=> 600,
-            'kitchenBoxWashingLength'=> 600,
-            'kitchenBoxDishwasherLength'=> 450,
-            'kitchenBoxOvenLength'=>600,
-            'kitchenBoxShelvesLength'=> 500,
-            'kitchenBoxShelvesOptionsPrice'=>7500,
-            'kitchenBottleMakerLength'=> 200,
-            'kitchenBottleMakerOptionsPrice'=> 2500,
-            'FalseFacadeHiLength'=> 600,
-            'FalseFacade1LowLength'=> 600,
-        ];
-        $kitchen = new Kitchen($arr);
-        $kitchen->initializeKitchen();
-
-        $arrq =[];
-        /**
-         * Получу значение всех активных инпутов
-         * Произведу вычисления
-         */
-        foreach ($request->input() as $key=>$value)
-        {
-            $arrq[]=[$key . '=' . $value];
-        }
-        return  response()->json([$arrq]);
     }
 
 
