@@ -104,21 +104,6 @@ $(document).ready(function () {
             setBox(top + 140 + (x/6.3),232 - (x/3.0), 42 - (x/15),187 - (x/3.8), 'PenalMicrowave');
             setBox(top + 124 + (x/5.5),154 - (x/4.2), 79 - (x/11),187 - (x/3.8), 'PenalShelves');
         }
-        function setDefCoord()
-        {
-            var top = 54;
-            setBox(top + 177,313, 170,30, 'BoxTop');
-            setBox(top + 209,325, 170,48, 'BoxMiddle');
-            setBox(top + 319,484, 28,68, 'BoxDown');
-            setBox(top + 329,469, 14,54, 'BottleMaker');
-            setBox(top + 329,469, 14,54, 'BoxOven');
-            setBox(top + 312,392, 38,54, 'BoxShelves');
-            setBox(top + 303,364, 28,54, 'BoxDishwasher');
-            setBox(top + 293,313, 52,54, 'BoxWashing');
-            setBox(top + 150,274, 39,187, 'PenalFridge');
-            setBox(top + 140,232, 42,187, 'PenalMicrowave');
-            setBox(top + 124,154, 79,187, 'PenalShelves');
-        }
     }
 
     initialize();
