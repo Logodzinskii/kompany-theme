@@ -13,7 +13,6 @@
         top:380px;
         left: 0px;
     }
-
 }
 
 .calc_container
@@ -69,4 +68,39 @@ input[type="number"]
     -o-transform: skewY(-26deg);
     transform: skewY(-26deg);
     opacity: 0.5;
+}
+
+.strela{
+    background: grey;
+
+    position: absolute;
+    margin: 10px auto;
+    -webkit-transform: skewY(13deg);
+    -moz-transform: skewY(13deg);
+    -o-transform: skewY(13deg);
+    transform: skewY(13deg);
+    opacity: 0.5;
+}
+.strela:before {
+    content: open-quote;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 14px;
+    left: -40px;
+    border-left: 40px solid grey;
+    border-bottom: 24px solid grey;
+    -webkit-transform: skewY(-33deg);
+    -moz-transform: skewY(-33deg);
+    -o-transform: skewY(-33deg);
+    transform: skewY(-33deg);
+    opacity: 0.5;
+}
+.strela.green:before{
+    border-left: 40px solid green;
+    border-bottom: 24px solid green;
+}
+.strela.grey:before{
+    border-left: 40px solid grey;
+    border-bottom: 24px solid grey;
 }

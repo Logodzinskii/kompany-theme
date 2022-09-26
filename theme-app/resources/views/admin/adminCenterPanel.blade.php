@@ -1,5 +1,5 @@
 <section class="p-0 m-0 col-12 d-flex flex-wrap justify-content-start " style="min-height: 80vh">
-    <table class="table xs-auto">
+    <table class="table xs-auto" >
         <thead>
         <tr>
             <th scope="col">№</th>

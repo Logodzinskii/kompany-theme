@@ -50,13 +50,11 @@
                     </div>
                 </div>
                 <div class="card col-lg-4 ">
-                    <h1 class="card-title text-center">Шкафы</h1>
-                    <img src="{{asset('images/main/wardrobe.png')}}" height="290px" class="card-img-top" alt="шкаф на заказ компания-тема">
+                    <h1 class="card-title text-center">Угловая кухня</h1>
+                    <img src="{{asset('images/k12.jpg')}}" height="290px" class="card-img-top" alt="шкаф на заказ компания-тема">
                     <div class="card-body">
-                        <p style="min-height:5vh ">Изготовление шкафа от 7 рабочих дней</p>
-                        <p class="card-text">Цена от </p>
-                        <p><span style="font-size: xx-large">35 000</span> &#x20bd</p>
-                        <a href="/calculate/" class="btn btn-primary">Расчет цены</a>
+                        <p style="min-height:5vh ">Расчитайте стоимость кухни за считанные минуты</p>
+                        <a href="/calculate/modelsecond" class="btn btn-primary">Калькуляция</a>
                     </div>
                 </div>
                 <div class="card col-lg-4 ">

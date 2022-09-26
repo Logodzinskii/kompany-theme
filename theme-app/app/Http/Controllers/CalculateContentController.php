@@ -283,46 +283,46 @@ class CalculateContentController extends Controller
 
         switch ($request->type)
         {
-            case 'BottleMaker':
+            case strpos($request->type,'ottleMaker') > 0:
                 $kitchen->setKitchenBottleMakerLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBottleMaker() * $count;
                 break;
-            case 'BoxOven':
+            case strpos($request->type,'oxOven') > 0:
                 $kitchen->setKitchenBoxOvenLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostOven() * $count;
                 break;
-            case 'BoxShelves':
+            case strpos($request->type,'oxShelves') > 0:
                 $kitchen->setKitchenBoxShelvesLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxShelves() * $count;
                 break;
-            case 'BoxDishwasher':
+            case strpos($request->type,'oxDishwasher') > 0:
                 $kitchen->setKitchenBoxDishwasherLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxDishwasher() * $count;
                 break;
-            case 'BoxWashing':
+            case strpos($request->type,'oxWashing') > 0:
                 $kitchen->setKitchenBoxWashingLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxWashing() * $count;
                 break;
-            case 'BoxTop':
+            case strpos($request->type,'oxTop') > 0:
                 $kitchen->setKitchenBoxTopLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxTop() * $count;
                 break;
-            case 'BoxMiddle':
+            case strpos($request->type,'oxMiddle') > 0 :
                 $kitchen->setKitchenLengthTypeB($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxMiddle() * $count;
                 break;
-            case 'BoxDown':
+            case strpos($request->type,'oxDown') == 1 &&  strlen($request->type) == 7:
                 $count = $request->count;
                 $price = 4500 * $count;
                 break;
-            case 'BoxDownFf':
+            case strpos($request->type,'Ff') == 7:
                 $count = $request->count;
                 $price = 9000 * $count;
                 break;
@@ -331,11 +331,12 @@ class CalculateContentController extends Controller
                 $price = 19000 * $count;
                 break;
         }
-
+        /*$priceBox = $kitchen->getCostPLH($arr['priceBox'], $request->length, $arr['heightKitchenBoxDown']);
+        $priceFacades = $kitchen->getCostPLH($request->facadesPrice, $request->length, $arr['heightKitchenBoxDown']);
+        $price = ($priceBox + $priceFacades) * $request->count;*/
         return response()->json([$price]);
 
     }
-
 
     /**
      * Show the form for editing the specified resource.
