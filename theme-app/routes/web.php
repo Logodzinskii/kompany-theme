@@ -18,7 +18,9 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('main');
 });
-
+Route::get('/canvas/', function () {
+    return view('/canvas/canvas');
+});
 
 
 Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
