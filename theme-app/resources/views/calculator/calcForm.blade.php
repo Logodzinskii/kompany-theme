@@ -12,22 +12,17 @@
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
         <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/calc_v2.js')}}"></script>
-        <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
-
             $("#orderForm input:radio:first").attr('checked', true);
-
             $(".btn-submit").click(function (e) {
                 var sum = $('.sum').text();
                 if(sum == '00')
                 {
                     $('.summError').text('Вы не выбрали конфигурацию кухни');
-
                     return false;
                 }else{
                     $('.summError').text('');
-
                     var formData =$('#orderForm').serialize();
                     alert(formData);
                     $.ajax({
@@ -41,29 +36,22 @@
                 }
                 e.preventDefault();
             });
-
             $('input[name="facadesPrice"]').on('change', function (){
-
-               //alert($(this).val());
-               $('.tableValue input:checked').each(function (){
-                   var length = $(this).parent().parent().children().eq(2).children().val();
-                   var count = $(this).parent().parent().children().eq(3).children().val();
-                   var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
-                   var facadesPrice = $('input[name="facadesPrice"]:checked').val();
-
-                   sendAjax(length, count, nameBox, facadesPrice);
-               });
-
+                //alert($(this).val());
+                $('.tableValue input:checked').each(function (){
+                    var length = $(this).parent().parent().children().eq(2).children().val();
+                    var count = $(this).parent().parent().children().eq(3).children().val();
+                    var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
+                    var facadesPrice = $('input[name="facadesPrice"]:checked').val();
+                    sendAjax(length, count, nameBox, facadesPrice);
+                });
             });
-
-
             $('.selectBox').on('change', function(){
                 var length = $(this).val();
                 var count = $(this).parent().parent().children().eq(3).children().val();
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
                 var facadesPrice = $('input[name="facadesPrice"]:checked').val();
                 sendAjax(length, count, nameBox, facadesPrice);
-
             })
             $('.countItems').on("change", function () {
                 var count = $(this).val();
@@ -71,16 +59,13 @@
                 var nameBox = $(this).parent().parent().children().eq(0).children().last().attr('name');
                 var facadesPrice = $('input[name="facadesPrice"]:checked').val();
                 sendAjax(length, count, nameBox, facadesPrice);
-
             })
-
             function sendAjax(lengthBox, countBox, typeBox, facadesPrice){
                 var _token = $('meta[name="csrf-token"]').attr('content');
                 var length = lengthBox;
                 var count = countBox;
                 var type = typeBox;
                 var facades = facadesPrice;
-
                 $.ajax({
                     url: "{{ route('ajax.data.resp') }}",
                     type: 'POST',
@@ -91,7 +76,6 @@
                     }
                 });
             }
-
             function sumTotal()
             {
                 var sum = 0;
@@ -103,7 +87,245 @@
                 $(".summError").text('');
             }
         });
-        </script>
+    </script>
+    <script>
+        $(document).ready(function (){
+            /**
+             *
+             * Первоначальная отрисовка модулей кухни по умолчанию
+             *
+             **/
+            start();
+
+            /**
+             *
+             * Функции для отслеживания позиции мышки и перемещения всех модулей
+             *
+             **/
+            $("#example").on('mousedown', function (e) {
+
+                var target = this.getBoundingClientRect();
+                var x = e.clientX - target.left;
+                var y = e.clientY - target.top;
+
+                $('.navigationCanvas input[name=zoomTop]').val(x);
+                $('.navigationCanvas input[name=zoomRight]').val(y);
+                start();
+                //alert(getPosition(e));
+
+            });
+
+            /**
+             *
+             * Отслеживаем значения инпутов для навигации увеличение и смещение
+             *
+             **/
+
+            $('.navigationCanvas input').on('change', function (){
+                start();
+            })
+
+            $('input:checkbox').on("click", function () {
+                if ($(this).is(":checked")) {
+                    var  attr = $(this).parent().parent().children().children().eq(2);
+
+                    if(!$(this).parent().parent().children().children().eq(2).length > 0)
+                    {
+                        //alert($(this).parent().parent().children().children().eq(2).length);
+                        $(this).parent().parent().children().eq(3).children().attr('disabled', false);
+                    }else {
+                        $(this).parent().parent().children().children().eq(2).attr('disabled', false);
+                        $(this).parent().parent().children().eq(2).children().attr('disabled', false);
+                    }
+
+                    var price = $(this).data('price');
+                    var count = $(this).parent().parent().children().eq(3).children().val();
+                    //$(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
+
+                    $('.' + $(this).attr('name')).css('background', 'green');
+                    $('.' + $(this).attr('name')).removeClass('grey');
+                    $('.' + $(this).attr('name')).addClass('green');
+
+
+                    var sum = 0;
+                    $('.SumBoxPrice').each(function() {
+                        sum += Number($(this).text());
+                    });
+                    $(".sum").text(sum);
+                } else {
+                    // checkbox unchecked
+                    if(!$(this).parent().parent().children().children().eq(2).length > 0)
+                    {
+                        //alert($(this).parent().parent().children().children().eq(2).length);
+                        $(this).parent().parent().children().eq(3).children().attr('disabled', true);
+                        $(this).parent().parent().children().eq(3).children().val(0);
+                        $(this).parent().parent().children().eq(4).text(0);
+                    }else {
+                        $(this).parent().parent().children().eq(2).children().attr('disabled', true);
+                        $(this).parent().parent().children().children().eq(2).attr('disabled', true);
+                        $(this).parent().parent().children().children().eq(2).val(0);
+                        $(this).parent().parent().children().eq(4).text(0);
+                    }
+
+                    $(this).parent().parent().children().children().eq(2).attr('disabled', true);
+                    $(this).parent().parent().children().eq(2).children().attr('disabled', true);
+                    //$(this).parent().parent().children().eq(4).text(0);
+                    $('.' + $(this).attr('name')).css('background', 'grey');
+                    $('.' + $(this).attr('name')).removeClass('green');
+                    $('.' + $(this).attr('name')).addClass('grey');
+
+                    var sum = 0;
+                    $('.SumBoxPrice').each(function() {
+                        sum += Number($(this).text());
+                    });
+                    $(".sum").text(sum);
+                }
+                start();
+            });
+            /**
+             *
+             * Фунции для добавления в таблицу блока модуля
+             *
+             **/
+
+            $('.add').on('click', function(){
+                $('.tableValue').append('<tr><th scope="row"><input type="checkbox" class="checkbox" name="BottleMaker" data-x="200" data-y="90" data-w="60" data-h="60" data-type="top"></th><td>Средний модуль</td><td><input type="number" min="1250" name="length" class="selectBox"></td><td><input type="number" class="countItems" name="count" id="login" placeholder="" value="" ></td><td class="SumBoxPrice SumBoxPrice">0</td></tr>');
+                start()
+            });
+
+
+            /**
+             *
+             * Функции для отрисовки модулей и их позиционирования
+             *
+             **/
+
+            function start()
+            {
+                var ma = parseInt($('.navigationCanvas input').val())/10;
+                var xa = parseInt($('.navigationCanvas input[name=zoomTop]').val());
+                var ya = parseInt($('.navigationCanvas input[name=zoomRight]').val());
+
+                var example = document.getElementById("example"),
+                    ctx     = example.getContext('2d');
+                ctx.clearRect(0, 0, 700, 500);
+
+
+                $('.checkbox:checked').each(function (){
+
+                    var datax= $(this).data('x');
+                    var datay= $(this).data('y');
+                    var dataw = $(this).data('w');
+                    var datah = $(this).data('h');
+                    var datag = $(this).data('g');
+                    var typeb = $(this).data('type');
+                    if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                    {
+                        addBox(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+                    }
+                    if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                    {
+                        createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+                    }
+
+
+                });
+                $('.checkbox').each(function (){
+                    var datax= $(this).data('x');
+                    var datay= $(this).data('y');
+                    var dataw = $(this).data('w');
+                    var datah = $(this).data('h');
+                    var datag = $(this).data('g');
+                    var typeb = $(this).data('type');
+                    if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                    {
+                        addBox(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                    }
+                    if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                    {
+                        createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                    }
+
+                });
+
+            }
+
+            function createBoxDown(x,y,w,h,color,m,g)
+            {
+                addBox(x+5,y+h-5,w,15,color, m, g-5);
+                addBox(x,y,w,h,color, m, g);
+            }
+
+            function addBox(xx,yy,ww,hh,color,mashtab,g )
+            {
+                var $window = $(window);
+                var windowsize = $window.width();
+                //alert(windowsize);
+
+                var x = xx * mashtab;
+                var y = yy * mashtab;
+                var w = ww * mashtab;
+                var h = hh * mashtab;
+                var ang = w/4;
+                var angh = g*(mashtab);
+                var example = document.getElementById("example"),
+                    ctx     = example.getContext('2d');
+                var facadescolor = 'rgba(222, 194, 124,1)';
+                var boxcolor = "rgba(220, 224, 224, 1)";
+                var linecolor = "rgba(0, 0, 0, 0.8)";
+                if(color == 'active')
+                {
+                    facadescolor = "rgba(222, 194, 124,1)";
+                    boxcolor = "rgba(220, 224, 224, 1)";
+                    linecolor = "rgba(0, 0, 0, 0.8)";
+                }else{
+                    facadescolor = "rgba(222, 194, 124,0.3)";
+                    boxcolor = "rgba(220, 224, 224, 0.3)";
+                    linecolor = "rgba(0, 0, 0, 0.3)";
+                }
+
+                ctx.strokeStyle = linecolor; // цвет линии
+                ctx.beginPath();
+                ctx.moveTo(x,y); //0,0
+                //фасад
+                ctx.lineTo(x+w, y+ang); //100, 25
+                ctx.lineTo(x+w, y+ang+h); //100, 100+25+100
+                ctx.lineTo(x, y+h); // 0, 100
+                ctx.lineTo(x, y); //0,0
+                ctx.strokeStyle = linecolor;
+                //цвет заливки фигуры
+                ctx.fillStyle = facadescolor;
+                ctx.fill();
+                ctx.closePath();
+                ctx.stroke();
+                //верхняя часть
+                ctx.beginPath();
+                ctx.moveTo(x,y); //0,0
+                ctx.lineTo(x+angh, y-angh);//20,-20
+                ctx.lineTo(x+w+angh, y+ang-angh);//0+100+20, 0+25-20
+                ctx.lineTo(x-angh+w+angh, y+ang);
+                ctx.strokeStyle = linecolor;
+                //цвет заливки фигуры
+                ctx.fillStyle = boxcolor;
+                ctx.fill();
+                ctx.closePath();
+                ctx.stroke();
+                //правая сторона по часовой стрелке рисуем линии
+                ctx.beginPath();
+                ctx.moveTo(x+w+angh, y+ang-angh); //
+                ctx.lineTo(x+w+angh, y+ang-angh+h);//0+100+20, 0+25-20
+                ctx.lineTo(x+w, y+ang+h);//0+100+20, 0+25-20
+                ctx.lineTo(x+w, y+ang);
+                //цвет заливки фигуры
+                ctx.fillStyle = boxcolor;
+                ctx.fill();
+                ctx.closePath();
+                ctx.stroke();
+            }
+        })
+
+
+    </script>
             <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
 
     </head>
@@ -112,27 +334,34 @@
         <form id="orderForm" class="was-validated" >
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
-            <section class="calc_container d-flex col col-lg-11 justify-content-between flex-wrap" style="width: 95%">
-                <div class="cel calc_body col-lg-6">
-                    @foreach( $items as $item)
-                        <div class="{{$item['typeBox']}} {{$item['nameClassBox']}}"></div>
-                    @endforeach
-                    <div class="d-flex col justify-content-around choiceFacades col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        @foreach($facades as $facade)
-                        <div class="p-2">
-                            <h5>{{$facade['name']}}</h5>
-                            <img src="{{asset($facade['image'])}}" height="80" />
-                            @foreach($facade['type'] as $type)
-                            <div>
-                                <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}"/>
-                                <label name="facadesPrice">{{$type['nameFacades']}}</label>
-                            </div>
+            <section class="calc_container d-flex row col-lg-12 justify-content-between flex-wrap" style="width: 95%">
+                <div class="col-lg-6 col-12 row">
+                    <canvas height='500' width='580' id='example' class="shadow">Обновите браузер</canvas>
+
+                    <div class="navigationCanvas d-flex row">
+                        <label for="zoom">увеличение<em>*</em></label>
+                        <input type="range" min="2" max="10" value="5" name="zoom">
+                        <input type="range" name="zoomTop" value="0" min="-500" max="500" value="25"/>
+                        <input type="range" name="zoomRight" value="0" min="-500" max="700" value="25"/>
+                        <div class="add" style="display: block; width: 100px; height: 50px">Добавить</div>
+
+                        <div class="d-flex row-cols-3 flex-wrap">
+                            @foreach($facades as $facade)
+                                <div class="col">
+                                    <h5>{{$facade['name']}}</h5>
+                                    <img src="{{asset($facade['image'])}}" height="80" width="60" />
+                                    @foreach($facade['type'] as $type)
+                                        <div>
+                                            <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}"/>
+                                            <label name="facadesPrice">{{$type['nameFacades']}}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
-                <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs">
+                    <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs">
                     <h4>Выберите комплектацию кухни</h4>
                     <div class="d-flex justify-content-between flex-wrap">
                         <table class="table">
@@ -149,7 +378,7 @@
                             @foreach( $items as $item)
                                 <tr>
                                     <th scope="row">
-                                        <input type="checkbox" class="checkbox" name="{{$item['nameClassBox']}}" data-price="{{$item['price']}}">
+                                        <input type="checkbox" class="checkbox" name="{{$item['nameClassBox']}}" data-price="{{$item['price']}}" data-x="{{$item['x']}}" data-y="{{$item['y']}}" data-w="{{$item['w']}}" data-h="{{$item['h']}}" data-g="{{$item['g']}}" data-type="{{$item['nameClassBox']}}">
                                     </th>
                                     <td>
                                         {{$item['nameBoxBottom']}}
