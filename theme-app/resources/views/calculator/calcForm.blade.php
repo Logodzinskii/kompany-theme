@@ -210,7 +210,6 @@
                     ctx     = example.getContext('2d');
                 ctx.clearRect(0, 0, 700, 500);
 
-
                 $('.checkbox:checked').each(function (){
 
                     var datax= $(this).data('x');
@@ -219,14 +218,7 @@
                     var datah = $(this).data('h');
                     var datag = $(this).data('g');
                     var typeb = $(this).data('type');
-                    if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
-                    {
-                        addBox(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
-                    }
-                    if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
-                    {
-                        createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
-                    }
+
 
 
                 });
@@ -237,13 +229,24 @@
                     var datah = $(this).data('h');
                     var datag = $(this).data('g');
                     var typeb = $(this).data('type');
-                    if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
-                    {
-                        addBox(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
-                    }
-                    if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
-                    {
-                        createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                    if($(this).is(':checked')){
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                        {
+                            addBox(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+                        }
+                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                        {
+                            createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+                        }
+                    }else{
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                        {
+                            addBox(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                        }
+                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                        {
+                            createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                        }
                     }
 
                 });
@@ -270,24 +273,25 @@
                 var angh = g*(mashtab);
                 var example = document.getElementById("example"),
                     ctx     = example.getContext('2d');
-                var facadescolor = 'rgba(222, 194, 124,1)';
-                var boxcolor = "rgba(220, 224, 224, 1)";
-                var linecolor = "rgba(0, 0, 0, 0.8)";
+                var facadescolor = '';
+                var boxcolor = "";
+                var linecolor = "";
                 if(color == 'active')
                 {
                     facadescolor = "rgba(222, 194, 124,1)";
                     boxcolor = "rgba(220, 224, 224, 1)";
-                    linecolor = "rgba(0, 0, 0, 0.8)";
+                    linecolor = "rgba(0, 0, 0, 1)";
                 }else{
-                    facadescolor = "rgba(222, 194, 124,0.3)";
-                    boxcolor = "rgba(220, 224, 224, 0.3)";
-                    linecolor = "rgba(0, 0, 0, 0.3)";
+                    facadescolor = "rgba(105, 105, 105,0.5)";
+                    boxcolor = "rgba(220, 224, 224, 0.5)";
+                    linecolor = "rgba(0, 0, 0, 1)";
                 }
 
                 ctx.strokeStyle = linecolor; // цвет линии
                 ctx.beginPath();
                 ctx.moveTo(x,y); //0,0
                 //фасад
+                ctx.lineTo(x, y); //0, 0
                 ctx.lineTo(x+w, y+ang); //100, 25
                 ctx.lineTo(x+w, y+ang+h); //100, 100+25+100
                 ctx.lineTo(x, y+h); // 0, 100
