@@ -209,7 +209,7 @@ class CalculateContentController extends Controller
 
         ];
 
-        $newArr = DB::table('products')->where('productName', $model)->get();
+        $newArr = DB::table('products')->where('productName', $model)->orderByRaw('color ASC')->get();
 
         return view('/calculator/calcForm', ['items' => json_decode($newArr,true), 'facades'=> $facades]);
 
@@ -308,7 +308,7 @@ class CalculateContentController extends Controller
                 $count = $request->count;
                 $price = $kitchen->getCostBoxWashing() * $count;
                 break;
-            case strpos($request->type,'oxTop') > 0:
+            case strpos($request->type,'oxTop') > 0 &&  strlen($request->type) == 6:
                 $kitchen->setKitchenBoxTopLength($request->length);
                 $count = $request->count;
                 $price = $kitchen->getCostBoxTop() * $count;
@@ -330,6 +330,10 @@ class CalculateContentController extends Controller
                 $count = $request->count;
                 $price = 19000 * $count;
                 break;
+                case strpos($request->type,'olBox') > 0:
+                    $count = $request->count;
+                    $price = 0 * $count;
+                    break;
         }
         /*$priceBox = $kitchen->getCostPLH($arr['priceBox'], $request->length, $arr['heightKitchenBoxDown']);
         $priceFacades = $kitchen->getCostPLH($request->facadesPrice, $request->length, $arr['heightKitchenBoxDown']);

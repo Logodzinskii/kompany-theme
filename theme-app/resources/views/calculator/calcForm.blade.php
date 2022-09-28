@@ -73,23 +73,39 @@
                     success: function (data) {
                         $('.SumBoxPrice'+ type).text(data);
                         sumTotal();
+                        start();
                     }
                 });
             }
+
             function sumTotal()
             {
                 var sum = 0;
+                var sumCount = 0;
+                var sumLength = 0;
                 $('.SumBoxPrice').each(function() {
                     sum += Number($(this).text());
                 });
+                $('.countItems').each(function() {
+                    sumCount += Number($(this).val());
+                });
+                $('.selectBox').each(function() {
+
+                    if($(this).parent().parent().children().children().is(':checked') && $(this).attr('name').indexOf('BoxTop') < 0 && $(this).attr('name').indexOf('BoxMiddle') <0){
+
+                        var c = $(this).parent().parent().children().eq(3).children().val();
+                        var l = $(this).val();
+                        sumLength += Number(l*c);
+                    }
+                });
+
                 $(".sum").text(sum);
                 $(".sumForm").val(sum);
                 $(".summError").text('');
+                $('.sumCount').text(sumCount);
+                $('.sumLength').text(sumLength);
             }
-        });
-    </script>
-    <script>
-        $(document).ready(function (){
+
             /**
              *
              * Первоначальная отрисовка модулей кухни по умолчанию
@@ -108,9 +124,9 @@
                 var x = e.clientX - target.left;
                 var y = e.clientY - target.top;
 
-                $('.navigationCanvas input[name=zoomTop]').val(x);
-                $('.navigationCanvas input[name=zoomRight]').val(y);
-                start();
+                //$('.navigationCanvas input[name=zoomTop]').val(x);
+                //$('.navigationCanvas input[name=zoomRight]').val(y);
+                //start();
                 //alert(getPosition(e));
 
             });
@@ -193,7 +209,6 @@
                 start()
             });
 
-
             /**
              *
              * Функции для отрисовки модулей и их позиционирования
@@ -208,47 +223,47 @@
 
                 var example = document.getElementById("example"),
                     ctx     = example.getContext('2d');
-                ctx.clearRect(0, 0, 700, 500);
+                    ctx.clearRect(0, 0, 700, 500);
+                //размеры
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(0,0,0,1)';
+                ctx.font = '18px vardana';
+                ctx.fillText('Расчетная стоимость - ' + $(".canvasSum" ).text() + ' руб', 100,30);
+                ctx.fillText('Расчетная длинна кухни - ' + $(".sumLength").text() + ' мм', 100,50);
+                //ctx.fillText('Общее количество модулей - ' + $(".sumCount").text() + ' мм', 100,70);
+                ctx.closePath();
+                ctx.stroke();
 
-                $('.checkbox:checked').each(function (){
-
-                    var datax= $(this).data('x');
-                    var datay= $(this).data('y');
-                    var dataw = $(this).data('w');
-                    var datah = $(this).data('h');
-                    var datag = $(this).data('g');
-                    var typeb = $(this).data('type');
-
-
-
-                });
                 $('.checkbox').each(function (){
+                    var inputWidth = $(this).parent().parent().children().eq(2).children().val();
+
                     var datax= $(this).data('x');
                     var datay= $(this).data('y');
                     var dataw = $(this).data('w');
                     var datah = $(this).data('h');
                     var datag = $(this).data('g');
                     var typeb = $(this).data('type');
+
                     if($(this).is(':checked')){
-                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop')
                         {
                             addBox(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+
                         }
-                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
                         {
                             createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
                         }
                     }else{
-                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle')
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop')
                         {
                             addBox(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
                         }
-                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge')
+                        if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
                         {
                             createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
                         }
                     }
-
                 });
 
             }
@@ -261,10 +276,6 @@
 
             function addBox(xx,yy,ww,hh,color,mashtab,g )
             {
-                var $window = $(window);
-                var windowsize = $window.width();
-                //alert(windowsize);
-
                 var x = xx * mashtab;
                 var y = yy * mashtab;
                 var w = ww * mashtab;
@@ -273,24 +284,51 @@
                 var angh = g*(mashtab);
                 var example = document.getElementById("example"),
                     ctx     = example.getContext('2d');
+
                 var facadescolor = '';
                 var boxcolor = "";
                 var linecolor = "";
+                var textcolor = "";
                 if(color == 'active')
                 {
                     facadescolor = "rgba(222, 194, 124,1)";
                     boxcolor = "rgba(220, 224, 224, 1)";
                     linecolor = "rgba(0, 0, 0, 1)";
+                    textcolor = "green";
                 }else{
                     facadescolor = "rgba(105, 105, 105,0.5)";
                     boxcolor = "rgba(220, 224, 224, 0.5)";
                     linecolor = "rgba(0, 0, 0, 1)";
+                    textcolor = "rgba(0,0,0,1)";
                 }
-
+                //левая сторона
+                ctx.beginPath();
+                ctx.setLineDash([2, 2]);
+                ctx.moveTo(x,y); //0,0
+                ctx.lineTo(x+angh, y-angh);//20,-20
+                ctx.lineTo(x+angh, y-angh+h);//20,-20
+                ctx.lineTo(x, y+h);//20,-20
+                //цвет заливки фигуры
+                ctx.fillStyle = boxcolor;
+                ctx.fill();
+                ctx.closePath();
+                ctx.stroke();
+                //задняя сторона
+                ctx.beginPath();
+                ctx.moveTo(x+angh, y-angh); //0,0
+                ctx.lineTo(x+angh+w, y-angh+ang);//20,-20
+                ctx.lineTo(x+angh+w, y-angh+ang+h);//20,-20
+                ctx.lineTo(x+angh, y+h-angh);//20,-20
+                //цвет заливки фигуры
+                //ctx.fillStyle = boxcolor;
+                //ctx.fill();
+                ctx.closePath();
+                ctx.stroke();
+                //фасад
                 ctx.strokeStyle = linecolor; // цвет линии
                 ctx.beginPath();
+                ctx.setLineDash([]);
                 ctx.moveTo(x,y); //0,0
-                //фасад
                 ctx.lineTo(x, y); //0, 0
                 ctx.lineTo(x+w, y+ang); //100, 25
                 ctx.lineTo(x+w, y+ang+h); //100, 100+25+100
@@ -302,29 +340,32 @@
                 ctx.fill();
                 ctx.closePath();
                 ctx.stroke();
-                //верхняя часть
+                    //верхняя часть
                 ctx.beginPath();
+                ctx.setLineDash([]);
                 ctx.moveTo(x,y); //0,0
                 ctx.lineTo(x+angh, y-angh);//20,-20
                 ctx.lineTo(x+w+angh, y+ang-angh);//0+100+20, 0+25-20
                 ctx.lineTo(x-angh+w+angh, y+ang);
                 ctx.strokeStyle = linecolor;
-                //цвет заливки фигуры
+                    //цвет заливки фигуры
                 ctx.fillStyle = boxcolor;
                 ctx.fill();
                 ctx.closePath();
                 ctx.stroke();
                 //правая сторона по часовой стрелке рисуем линии
                 ctx.beginPath();
+                ctx.setLineDash([]);
                 ctx.moveTo(x+w+angh, y+ang-angh); //
                 ctx.lineTo(x+w+angh, y+ang-angh+h);//0+100+20, 0+25-20
                 ctx.lineTo(x+w, y+ang+h);//0+100+20, 0+25-20
                 ctx.lineTo(x+w, y+ang);
-                //цвет заливки фигуры
+                    //цвет заливки фигуры
                 ctx.fillStyle = boxcolor;
                 ctx.fill();
                 ctx.closePath();
                 ctx.stroke();
+
             }
         })
 
@@ -338,7 +379,7 @@
         <form id="orderForm" class="was-validated" >
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
-            <section class="calc_container d-flex row col-lg-12 justify-content-between flex-wrap" style="width: 95%">
+            <section class="calc_container d-flex row col-lg-12 justify-content-around flex-wrap" style="width: 95%">
                 <div class="col-lg-6 col-12 row">
                     <canvas height='500' width='580' id='example' class="shadow">Обновите браузер</canvas>
 
@@ -409,9 +450,9 @@
                             <tr class="table-success">
                                 <td></td>
                                 <td>Итого</td>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">0</td>
+                                <td class="sumLength">0</td>
+                                <td class="sumCount">0</td>
+                                <td class="sum canvasSum">0</td>
                             </tr>
                             </tbody>
                         </table>
