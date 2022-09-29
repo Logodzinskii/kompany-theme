@@ -14,4 +14,10 @@ class AdminController extends Controller
         return view('admin/admin', ['orders'=>json_decode(json_encode($orders),true)]);
 
     }
+    public function editFacadesPrice()
+    {
+        $facades = DB::table('price_kitchens')->where('nameProject', 'kitchen')->get();
+
+        return view('admin/adminedit', ['facades'=> json_decode($facades, true)]);
+    }
 }

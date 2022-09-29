@@ -36,6 +36,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/cart/{id}', [\App\Http\Controllers\OrderForm::class, 'showDetailOrder'])->middleware('auth');
+Route::get('/admin/kitchen/edit/', [\App\Http\Controllers\AdminController::class, 'editFacadesPrice'])->middleware('auth');
 
 Route::get('/calculate/{model}', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
 

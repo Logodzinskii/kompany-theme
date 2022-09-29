@@ -16,7 +16,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @guest
-                                <li><a href="home/">вход</a></li>
+                                <li><a href="/home/">вход</a></li>
                             @else
                                 @if(Auth::user()->status == 'admin')
                                     <li><a href="/admin/">Заказы пользователей</a></li>
@@ -32,9 +32,9 @@
                 <div class="d-flex row">
                     <div>
                         @guest
-                            <a href="home/">вход</a>
+                            <a href="/home/">вход</a>
                         @else
-                            <a href="home/">{{ Auth::user()->name }}</a>
+                            <a href="/home/">{{ Auth::user()->name }}</a>
                         @endguest
                     </div>
                 </div>

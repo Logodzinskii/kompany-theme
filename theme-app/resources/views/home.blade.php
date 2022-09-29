@@ -13,7 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <ul>
+                        <li><a href="/" >Главная</a></li>
+                        <li><a href="/admin/">Заказы пользователей</a></li>
+                        <li><a href="/admin/kitchen/edit/">Редактирование стоимости кухни</a></li>
+                    </ul>
                     {{ __('You are logged in!') }}
                 </div>
             </div>
@@ -21,4 +25,3 @@
     </div>
 </div>
 @endsection
-PHP_PATH=/opt/php/8.1/bin

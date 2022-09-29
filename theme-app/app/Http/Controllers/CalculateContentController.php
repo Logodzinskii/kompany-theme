@@ -210,8 +210,8 @@ class CalculateContentController extends Controller
         ];
 
         $newArr = DB::table('products')->where('productName', $model)->orderByRaw('color ASC')->get();
-
-        return view('/calculator/calcForm', ['items' => json_decode($newArr,true), 'facades'=> $facades]);
+        $facades = DB::table('price_kitchens')->where('nameProject', 'kitchen')->get();
+        return view('/calculator/calcForm', ['items' => json_decode($newArr,true), 'facades'=> json_decode($facades, true)]);
 
     }
 
