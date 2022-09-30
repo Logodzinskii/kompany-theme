@@ -24,7 +24,7 @@
                 }else{
                     $('.summError').text('');
                     var formData =$('#orderForm').serialize();
-                    alert(formData);
+
                     $.ajax({
                         url: "{{ route('order.user.store') }}",
                         type: 'POST',
@@ -69,7 +69,7 @@
                 $.ajax({
                     url: "{{ route('ajax.data.resp') }}",
                     type: 'POST',
-                    data: {_token: _token, length: length, count: count, type: type, facadesPrice: facades},
+                        data: {_token: _token, length: length, count: count, type: type, facadesPrice: facades},
                     success: function (data) {
                         $('.SumBoxPrice'+ type).text(data);
                         sumTotal();
@@ -393,9 +393,9 @@
                         <div class="d-flex row-cols-3 flex-wrap">
                             @foreach($facades as $facade)
                                 <div class="col">
-                                    <h5>{{$facade['name']}}</h5>
-                                    <img src="{{asset($facade['image'])}}" height="80" width="60" />
-                                    @foreach($facade['type'] as $type)
+                                    <h5>{{$facade['nameFacades']}}</h5>
+                                    <img src="{{asset($facade['imageFacades'])}}" height="80" width="60" />
+                                    @foreach(json_decode($facade['typeFacades'], true) as $type)
                                         <div>
                                             <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}"/>
                                             <label name="facadesPrice">{{$type['nameFacades']}}</label>

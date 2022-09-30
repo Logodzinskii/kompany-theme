@@ -29,7 +29,12 @@ Route::post('order/user/store', [\App\Http\Controllers\OrderForm::class, 'orderU
 
 Route::post('ajax/data/resp', [\App\Http\Controllers\CalculateContentController::class, 'ajaxDataResp'])->name('ajax.data.resp');
 
+Route::post('add/facades/price', [\App\Http\Controllers\AdminController::class, 'addFacadesPrice'])->name('add.facades.price');
+Route::get('delete/facades/price/{id}/', [\App\Http\Controllers\AdminController::class, 'deleteFacadesPrice']);
+Route::post('update/facades/price', [\App\Http\Controllers\AdminController::class, 'updateFacadesPrice'])->name('update.facades.price');
+
 Route::post('update/Price/FacadesBoxModules', [\App\Http\Controllers\CalculateContentController::class, 'updatePriceFacadesBoxModules'])->name('update.price.facadesBoxModules');
+
 
 Auth::routes();
 
