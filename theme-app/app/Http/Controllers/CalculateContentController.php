@@ -254,7 +254,8 @@ class CalculateContentController extends Controller
             'heightKitchenTotal'=> 2050,
             'heightKitchenBoxDown' => 820,
             'kitchenDepth' => 600,
-            'kitchenPriceAprons' => 1200,
+            'kitchenPriceAprons' => 6500,
+            'kitchenPriceStol' => 9500,
             'kitchenLengthTypeA' => 0,
             'kitchenLengthTypeB' => 800,
             'kitchenLengthTypeC' => 0,
@@ -275,6 +276,8 @@ class CalculateContentController extends Controller
             'kitchenBottleMakerOptionsPrice'=> 2500,
             'FalseFacadeHiLength'=> 600,
             'FalseFacade1LowLength'=> 600,
+            'lengthAprons'=>3000,
+            'lengthStol'=>3000,
         ];
         $kitchen = new Kitchen($arr);
         $kitchen->initializeKitchen();
@@ -329,6 +332,15 @@ class CalculateContentController extends Controller
             case strpos($request->type,'enal') > 0:
                 $count = $request->count;
                 $price = 19000 * $count;
+                break;
+            case strpos($request->type,'tolB') > 0:
+                $kitchen->setLengthStol($request->length);
+                $count = $request->count;
+                $price = $kitchen->getCostStol();
+                break;
+            case strpos($request->type,'Apr') >0;
+                $kitchen->setLengthAprons($request->length);
+                $price = $kitchen->getCostAprons();
                 break;
                 case strpos($request->type,'olBox') > 0:
                     $count = $request->count;

@@ -12,6 +12,23 @@
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/calcv2.css') }}>
         <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(90538515, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/90538515" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
     <script type="text/javascript">
         $(document).ready(function() {
             $("#orderForm input:radio:first").attr('checked', true);
@@ -142,6 +159,7 @@
             })
 
             $('input:checkbox').on("click", function () {
+
                 if ($(this).is(":checked")) {
                     var  attr = $(this).parent().parent().children().children().eq(2);
 
@@ -157,10 +175,6 @@
                     var price = $(this).data('price');
                     var count = $(this).parent().parent().children().eq(3).children().val();
                     //$(this).parent().parent().children().eq(4).text(parseInt(price) * parseInt(count));
-
-                    $('.' + $(this).attr('name')).css('background', 'green');
-                    $('.' + $(this).attr('name')).removeClass('grey');
-                    $('.' + $(this).attr('name')).addClass('green');
 
 
                     var sum = 0;
@@ -186,9 +200,7 @@
                     $(this).parent().parent().children().children().eq(2).attr('disabled', true);
                     $(this).parent().parent().children().eq(2).children().attr('disabled', true);
                     //$(this).parent().parent().children().eq(4).text(0);
-                    $('.' + $(this).attr('name')).css('background', 'grey');
-                    $('.' + $(this).attr('name')).removeClass('green');
-                    $('.' + $(this).attr('name')).addClass('grey');
+
 
                     var sum = 0;
                     $('.SumBoxPrice').each(function() {
@@ -233,7 +245,7 @@
                 //ctx.fillText('Общее количество модулей - ' + $(".sumCount").text() + ' мм', 100,70);
                 ctx.closePath();
                 ctx.stroke();
-
+                var kitchenLength = 0;
                 $('.checkbox').each(function (){
                     var inputWidth = $(this).parent().parent().children().eq(2).children().val();
 
@@ -244,19 +256,32 @@
                     var datag = $(this).data('g');
                     var typeb = $(this).data('type');
 
+
+                    //$(this).parent().parent().children().eq(2).children().val(kitchenLength);
                     if($(this).is(':checked')){
-                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop')
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop' || typeb == 'BoxApronsTop')
                         {
+                            $(this).parent().parent().children().eq(2).children().val($('.sumLength').attr('data-kitchenLens'));
                             addBox(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
 
                         }
                         if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
                         {
+
+                            kitchenLength += Number(($(this).parent().parent().children().eq(2).children().val()) * ($(this).parent().parent().children().eq(3).children().val()));
+
+                            $('.sumLength').attr('data-kitchenLens', kitchenLength);
                             createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
                         }
                     }else{
-                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop')
+                        if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop' || typeb == 'BoxApronsTop')
                         {
+
+                            //var count = $(this).parent().parent().children().eq(3).children().val(1);
+                            //count.attr();
+                            $(this).parent().parent().children().eq(2).children().attr('type','hidden');
+                            $(this).parent().parent().children().eq(2).children().val($('.sumLength').attr('data-kitchenLens'));
+
                             addBox(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
                         }
                         if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
@@ -264,6 +289,7 @@
                             createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
                         }
                     }
+
                 });
 
             }
@@ -296,8 +322,8 @@
                     linecolor = "rgba(0, 0, 0, 1)";
                     textcolor = "green";
                 }else{
-                    facadescolor = "rgba(105, 105, 105,0.5)";
-                    boxcolor = "rgba(220, 224, 224, 0.5)";
+                    facadescolor = "rgba(105, 105, 105,1)";
+                    boxcolor = "rgba(220, 224, 224, 1)";
                     linecolor = "rgba(0, 0, 0, 1)";
                     textcolor = "rgba(0,0,0,1)";
                 }
@@ -450,7 +476,7 @@
                             <tr class="table-success">
                                 <td></td>
                                 <td>Итого</td>
-                                <td class="sumLength">0</td>
+                                <td class="sumLength" data-kitchenLens="">0</td>
                                 <td class="sumCount">0</td>
                                 <td class="sum canvasSum">0</td>
                             </tr>
