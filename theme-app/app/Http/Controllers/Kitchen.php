@@ -36,6 +36,7 @@ class Kitchen extends Controller
     public int $kitchenBottleMakerOptionsPrice;
     public int $FalseFacadeHiLength;
     public int $FalseFacade1LowLength;
+    public int $lengthAprons;
     protected int $kitchenTotalLength;
     protected int $kitchenTotalHeight;
     protected int $kitchenBoxTopHeight;
@@ -57,6 +58,7 @@ class Kitchen extends Controller
         $this->heightKitchenBoxDown = $arr['heightKitchenBoxDown'];
         $this->kitchenDepth = $arr['kitchenDepth'];
         $this->kitchenPriceAprons = $arr['kitchenPriceAprons'];
+        $this->kitchenPriceStol = $arr['kitchenPriceStol'];
         $this->kitchenLengthTypeA = $arr['kitchenLengthTypeA'];
         $this->kitchenLengthTypeB = $arr['kitchenLengthTypeB'];
         $this->kitchenLengthTypeC = $arr['kitchenLengthTypeC'];
@@ -77,6 +79,8 @@ class Kitchen extends Controller
         $this->kitchenBottleMakerOptionsPrice= $arr['kitchenBottleMakerOptionsPrice'];
         $this->FalseFacadeHiLength= $arr['FalseFacadeHiLength'];
         $this->FalseFacade1LowLength= $arr['FalseFacade1LowLength'];
+        $this->lengthAprons = $arr['lengthAprons'];
+        $this->lengthStol = $arr['lengthStol'];
     }
 
     /**
@@ -109,19 +113,39 @@ class Kitchen extends Controller
      * @param int $lengthAprons
      * @return int
      */
-    public function getCostAprons( int $lengthAprons):int
+    public function getCostAprons():int
     {
 
-        $kitchenTotalLength = $this->kitchenTotalLength;
+        $kitchenTotalLength = $this->lengthAprons;
 
-        if($kitchenTotalLength < $lengthAprons)
+        if($kitchenTotalLength < 3000)
         {
-            $kitchenTotalLength = $lengthAprons ;
+            $kitchenTotalLength = 3000 ;
         }
 
-        $count = intdiv($kitchenTotalLength, $lengthAprons);
+        $count = intdiv($kitchenTotalLength, 3000);
 
         return $count * $this->kitchenPriceAprons;
+    }
+    /**
+     * Расчитаем стоимость Столешница для кухни
+     * Расчет на длинну 3000 мм. если больше 3000 то считаем целый лист
+     * @param int $lengthStol
+     * @return int
+     */
+    public function getCostStol():int
+    {
+
+        $kitchenTotalLength = $this->lengthAprons;
+
+        if($kitchenTotalLength < 3000)
+        {
+            $kitchenTotalLength = 3000 ;
+        }
+
+        $count = intdiv($kitchenTotalLength, 3000);
+
+        return $count * $this->kitchenPriceStol;
     }
 
     /**
@@ -362,4 +386,19 @@ class Kitchen extends Controller
         $this->priceFacade = $priceFacade;
     }
 
+    /**
+     * @param int|mixed $lengthAprons
+     */
+    public function setLengthAprons(mixed $lengthAprons): void
+    {
+        $this->lengthAprons = $lengthAprons;
+    }
+
+    /**
+     * @param mixed $lengthStol
+     */
+    public function setLengthStol(mixed $lengthStol): void
+    {
+        $this->lengthStol = $lengthStol;
+    }
 }
