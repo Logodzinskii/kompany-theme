@@ -249,7 +249,7 @@
                  * Установлю заменяемой строке значения х,у текущей строки
                  * */
                 prevRow.children().eq(5).children().eq(0).val(parseInt(xThis)+((wThis/10)-(wprev/10)));
-                prevRow.children().eq(5).children().eq(1).val(yThis);
+                prevRow.children().eq(5).children().eq(1).val(yThis - ((wprev/10)/4));
 
                 if (prevRow.length) {
                     prevRow.before(thisRow);
@@ -274,7 +274,7 @@
                  * Установлю текущей строке значения х,у соседней строки
                  * */
                 thisRow.children().eq(5).children().eq(0).val(closestBoxX-(wThis/10));
-                thisRow.children().eq(5).children().eq(1).val(closestBoxY);
+                thisRow.children().eq(5).children().eq(1).val(closestBoxY - ((wThis/10)/4));
                 /**
                  * Установлю заменяемой строке значения х,у текущей строки
                  * */
@@ -525,16 +525,15 @@
         <form id="orderForm" class="was-validated" >
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
-            <section class="calc_container d-flex row col-lg-12 justify-content-around flex-wrap" style="width: 95%">
-                <div class="col-lg-6 col-12 row" style="max-height: 500px">
-                    <canvas height='500' width='580' id='example' class="shadow">Обновите браузер</canvas>
+            <section class="calc_container d-flex row col-lg-12 justify-content-around flex-wrap m-0">
+                <div class="col-lg-6 col-12 row justify-content-center">
+                    <canvas height='500' width='580' id='example' class="card">Обновите браузер</canvas>
 
-                    <div class="navigationCanvas d-flex row">
+                    <div class="navigationCanvas d-flex row card">
                         <label for="zoom">увеличение<em>*</em></label>
                         <input type="range" min="2" max="10" value="5" name="zoom">
                         <input type="range" name="zoomTop" value="0" min="-500" max="500" value="25"/>
                         <input type="range" name="zoomRight" value="0" min="-500" max="700" value="25"/>
-                        <div class="add" style="display: block; width: 100px; height: 50px">Добавить</div>
 
                         <div class="d-flex row-cols-3 flex-wrap">
                             @foreach($facades as $facade)
@@ -552,10 +551,8 @@
                         </div>
                     </div>
                 </div>
-                    <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs">
-                    <h4>Выберите комплектацию кухни</h4>
-                    <div class="d-flex justify-content-between flex-wrap">
-                        <table class="table">
+                    <div class="d-flex justify-content-around row col-lg-5 col-xs-12 col-md-12 parametrs card">
+                        <table class="table p-0">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -651,10 +648,10 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+
             </section>
             <div class="col-12 d-flex justify-content-center row result">
-                <section class="d-flex justify-content-center row col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <section class="d-flex justify-content-center card row col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
                         <label for="InputName" class="form-label">Ваше имя</label>
                         <input type="text" name="firstname" class="form-control" id="InputName" value="" required>
