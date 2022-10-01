@@ -108,7 +108,7 @@
                 });
                 $('.selectBox').each(function() {
 
-                    if($(this).parent().parent().children().children().is(':checked') && $(this).attr('name').indexOf('BoxTop') < 0 && $(this).attr('name').indexOf('BoxMiddle') <0){
+                    if($(this).parent().parent().children().children().is(':checked') && $(this).attr('name').indexOf('BoxTop') < 0 && $(this).attr('name').indexOf('BoxMiddle') <0 && $(this).attr('name').indexOf('StolBoxTop') <0 && $(this).attr('name').indexOf('BoxApronsTop') <0 && $(this).attr('name').indexOf('BoxDown') < 0 && $(this).attr('name').indexOf('BoxDownFf') <0 ){
 
                         var c = $(this).parent().parent().children().eq(3).children().val();
                         var l = $(this).val();
