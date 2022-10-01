@@ -221,6 +221,34 @@
                 start()
             });
 
+            $('.coord').on('change',function(){
+                //alert($(this).val());
+                $(this).parent().parent().children().eq(0).children().attr('data-x', $(this).val());
+                start();
+            });
+
+            $('table').on('click', '.move-up', function () {
+                var thisRow = $(this).closest('tr');
+                var prevRow = thisRow.prev();
+                if (prevRow.length) {
+                    prevRow.before(thisRow);
+                }
+            });
+
+            $('table').on('click', '.move-down', function () {
+                var thisRow = $(this).closest('tr');
+                var nextRow = thisRow.next();
+                if (nextRow.length) {
+                    nextRow.after(thisRow);
+                }
+            });
+
+            $('table').on('click', '.copy', function () {
+                $(this).parent().parent().parent().clone(true).insertAfter($(this).parent().parent().parent());
+            });
+            $('table').on('click', '.delete', function () {
+                $(this).parent().parent().parent().remove();
+            });
             /**
              *
              * Функции для отрисовки модулей и их позиционирования
@@ -249,8 +277,19 @@
                 $('.checkbox').each(function (){
                     var inputWidth = $(this).parent().parent().children().eq(2).children().val();
 
-                    var datax= $(this).data('x');
                     var datay= $(this).data('y');
+                    var datax= $(this).data('x');
+                    if($(this).parent().parent().children().eq(5).length){
+                        var dataxadmin = $(this).parent().parent().children().eq(5).children().eq(0).val();
+                        var datayadmin = $(this).parent().parent().children().eq(5).children().eq(1).val();
+
+
+                        if (dataxadmin !== datax || datayadmin !== datay){
+                            datax = dataxadmin;
+                            datay = datayadmin;
+                        }
+                    }
+
                     var dataw = $(this).data('w');
                     var datah = $(this).data('h');
                     var datag = $(this).data('g');
@@ -271,8 +310,19 @@
                             kitchenLength += Number(($(this).parent().parent().children().eq(2).children().val()) * ($(this).parent().parent().children().eq(3).children().val()));
 
                             $('.sumLength').attr('data-kitchenLens', kitchenLength);
-                            createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+
+                            if(typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
+                            {
+                                createBoxAntresole(xa+datax,ya+datay,dataw,datah,'active', ma, datag)
+                            }else{
+                                createBoxDown(xa+datax,ya+datay,dataw,datah,'active', ma, datag);
+                            }
+                            if(typeb == 'BoxShelves')
+                            {
+                                createBoxBoxShelves(xa+datax,ya+datay,dataw,datah,'active', ma, datag)
+                            }
                         }
+
                     }else{
                         if( typeb == 'BoxTop' || typeb == 'BoxMiddle' || typeb == 'StolBoxTop' || typeb == 'BoxApronsTop')
                         {
@@ -286,11 +336,36 @@
                         }
                         if(typeb == 'BoxOven' || typeb == 'BottleMaker' || typeb == 'BoxShelves' || typeb == 'BoxDishwasher' || typeb == 'BoxWashing' || typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
                         {
-                            createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                            if(typeb == 'PenalFridge' || typeb == 'PenalMicrowave' || typeb == 'PenalShelves')
+                            {
+                                createBoxAntresole(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag)
+                            }else{
+                                createBoxDown(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag);
+                            }
+                            if(typeb == 'BoxShelves')
+                            {
+                                createBoxBoxShelves(xa+datax,ya+datay,dataw,datah,'deactive', ma, datag)
+                            }
                         }
+
                     }
 
                 });
+
+            }
+            function createBoxBoxShelves(x,y,w,h,color,m,g)
+            {
+                createBoxDown(x,y,w,h,color,m,g);
+                addBox(x,y,w,h-47,color, m, g);
+                addBox(x,y,w,h-67,color, m, g);
+
+            }
+
+            function createBoxAntresole(x,y,w,h,color,m,g)
+            {
+                createBoxDown(x,y,w,h,color,m,g);
+                addBox(x,y,w,h-87,color, m, g);
+                addBox(x,y,w,h-267,color, m, g);
 
             }
 
@@ -317,13 +392,14 @@
                 var textcolor = "";
                 if(color == 'active')
                 {
+
                     facadescolor = "rgba(222, 194, 124,1)";
-                    boxcolor = "rgba(220, 224, 224, 1)";
+                    boxcolor = "rgba(255, 255, 255, 1)";
                     linecolor = "rgba(0, 0, 0, 1)";
                     textcolor = "green";
                 }else{
-                    facadescolor = "rgba(105, 105, 105,1)";
-                    boxcolor = "rgba(220, 224, 224, 1)";
+                    facadescolor = "rgba(255, 255, 255,1)";
+                    boxcolor = "rgba(255, 255, 255, 1)";
                     linecolor = "rgba(0, 0, 0, 1)";
                     textcolor = "rgba(0,0,0,1)";
                 }
@@ -406,7 +482,7 @@
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
             <section class="calc_container d-flex row col-lg-12 justify-content-around flex-wrap" style="width: 95%">
-                <div class="col-lg-6 col-12 row">
+                <div class="col-lg-6 col-12 row" style="max-height: 500px">
                     <canvas height='500' width='580' id='example' class="shadow">Обновите браузер</canvas>
 
                     <div class="navigationCanvas d-flex row">
@@ -418,12 +494,12 @@
 
                         <div class="d-flex row-cols-3 flex-wrap">
                             @foreach($facades as $facade)
-                                <div class="col">
+                                <div class="col colorFacades">
                                     <h5>{{$facade['nameFacades']}}</h5>
                                     <img src="{{asset($facade['imageFacades'])}}" height="80" width="60" />
                                     @foreach(json_decode($facade['typeFacades'], true) as $type)
                                         <div>
-                                            <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}"/>
+                                            <input type="radio" name="facadesPrice" value="{{$type['priceFacades']}}" data-color="{{$facade['colorFacades']}}"/>
                                             <label name="facadesPrice">{{$type['nameFacades']}}</label>
                                         </div>
                                     @endforeach
@@ -443,6 +519,13 @@
                                 <th scope="col">Размер</th>
                                 <th scope="col">Количество</th>
                                 <th scope="col">Цена<span style="color:red">*</span></th>
+                                @guest
+                                @else
+                                @if(Auth::user()->status == 'admin')
+                                <th scope="col">x</th>
+                                <th scope="col">y</th>
+                                @endif
+                                @endguest
                             </tr>
                             </thead>
                             <tbody class="text-center tableValue">
@@ -450,9 +533,11 @@
                                 <tr>
                                     <th scope="row">
                                         <input type="checkbox" class="checkbox" name="{{$item['nameClassBox']}}" data-price="{{$item['price']}}" data-x="{{$item['x']}}" data-y="{{$item['y']}}" data-w="{{$item['w']}}" data-h="{{$item['h']}}" data-g="{{$item['g']}}" data-type="{{$item['nameClassBox']}}">
+
                                     </th>
                                     <td>
                                         {{$item['nameBoxBottom']}}
+
                                     </td>
                                     <td>
                                         @if(count(json_decode($item['defaultLen']),true) == 0 )
@@ -471,6 +556,45 @@
                                     <td class="SumBoxPrice{{$item['nameClassBox']}} SumBoxPrice">
                                         0
                                     </td>
+                                    @guest
+                                    @else
+                                        @if(Auth::user()->status == 'admin')
+                                        <td>
+                                            <input type="number" class="coord" name="count{{$item['nameClassBox']}}" placeholder="{{$item['placeholder']}}" value="{{$item['x']}}" step="1">
+
+                                            <input type="number" class="coord" name="count{{$item['nameClassBox']}}" placeholder="{{$item['placeholder']}}" value="{{$item['y']}}" step="1">
+
+                                        </td>
+                                        <td class="d-flex row p-0 m-0" style="width: 100px;">
+                                                <div>
+                                                    <span class="move-up btn btn-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+                                                </svg>
+                                                </span>
+                                                    <span class="copy btn btn-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                                </svg>
+                                                </span>
+                                                </div>
+                                                <div>
+                                                    <span class="move-down btn btn-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                                                </svg>
+                                                </span>
+                                                    <span class="delete btn btn-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                </svg>
+                                                </span>
+                                                </div>
+                                        </td>
+                                        @endif
+                                    @endguest
                                 </tr>
                             @endforeach
                             <tr class="table-success">
