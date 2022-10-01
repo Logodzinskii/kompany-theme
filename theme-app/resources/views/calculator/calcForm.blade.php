@@ -230,17 +230,61 @@
             $('table').on('click', '.move-up', function () {
                 var thisRow = $(this).closest('tr');
                 var prevRow = thisRow.prev();
+
+                var xThis = thisRow.children().eq(5).children().eq(0).val();
+                var yThis = thisRow.children().eq(5).children().eq(1).val();
+                var wThis = thisRow.children().eq(2).children().val();
+                var xprev = prevRow.children().eq(5).children().eq(0).val();
+                var yprev = prevRow.children().eq(5).children().eq(1).val();
+                var wprev = prevRow.children().eq(2).children().val();
+
+                var closestBoxX = xprev;
+                var closestBoxY = yprev;
+                /**
+                 * Установлю текущей строке значения х,у соседней строки
+                 * */
+                thisRow.children().eq(5).children().eq(0).val(closestBoxX);
+                thisRow.children().eq(5).children().eq(1).val(closestBoxY);
+                /**
+                 * Установлю заменяемой строке значения х,у текущей строки
+                 * */
+                prevRow.children().eq(5).children().eq(0).val(parseInt(xThis)+((wThis/10)-(wprev/10)));
+                prevRow.children().eq(5).children().eq(1).val(yThis);
+
                 if (prevRow.length) {
                     prevRow.before(thisRow);
                 }
+                start();
             });
 
             $('table').on('click', '.move-down', function () {
                 var thisRow = $(this).closest('tr');
                 var nextRow = thisRow.next();
+
+                var xThis = thisRow.children().eq(5).children().eq(0).val();
+                var yThis = thisRow.children().eq(5).children().eq(1).val();
+                var wThis = thisRow.children().eq(2).children().val();
+                var xNext = nextRow.children().eq(5).children().eq(0).val();
+                var yNext = nextRow.children().eq(5).children().eq(1).val();
+                var wNext = nextRow.children().eq(2).children().val();
+
+                var closestBoxX = nextRow.next().children().eq(0).children().data('x');
+                var closestBoxY = nextRow.next().children().eq(0).children().data('y');
+                /**
+                 * Установлю текущей строке значения х,у соседней строки
+                 * */
+                thisRow.children().eq(5).children().eq(0).val(closestBoxX-(wThis/10));
+                thisRow.children().eq(5).children().eq(1).val(closestBoxY);
+                /**
+                 * Установлю заменяемой строке значения х,у текущей строки
+                 * */
+                nextRow.children().eq(5).children().eq(0).val(xThis);
+                nextRow.children().eq(5).children().eq(1).val(yThis);
+
                 if (nextRow.length) {
                     nextRow.after(thisRow);
                 }
+                start();
             });
 
             $('table').on('click', '.copy', function () {
