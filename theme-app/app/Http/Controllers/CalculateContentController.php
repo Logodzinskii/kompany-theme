@@ -273,7 +273,7 @@ class CalculateContentController extends Controller
             'kitchenBoxShelvesLength'=> 500,
             'kitchenBoxShelvesOptionsPrice'=>7500,
             'kitchenBottleMakerLength'=> 200,
-            'kitchenBottleMakerOptionsPrice'=> 2500,
+            'kitchenBottleMakerOptionsPrice'=> 6500,
             'FalseFacadeHiLength'=> 600,
             'FalseFacade1LowLength'=> 600,
             'lengthAprons'=>3000,
@@ -289,27 +289,32 @@ class CalculateContentController extends Controller
             case strpos($request->type,'ottleMaker') > 0:
                 $kitchen->setKitchenBottleMakerLength($request->length);
                 $count = $request->count;
-                $price = $kitchen->getCostBottleMaker() * $count;
+                //$price = $kitchen->getCostBottleMaker() * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 6500);
                 break;
             case strpos($request->type,'oxOven') > 0:
                 $kitchen->setKitchenBoxOvenLength($request->length);
                 $count = $request->count;
-                $price = $kitchen->getCostOven() * $count;
+                //$price = $kitchen->getCostOven() * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 3500);
                 break;
             case strpos($request->type,'oxShelves') > 0:
                 $kitchen->setKitchenBoxShelvesLength($request->length);
                 $count = $request->count;
-                $price = $kitchen->getCostBoxShelves() * $count;
+                //$price = $kitchen->getCostBoxShelves() * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 12500);
                 break;
             case strpos($request->type,'oxDishwasher') > 0:
                 $kitchen->setKitchenBoxDishwasherLength($request->length);
                 $count = $request->count;
-                $price = $kitchen->getCostBoxDishwasher() * $count;
+                //$price = $kitchen->getCostBoxDishwasher() * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 3500);
                 break;
             case strpos($request->type,'oxWashing') > 0:
                 $kitchen->setKitchenBoxWashingLength($request->length);
                 $count = $request->count;
-                $price = $kitchen->getCostBoxWashing() * $count;
+                //$price = $kitchen->getCostBoxWashing() * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 3500);
                 break;
             case strpos($request->type,'oxTop') > 0 &&  strlen($request->type) == 6:
                 $kitchen->setKitchenBoxTopLength($request->length);
@@ -331,7 +336,8 @@ class CalculateContentController extends Controller
                 break;
             case strpos($request->type,'enal') > 0:
                 $count = $request->count;
-                $price = 19000 * $count;
+                //$price = 19000 * $count;
+                $price = $count*($kitchen->getCostPLH($arr['priceFacade'], $request->length, $arr['heightKitchenBoxDown']) + 11300);
                 break;
             case strpos($request->type,'tolB') > 0:
                 $kitchen->setLengthStol($request->length);
