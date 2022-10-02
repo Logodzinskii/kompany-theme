@@ -9,17 +9,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href={{ asset('css/owl.carousel.min.css') }}>
         <link rel="stylesheet" href={{ asset('css/owl.theme.default.min.css') }}>
-
+        <link rel="stylesheet" href={{ asset('css/main.css') }}>
         <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
         <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
         <script src={{ asset('js/owl.carousel.min.js')}}></script>
+
         <script type="text/javascript">
         $(document).ready(function(){
             $(".owl-carousel:eq(0)").owlCarousel(
                 {
 
                     margin:10,
-
+                    dots: false,
+                    autoplay:false,
                     responsive:{
                         0:{
                             items:1
@@ -43,10 +45,10 @@
                             items:1
                         },
                         600:{
-                            items:1
+                            items:2
                         },
                         1000:{
-                            items:1
+                            items:3
                         }
                     }
                 }
@@ -69,105 +71,227 @@
                     }
                 }
             );
+            $(".owl-carousel:eq(3)").owlCarousel(
+                {
+
+                    margin:10,
+                    autoplay:true,
+                    responsive:{
+                        0:{
+                            items:4
+                        },
+                        600:{
+                            items:4
+                        },
+                        1000:{
+                            items:8
+                        }
+                    }
+                }
+            );
         });
     </script>
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <div>
-            <h1 class="text-center">Расчитайте кухню вашей мечты</h1>
-        </div>
-        <div class="owl-carousel owl-theme owl-loaded side" style="min-height: 100vh">
+        <div class="owl-carousel owl-theme owl-loaded side" style="min-height: 85vh">
             <div class="owl-stage-outer">
-                <div class="owl-stage">
-                    <div class="owl-item">
-                        <img src="{{asset('images/main/kitchen_1_main.jpg')}}" height="600"  class="card-img-top" alt="шкаф на заказ компания-тема">
+                <div class="owl-stage blur">
+                    <div class="owl-item slider-card">
+                        <h1 class="text-center text-white">КОМПАНИЯ-ТЕМА</h1>
+                        <div class="info-block">
+                            <p>Изготовим корпусную мебель</p>
+                            <p>Сделаем замер</p>
+                            <p>Учтем все детали</p>
+                            <p>Произведем доставку и монтаж</p>
+                        </div>
+                        <img src="{{asset('images/main/kitchen_1_main.jpg')}}"  class="card-img-top" alt="шкаф на заказ компания-тема">
                     </div>
-                    <div class="owl-item">
-                        <img src="{{asset('images/main/kitchen_2_main.jpg')}}"  height="600" class="card-img-top" alt="шкаф на заказ компания-тема">
-                    </div>
-                    <div class="owl-item">
-                        <img src="{{asset('images/main/kitchen_3_main.jpg')}}"  height="600" class="card-img-top" alt="шкаф на заказ компания-тема">
-                    </div>
+                <!--<div class="owl-item slider-card">
+                        <h1 class="text-center text-white">РЕАЛИСТИЧНАЯ КАРТИНКА, БУДУЩЕЙ МЕБЕЛИ!</h1>
+                        <div class="info-block">
+                            <p>Проработаем дизайн проект до мелочей</p>
+                            <p>Подстроимся под любые размеры</p>
+                            <p>Предложим альтернативу</p>
+                        </div>
+
+                        <video controls autoplay><source src="{{asset('video/videoplayback.mp4')}}" type="video/mp4" controls width="250"></video>
+                    </div>-->
                 </div>
             </div>
         </div>
-
-        <section class="p-0 m-0 d-flex justify-content-around flex-wrap">
-                <div class="card" style="max-width: 400px;">
-                    <div class="owl-carousel owl-theme owl-loaded side">
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage">
-                                <div class="owl-item">
-                                    <img src="{{asset('images/main/kitchen.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
-                                    <div class="card-body d-flex justify-content-center">
-                                        <h2>Кухни</h2>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <img src="{{asset('images/main/pedestal.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
-                                    <div class="card-body d-flex justify-content-center">
-                                        <h2>Тумбы</h2>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <img src="{{asset('images/main/wardrobe.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
-                                    <div class="card-body d-flex justify-content-center">
-                                        <h2>Шкафы</h2>
-                                    </div>
-                                </div>
+        <div class="card p-0 m-0">
+            <h1 class="text-center">Мы изготавливаем различную мебель</h1>
+            <div class="owl-carousel owl-theme owl-loaded side">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        <div class="owl-item">
+                            <img src="{{asset('images/main/kitchen.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
+                            <div class="card-body d-flex justify-content-center">
+                                <h2>Кухни</h2>
+                            </div>
+                        </div>
+                        <div class="owl-item">
+                            <img src="{{asset('images/main/pedestal.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
+                            <div class="card-body d-flex justify-content-center">
+                                <h2>Тумбы</h2>
+                            </div>
+                        </div>
+                        <div class="owl-item">
+                            <img src="{{asset('images/main/wardrobe.png')}}" height="300" class="card-img-top" alt="шкаф на заказ компания-тема">
+                            <div class="card-body d-flex justify-content-center">
+                                <h2>Шкафы</h2>
                             </div>
                         </div>
                     </div>
-
-                </div>
-            <div class="card" style="max-width: 400px;">
-                <h1 class="card-title text-center">Онлайн калькулятор кухни</h1>
-                <img src="{{asset('images/k3.jpg')}}"  class="card-img-top" alt="кухня на заказ компания-тема">
-                <div class="card-body d-flex justify-content-center">
-                    <a href="/calculate/modelfirst" class="btn btn-primary">Расчитать</a>
                 </div>
             </div>
+        </div>
+        <div class="d-flex row p-0 m-0" style="height: 60vh">
+            <h1 class="text-center">Делаем визуализацию проекта</h1>
+            <div class="col info-block">
+                <p class="text-center bg-light">РЕАЛИСТИЧНАЯ КАРТИНКА, БУДУЩЕЙ МЕБЕЛИ!</p>
+                <p>Проработаем дизайн проект до мелочей</p>
+                <p>Подстроимся под любые размеры</p>
+                <p>Предложим альтернативу</p>
+            </div>
+            <video controls autoplay width="400" height="400" class="col">
+                <source src="{{asset('video/videoplayback.mp4')}}"  type="video/mp4" controls width="250">
+            </video>
+        </div>
+        <section class="bg-dark">
+            <h1 class="text-white text-center">Фотографии готовых работ</h1>
+            <div class="owl-carousel owl-theme owl-loaded side" style="min-height: 100vh">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage blur">
+                        @for ($i = 1; $i <= 11; $i++)
+                            <div class="owl-item">
+                                <img src="{{asset('images/resoultProject/'. $i . '.jpg')}}"/>
+                            </div>
+                        @endfor
 
+                    </div>
+                </div>
+            </div>
         </section>
+        <section class="bg-light">
+            <h1 class="text-center">Сотрудничаем только с проверенными поставщиками фурнитуры и комплектующих</h1>
+            <div class="owl-carousel owl-theme owl-loaded side d-flex align-items-center" style="min-height: 50vh">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        @for ($i = 1; $i <= 8; $i++)
+                            <div class="owl-item">
+                                <img src="{{asset('images/partners/'. $i . '.jpg')}}"/>
+                            </div>
+                        @endfor
 
-        <h1 class="text-center" style="padding: 20px">4 ПРОСТЫХ ШАГА К ВАШЕЙ НОВОЙ МЕБЕЛИ</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h1 class="text-center" style="padding: 20px">ЗАКАЗАТЬ МЕБЕЛЬ У НАС - ПРОСТО</h1>
         <section class="col-lg-12 row justify-content-around p-0 m-0" style="min-height: 20vh">
-            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border: #0069d9 2px solid; border-radius: 15px">
-
-                <h3 style="width: 100%; text-align: center">ЗАМЕРЫ</h3>
+            <div class="d-flex row justify-content-center col-lg-3 flex-wrap card" style="border-bottom: grey 1px solid;">
+                <h3 style="width: 100%; height: 70px; text-align: center">ЗАМЕРЫ</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bounding-box-circles" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM0 2a2 2 0 0 1 3.937-.5h8.126A2 2 0 1 1 14.5 3.937v8.126a2 2 0 1 1-2.437 2.437H3.937A2 2 0 1 1 1.5 12.063V3.937A2 2 0 0 1 0 2zm2.5 1.937v8.126c.703.18 1.256.734 1.437 1.437h8.126a2.004 2.004 0 0 1 1.437-1.437V3.937A2.004 2.004 0 0 1 12.063 2.5H3.937A2.004 2.004 0 0 1 2.5 3.937zM14 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM2 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>
                 <div style="min-height: 150px">
                     <p style="text-align: center">
                         Сделаем замеры, учтём все углы
                     </p>
                 </div>
             </div>
-            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border: #0069d9 2px solid; border-radius: 15px">
-
+            <div class="d-flex row justify-content-center col-lg-3 flex-wrap card" style="border-bottom: grey 1px solid;">
+                <h3 style="width: 100%; height: 70px; text-align: center">СОГЛАСОВАНИЕ</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                </svg>
                 <div style="min-height: 150px">
-                    <h3 style="width: 100%; text-align: center">СОГЛАСОВАНИЕ</h3>
                     <p style="text-align: center">Обговорим детали по материалам,
                         покажем реалистичную картинку проекта и
                         если понадобиться, внесем правки
                     </p>
                 </div>
             </div>
-            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border: #0069d9 2px solid; border-radius: 15px">
+            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border-bottom: grey 1px solid;">
 
-                <h3 style="width: 100%; text-align: center">ОПЛАТА</h3>
+                <h3 style="width: 100%; height: 70px; text-align: center">ОПЛАТА</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                    <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                </svg>
                 <div style="min-height: 150px">
                     <p style="text-align: center">Примем оплату наличным
                         или безналичным расчетом
                     </p>
                 </div>
             </div>
-            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border: #0069d9 2px solid; border-radius: 15px">
+            <div class="d-flex row justify-content-start col-lg-3 flex-wrap card" style="border-bottom: grey 1px solid;">
 
-                <h3 style="width: 100%; text-align: center">ДОСТАВКА И СБОРКА</h3>
+                <h3 style="width: 100%; height: 70px; text-align: center">ДОСТАВКА И СБОРКА</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box2" viewBox="0 0 16 16">
+                    <path d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3L2.95.4ZM7.5 1H3.75L1.5 4h6V1Zm1 0v3h6l-2.25-3H8.5ZM15 5H1v10h14V5Z"/>
+                </svg>
                 <div style="min-height: 150px">
                     <p style="text-align: center">Изготовим, привезем,
                        соберём и установим
                     </p>
+                </div>
+            </div>
+        </section>
+        <h1 class="text-center">Готовы сделать заказ?</h1>
+        <section class="p-0 m-0 d-flex justify-content-around align-items-start flex-wrap">
+            <form class="card">
+                <h2>Отправьте заявку на расчет</h2>
+                <div class="mb-6">
+                    <label for="InputName" class="form-label">Ваше имя</label>
+                    <input type="text" name="firstname" class="form-control" id="InputName" value="" required>
+                    <div class="valid-feedback">
+                        ok
+                    </div>
+                    <div class="invalid-feedback">
+                        Пожалуйста, сообщите ваше имя и фамилию.
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="InputEmail" class="form-label">Email для связи с вами</label>
+                    <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
+                    <div id="emailHelp" class="form-text">Мы не присылаем рекламу и спам</div>
+                    <div class="valid-feedback">
+                        ok
+                    </div>
+                    <div class="invalid-feedback">
+                        Пожалуйста, укажите вашу почту.
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="InputTel" class="form-label">Ваш контактный телефон</label>
+                    <input type="tel" name="tel" class="form-control" id="InputTel" aria-describedby="telHelp" required>
+                    <div id="telHelp" class="form-text">+79XXXXXXXXXX</div>
+                    <div class="valid-feedback">
+                        ok
+                    </div>
+                    <div class="invalid-feedback">
+                        Пожалуйста, укажите ваш номер телефона для связи с вами.
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="Textarea" class="form-label">Дополнительная информация</label>
+                    <textarea class="form-control" name="body" id="Textarea" rows="3" placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit" >Отправить</button>
+                <div class="mb-6">
+                    <h2 class="summError bg-danger mb-3"></h2>
+                </div>
+                <input type="hidden" class="sumForm" name="sumForm" />
+            </form>
+            <div class="card" style="max-width: 400px">
+                <h2 class="card-title text-center">Или воспользуйтесь калькулятором</h2>
+                <img src="{{asset('images/k3.jpg')}}"  class="card-img-top" alt="кухня на заказ компания-тема">
+                <div class="card-body d-flex justify-content-center">
+                    <a href="/calculate/modelfirst" class="btn btn-primary">Расчитать</a>
                 </div>
             </div>
         </section>
