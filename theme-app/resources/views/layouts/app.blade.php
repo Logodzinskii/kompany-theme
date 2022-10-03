@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <META NAME="description">
+    <link rel="icon" type="image/png" href="{{asset('/images/logo/logo.png')}}">
     <title>ThemeGroup</title>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="icon" type="image/png" href="{{ asset('images/logo/logo.png') }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -66,9 +68,9 @@
                         @endif
 
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <!--<li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
+                            </li>-->
                         @endif
                     @else
                         <li class="nav-item dropdown">

@@ -31,10 +31,76 @@
     <!-- /Yandex.Metrika counter -->
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $('input[name=firstname]').bind('input',function(){
+
+                if($(this).val().match(/[А-Яа-яЁё]/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('');
+                    $(this).attr('data-valid', 1);
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите имя и фамилию на русском языке');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+
+            $('input[name=email]').bind('input',function()
+            {
+                if($(this).val().match(/\w+@\w+\.\w+/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('')
+                    $(this).attr('data-valid', 1);
+
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите email в формате: example@mail.ru');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+            $('input[name=tel]').bind('input',function()
+            {
+                if($(this).val().match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('');
+                    $(this).attr('data-valid', 1);
+
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите телефон +79XX-XXX-XX-XX');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+            function ch(){
+                var sumValid = 0;
+
+                $('.form-control').each(function(){
+
+                    sumValid += parseInt($(this).attr('data-valid'));
+
+                })
+
+                if(sumValid >= 3 ){
+                    $(".btn-submit").prop('disabled',false);
+                }else{
+                    $(".btn-submit").prop('disabled',true);
+                }
+
+                console.log(sumValid);
+            }
+
+
             $("#orderForm input:radio:first").attr('checked', true);
+
             $(".btn-submit").click(function (e) {
                 var sum = $('.sum').text();
-                if(sum == '00')
+                if(sum === '00')
                 {
                     $('.summError').text('Вы не выбрали конфигурацию кухни');
                     return false;
@@ -47,7 +113,7 @@
                         type: 'POST',
                         data: formData,
                         success: function (data) {
-                            $('.result').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
+                            $('.result').addClass('bg-success').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время');
                         }
                     });
                 }
@@ -522,7 +588,7 @@
     </head>
     <body class="container-fluid p-0 m-0">
         @include('header')
-        <form id="orderForm" class="was-validated" >
+        <form id="orderForm">
             @csrf
             <input type="hidden" id="_token" value="{{ csrf_token() }}">
             <section class="calc_container d-flex row col-lg-12 justify-content-around flex-wrap m-0">
@@ -654,7 +720,7 @@
                 <section class="d-flex justify-content-center card row col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
                         <label for="InputName" class="form-label">Ваше имя</label>
-                        <input type="text" name="firstname" class="form-control" id="InputName" value="" required>
+                        <input type="text" name="firstname" class="form-control" id="InputName" value="" data-valid="0"  required>
                         <div class="valid-feedback">
                             ok
                         </div>
@@ -664,8 +730,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="InputEmail" class="form-label">Email для связи с вами</label>
-                        <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
-                        <div id="emailHelp" class="form-text">Мы не присылаем рекламу и спам</div>
+                        <input type="email" name="email" class="form-control" id="InputEmail" data-valid="0"  aria-describedby="emailHelp" required>
                         <div class="valid-feedback">
                             ok
                         </div>
@@ -675,8 +740,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="InputTel" class="form-label">Ваш контактный телефон</label>
-                        <input type="tel" name="tel" class="form-control" id="InputTel" aria-describedby="telHelp" required>
-                        <div id="telHelp" class="form-text">+79XXXXXXXXXX</div>
+                        <input type="tel" name="tel" class="form-control" id="InputTel" data-valid="0"  aria-describedby="telHelp" required>
                         <div class="valid-feedback">
                             ok
                         </div>
@@ -686,9 +750,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="Textarea" class="form-label">Дополнительная информация</label>
-                        <textarea class="form-control" name="body" id="Textarea" rows="3" placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
+                        <textarea class="form-control" name="body" id="Textarea" rows="3" data-valid="0"  placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary w-25 btn-submit" >Отправить</button>
+                    <button type="submit" class="btn btn-primary btn-submit" disabled>Отправить</button>
                     <div class="mb-3">
                         <h2 class="summError bg-danger"></h2>
                     </div>
@@ -698,21 +762,5 @@
                 </section>
             </div>
         </form>
-        <script>
-            // Custom JavaScript for Validation
-            (function() {
-                "use strict";
-                window.addEventListener("load", function() {
-                    var form = document.getElementById("orderForm");
-                    form.addEventListener("submit", function(event) {
-                        if (form.checkValidity() == false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add("was-validated");
-                    }, false);
-                }, false);
-            }());
-        </script>
         @include('footer')
     </body>
