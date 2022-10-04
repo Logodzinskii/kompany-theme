@@ -16,7 +16,9 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @guest
-                                <li><a href="/home/">вход</a></li>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="/calculate/modelfirst/">Калькулятор</a></li>
+                                <li><a href="/contacts/">Контакты</a></li>
                             @else
                                 @if(Auth::user()->status == 'admin')
                                     <li><a href="/admin/">Заказы пользователей</a></li>
