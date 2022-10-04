@@ -65,15 +65,57 @@ class OrderForm extends Controller
 
     public function showDetailOrder($id)
     {
-        $arr=[];
+        $arrForm=[];
 
         $order = DB::table('orders')->where('id',$id)->get();
+
+        $arr = [
+            'facadesPrice'=>'Цена фасадов',
+            'lengthBottleMaker'=>'Длинна Бутылошницы',
+            'countBottleMaker'=>'количество бутылошниц',
+            'lengthBoxOven'=>'Шкаф для Духовки',
+            'countBoxOven' => 'Шкафов для духовки',
+            'lengthBoxShelves' => 'Нижний модуль с полками',
+            'countBoxShelves' => 'Количество нижних модулей с полками',
+            'lengthBoxDishwasher' => 'Шкаф для посудомойки',
+            'countBoxDishwasher' => 'Количество шкафов для посудомойки',
+            'lengthBoxWashing' => 'Шкаф для мойки',
+            'countBoxWashing' => 'Количество шкафов для мойки',
+            'lengthBoxDown'=>'Фальшфасад для нижнего модуля',
+            'countBoxDown'=>'Количество фальшфасадов для нижнего модуля',
+            'lengthBoxDownFf'=>'Фальшфасад для пенала',
+            'countBoxDownFf'=>'Количество фальшфасадов для пенала',
+            'lengthBoxMiddle'=>'Верхние модули',
+            'countBoxMiddle'=>'Количество верхних модулей',
+            'lengthBoxTop'=>'Антресоли',
+            'lengthPenalFridge'=>'Пенал холодильник',
+            'countPenalFridge'=>'Пенал холодильник',
+            'lengthPenalMicrowave'=>'Пенал микроволновка',
+            'countPenalMicrowave'=>'Количество Пеналов для микроволновки',
+            'lengthPenalShelves'=>'Пенал полки',
+            'countPenalShelves'=>'Количествой Пеналов с полками',
+            'sumForm' => 'Итоговая цена за заказ',
+        ];
+        $res =[];
+
+
         foreach ($order as $ord)
         {
-            $arr = json_decode($ord->kitchenConfigurations, true);
+            $arrIn =json_decode($ord->kitchenConfigurations, true);
+
+            foreach ($arrIn as $item)
+            {
+                $key = array_keys($item)[0];
+
+                if(array_key_exists($key,$arr))
+                {
+                    $res[] =  [$arr[$key] .' - '. array_values($item)[0]];
+                }
+
+            }
         }
         //file_put_contents('test.log', print_r($arr));
 
-        return view('details/details', ['details' => $order , 'parametrs' => $arr]);
+        return view('details/details', ['details' => $order , 'parametrs' => $res]);
     }
 }

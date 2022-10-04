@@ -23,17 +23,23 @@
 
         <section>
             @foreach($details as $detail)
-            <div>
-                {{$detail->name}}
+            <div class="bg-light">
+                <h2>Имя и контактный телефон заказчика</h2>
+                <h3>{{$detail->name}}</h3>
             </div>
                 <div>
-                    {{$detail->userEmail}}
+                    <h2>email:</h2>
+                    <h3>{{$detail->userEmail}}</h3>
                 </div>
                 @foreach($parametrs as $param)
                 <div>
-                    @foreach($param as $key => $p)
-                    {{$key . '-' . $p}}
-                    @endforeach
+                    <ul class="list-group">
+                        @foreach($param as $p)
+                        <li class="list-group-item">
+                            {{$p}}
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
                 @endforeach
                 <div>
