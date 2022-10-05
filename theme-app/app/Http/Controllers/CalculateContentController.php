@@ -71,7 +71,7 @@ class CalculateContentController extends Controller
 
             ],
             [   'nameClassBox'=>'BoxDishwasher',
-                'nameBoxBottom'=>'Ширина посудомойки',
+                'nameBoxBottom'=>'Шкаф для посудомойки',
                 'placeholder'=>'кол-во, шт',
                 'typeBox'=>'parallelogram',
                 'defaultLen'=>[450,600],

@@ -18,9 +18,6 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('main');
 });
-Route::get('/canvas/', function () {
-    return view('/canvas/canvas');
-});
 
 
 Route::get('/admin/',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
@@ -44,7 +41,6 @@ Route::get('/cart/{id}', [\App\Http\Controllers\OrderForm::class, 'showDetailOrd
 Route::get('/admin/kitchen/edit/', [\App\Http\Controllers\AdminController::class, 'editFacadesPrice'])->middleware('auth');
 
 Route::get('/calculate/{model}', [\App\Http\Controllers\CalculateContentController::class, 'showKitchen']);
-
-Route::get('/calcv2/', function (){
-    return view('/calculator/calcForm');
+Route::get('/contacts/', function () {
+    return view('contacts');
 });

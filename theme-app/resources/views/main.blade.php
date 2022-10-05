@@ -3,6 +3,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <META NAME="description">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Мебель на заказ</title>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="icon" type="image/png" href="{{ asset('images/logo/logo.png') }}"/>
@@ -15,7 +16,89 @@
         <script src={{ asset('js/owl.carousel.min.js')}}></script>
 
         <script type="text/javascript">
+
         $(document).ready(function(){
+
+            $('input[name=firstname]').bind('input',function(){
+
+                if($(this).val().match(/[А-Яа-яЁё]/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('');
+                    $(this).attr('data-valid', 1);
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите имя и фамилию на русском языке');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+
+            $('input[name=email]').bind('input',function()
+            {
+                if($(this).val().match(/\w+@\w+\.\w+/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('')
+                    $(this).attr('data-valid', 1);
+
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите email в формате: example@mail.ru');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+            $('input[name=tel]').bind('input',function()
+            {
+                if($(this).val().match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/) !== null )
+                {
+                    $(this).css('background', 'rgba(46, 171, 63, 0.5)');
+                    $(this).parent().children().eq(3).css('display','none').text('');
+                    $(this).attr('data-valid', 1);
+
+                }else {
+                    $(this).css('background', 'rgba(209, 31, 31, 0.5)');
+                    $(this).parent().children().eq(3).css('display','block').text('Введите телефон +79XX-XXX-XX-XX');
+                    $(this).attr('data-valid', 0);
+                }
+                ch();
+            })
+            function ch(){
+                var sumValid = 0;
+
+                $('.form-control').each(function(){
+
+                    sumValid += parseInt($(this).attr('data-valid'));
+
+                })
+
+                if(sumValid >= 3){
+                    $(".btn-submit").prop('disabled',false);
+                }else{
+                    $(".btn-submit").prop('disabled',true);
+                }
+
+                console.log(sumValid);
+            }
+            $(".btn-submit").click(function (e) {
+
+
+                    var formData =$('#orderForm').serialize();
+
+                    $.ajax({
+
+                        url: "{{ route('order.user.store') }}",
+                        type: 'POST',
+                        data: formData,
+                        success: function (data) {
+                            $('#orderForm').text('Мы приняли вашу заявку, свяжемся с вами в ближайшее время').addClass('bg-success');
+                        }
+                    });
+
+                e.preventDefault();
+            });
+
             $(".owl-carousel:eq(0)").owlCarousel(
                 {
 
@@ -243,11 +326,13 @@
         </section>
         <h1 class="text-center">Готовы сделать заказ?</h1>
         <section class="p-0 m-0 d-flex justify-content-around align-items-start flex-wrap">
-            <form class="card">
+            <form class="card" id="orderForm">
                 <h2>Отправьте заявку на расчет</h2>
+                @csrf
+
                 <div class="mb-6">
                     <label for="InputName" class="form-label">Ваше имя</label>
-                    <input type="text" name="firstname" class="form-control" id="InputName" value="" required>
+                    <input type="text" name="firstname" class="form-control" id="InputName" value="" data-valid="0" required>
                     <div class="valid-feedback">
                         ok
                     </div>
@@ -257,8 +342,7 @@
                 </div>
                 <div class="mb-6">
                     <label for="InputEmail" class="form-label">Email для связи с вами</label>
-                    <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
-                    <div id="emailHelp" class="form-text">Мы не присылаем рекламу и спам</div>
+                    <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" data-valid="0" required>
                     <div class="valid-feedback">
                         ok
                     </div>
@@ -268,24 +352,21 @@
                 </div>
                 <div class="mb-6">
                     <label for="InputTel" class="form-label">Ваш контактный телефон</label>
-                    <input type="tel" name="tel" class="form-control" id="InputTel" aria-describedby="telHelp" required>
-                    <div id="telHelp" class="form-text">+79XXXXXXXXXX</div>
+                    <input type="tel" name="tel" class="form-control" id="InputTel" data-valid="0"/>
                     <div class="valid-feedback">
                         ok
                     </div>
                     <div class="invalid-feedback">
-                        Пожалуйста, укажите ваш номер телефона для связи с вами.
+                        Пожалуйста, укажите вашу почту.
                     </div>
                 </div>
                 <div class="mb-6">
                     <label for="Textarea" class="form-label">Дополнительная информация</label>
-                    <textarea class="form-control" name="body" id="Textarea" rows="3" placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
+                    <textarea class="form-control" name="body" id="Textarea" rows="3" data-valid="0" placeholder="Например: уточнение по параметрам кухни, или необходимости индивидуального расчета" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-submit" >Отправить</button>
-                <div class="mb-6">
-                    <h2 class="summError bg-danger mb-3"></h2>
-                </div>
-                <input type="hidden" class="sumForm" name="sumForm" />
+                <input type="hidden" class="sumForm" name="sumForm" value="0"/>
+                <input type="hidden"  name="kitchenConfigurations" value="Default" />
+                <button type="submit" class="btn btn-primary btn-submit" disabled>Отправить</button>
             </form>
             <div class="card" style="max-width: 400px">
                 <h2 class="card-title text-center">Или воспользуйтесь калькулятором</h2>
@@ -294,6 +375,7 @@
                     <a href="/calculate/modelfirst" class="btn btn-primary">Расчитать</a>
                 </div>
             </div>
+
         </section>
 
         @extends('footer')
